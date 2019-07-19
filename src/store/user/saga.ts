@@ -18,13 +18,12 @@ export const authUser = (
 ): ThunkAction<void, RootStore, void, AnyAction> => dispatch => {
   dispatch(actions.getUserDataRequest())
   authenticate(data)
-    .then(response => {
-      console.log('authUser -> response', response)
+    .then((response: any) => {
       if (response.data) {
         dispatch(actions.getUserDataSuccess(response.data))
       }
     })
-    .catch(err => {
+    .catch((err: any) => {
       if (err.errorText) {
         dispatch(actions.getUserDataFail(err))
       }

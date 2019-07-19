@@ -3,6 +3,8 @@ import { IResponseError } from '../../api'
 
 export const getUserDataRequest = () => ({ type: 'getUserDataRequest' } as const)
 
+export const reset = () => ({ type: 'reset' } as const)
+
 export const getUserDataSuccess = (user: IUser) =>
   ({
     type: 'getUserDataSuccess',

@@ -12,6 +12,9 @@ export const initialState: UserStore = {
 
 export const reducer = (state = initialState, action: ActionTypes): UserStore => {
   switch (action.type) {
+    case 'reset':
+      return initialState
+
     case 'getUserDataRequest':
       return { ...initialState, loading: 'LOADING' }
 
