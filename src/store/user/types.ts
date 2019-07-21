@@ -1,7 +1,8 @@
-import { TLoading } from '../../types'
 import { IResponseError } from '../../api'
 import * as actions from './actions'
 import { InferValueTypes } from '../types'
+
+export type TLoading = 'IDLE' | 'LOADING' | 'LOADED' | 'ERROR'
 
 export interface IUser {
   userName: string
