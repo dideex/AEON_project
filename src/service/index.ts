@@ -1,0 +1,1 @@
+export { CustomThemeProvider } from './theme'

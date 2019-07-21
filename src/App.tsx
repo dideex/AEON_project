@@ -1,5 +1,12 @@
 import * as React from 'react'
 
-const App: React.FC = () => <div>Awesome app</div>
+import { CustomThemeProvider as ThemeProvider } from './service'
+import { Main } from './layout'
+
+const App: React.FC = () => (
+  <ThemeProvider>
+    <Main />
+  </ThemeProvider>
+)
 
 export default App
