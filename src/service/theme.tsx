@@ -7,6 +7,7 @@ declare module '@material-ui/core/styles/createMuiTheme' {
   interface Theme {
     color: {
       subAccent: string
+      accent: string
       background: string
       font: string
     }
@@ -15,6 +16,7 @@ declare module '@material-ui/core/styles/createMuiTheme' {
   interface ThemeOptions {
     color?: {
       subAccent?: string
+      accent?: string
       background?: string
       font?: string
     }
@@ -24,7 +26,8 @@ declare module '@material-ui/core/styles/createMuiTheme' {
 const theme = createMuiTheme({
   color: {
     subAccent: deepPurple['A200'],
-    background: grey[100],
+    accent: deepPurple['A200'],
+    background: grey[50],
     font: grey[800],
   },
 })

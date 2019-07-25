@@ -8,13 +8,15 @@ export interface ICustomInput {
   type: TInputType
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
   value: string
+  disabled: boolean
 }
 
 const CustomInput: React.FC<ICustomInput> = ({
   name,
   type,
   handleChange,
-  value = ''
+  value = '',
+  disabled
 }) => {
   return (
     <FormControl margin="normal" required fullWidth>
@@ -25,6 +27,7 @@ const CustomInput: React.FC<ICustomInput> = ({
         name={name}
         type={type}
         id={name}
+        disabled={disabled}
       />
     </FormControl>
   )

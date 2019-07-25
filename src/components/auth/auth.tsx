@@ -1,10 +1,9 @@
 import * as React from 'react'
-import { makeStyles, Theme, Container, CssBaseline, Button } from '@material-ui/core'
+import { makeStyles, Theme, Container, CssBaseline } from '@material-ui/core'
 
 import { IUserRequest } from '../../types'
-import { CustomInput } from '../common'
+import { CustomInput, AccentButton } from '../common'
 import AuthHeader from './auth-header'
-// import { IUserRequest } from '../../types';
 
 const useStyles = makeStyles((theme: Theme) => ({
   '@global': {
@@ -35,9 +34,11 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 interface CompProps {
   handleSubmit: (data: IUserRequest) => void
+  isLoading: boolean
 }
 
 const Auth: React.FC<CompProps> = props => {
+  const { isLoading } = props
   const classes = useStyles()
   const { paper, avatar, form, submit } = classes
   const [state, setState] = React.useState<IUserRequest>({ username: '', password: '' })
@@ -49,6 +50,7 @@ const Auth: React.FC<CompProps> = props => {
       value: state[name],
       handleChange,
       name,
+      disabled: isLoading,
     }
   }
 
@@ -60,13 +62,11 @@ const Auth: React.FC<CompProps> = props => {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={paper}>
-        <AuthHeader theme={avatar} title="Sign in" />
+        <AuthHeader theme={avatar} title="Aeon social network" />
         <form className={form} onSubmit={handleSubmit}>
           <CustomInput {...getInputProps('username')} type="text" />
           <CustomInput {...getInputProps('password')} type="password" />
-          <Button type="submit" fullWidth variant="contained" color="primary" className={submit}>
-            Sign in
-          </Button>
+          <AccentButton title="Sign in" className={submit} isLoading={isLoading} />
         </form>
       </div>
     </Container>
