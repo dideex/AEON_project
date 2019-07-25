@@ -1,10 +1,5 @@
 import { IUser } from '../store/user/types'
 
-export interface IUserRequest {
-  username: string
-  password: string
-}
-
 export const incorrect_login_or_password = 'incorrect_login_or_password'
 interface IResponseErrorLogOrPwd {
   errorText: typeof incorrect_login_or_password

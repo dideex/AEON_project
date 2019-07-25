@@ -1,8 +1,12 @@
 import config from '../config'
-import { incorrect_login_or_password, IUserRequest, IAuthResponse } from './types'
+import { incorrect_login_or_password, IAuthResponse } from './types'
+import { IUserRequest } from '../types'
 
 const checkCredentials = (data: IUserRequest): boolean => {
-  if (data.username.toLowerCase().trim() === 'admin' && data.password.toLowerCase().trim() === '12345') {
+  if (
+    data.username.toLowerCase().trim() === 'admin' &&
+    data.password.toLowerCase().trim() === '12345'
+  ) {
     return true
   } else {
     return false
