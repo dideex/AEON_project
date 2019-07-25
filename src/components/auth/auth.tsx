@@ -4,6 +4,7 @@ import { makeStyles, Theme, Container, CssBaseline } from '@material-ui/core'
 import { IUserRequest } from '../../types'
 import { CustomInput, AccentButton } from '../common'
 import AuthHeader from './auth-header'
+import { trimObject } from '../../utils'
 
 const useStyles = makeStyles((theme: Theme) => ({
   '@global': {
@@ -56,7 +57,9 @@ const Auth: React.FC<CompProps> = props => {
 
   const handleSubmit = (e: React.MouseEvent<HTMLFormElement>) => {
     e.preventDefault()
-    props.handleSubmit(state)
+    // FIXME: replace it to container
+    const preparedState = trimObject(state)
+    props.handleSubmit(preparedState)
   }
   return (
     <Container component="main" maxWidth="xs">
