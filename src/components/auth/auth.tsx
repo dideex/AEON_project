@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { makeStyles, Theme, Container, CssBaseline } from '@material-ui/core'
+import LockOutlinedIcon from '@material-ui/icons/Face'
 
 import { IUserRequest } from '../../types'
 import { CustomInput, AccentButton } from '../common'
@@ -65,7 +66,7 @@ const Auth: React.FC<CompProps> = props => {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={paper}>
-        <AuthHeader theme={avatar} title="Aeon social network" />
+        <AuthHeader theme={avatar} title="Aeon social network" Icon={LockOutlinedIcon}/>
         <form className={form} onSubmit={handleSubmit}>
           <CustomInput {...getInputProps('username')} type="text" />
           <CustomInput {...getInputProps('password')} type="password" />

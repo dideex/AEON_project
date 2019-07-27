@@ -5,6 +5,7 @@ import { withKnobs, boolean } from '@storybook/addon-knobs'
 
 import { CustomThemeProvider as ThemeProvider } from '../../service'
 import AuthCmp from './auth'
+import RegisterCmp from './register'
 
 const handleSubmit = action('Handle submit')
 
@@ -13,23 +14,43 @@ const Auth = (props: any) => (
     <AuthCmp {...props} />
   </ThemeProvider>
 )
+const Register = (props: any) => (
+  <ThemeProvider>
+    <RegisterCmp {...props} />
+  </ThemeProvider>
+)
 
-const stories = storiesOf('Auth', module)
+const stories = storiesOf('Auth flow', module)
 stories.addDecorator(withKnobs)
-const groupId = 'LOADING-GR1'
 
 stories
   .add(
-    'Basic view',
-    () => <Auth handleSubmit={handleSubmit} isLoading={boolean('Loading', false, groupId)} />,
+    'Auth: basic view',
+    () => (
+      <Auth handleSubmit={handleSubmit} isLoading={boolean('Loading', false, 'LOADING-GR1')} />
+    ),
     {
       info: { inline: true },
     },
   )
   .add(
-    'Mobile layout',
-    () => <Auth handleSubmit={handleSubmit} isLoading={boolean('Loading', false, groupId)} />,
+    'Auth: mobile layout',
+    () => (
+      <Auth handleSubmit={handleSubmit} isLoading={boolean('Loading', false, 'LOADING-GR2')} />
+    ),
     {
       viewport: { defaultViewport: 'iphonex' },
+    },
+  )
+  .add(
+    'Register: basic view',
+    () => (
+      <Register
+        handleSubmit={handleSubmit}
+        isLoading={boolean('Loading', false, 'LOADING-GR3')}
+      />
+    ),
+    {
+      info: { inline: true },
     },
   )
