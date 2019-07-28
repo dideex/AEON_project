@@ -77,7 +77,7 @@ export const Register: React.FC<CompProps> = props => {
       <div className={classes.paper}>
         <AuthHeader theme={classes.avatar} title="Aeon sign up" Icon={LockOutlinedIcon} />
         <form className={classes.form} onSubmit={handleSubmit}>
-          <Grid container spacing={1}>
+          <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <CustomInput {...getInputProps('firstname')} type="text" />
             </Grid>
@@ -96,7 +96,7 @@ export const Register: React.FC<CompProps> = props => {
             <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
+                label="I want to receive inspiration"
               />
             </Grid>
           </Grid>

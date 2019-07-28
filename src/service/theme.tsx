@@ -23,12 +23,30 @@ declare module '@material-ui/core/styles/createMuiTheme' {
   }
 }
 
+const accentColor = deepPurple.A200
 const theme = createMuiTheme({
   color: {
-    subAccent: deepPurple['A200'],
-    accent: deepPurple['A200'],
+    subAccent: accentColor,
+    accent: accentColor,
     background: grey[50],
     font: grey[800],
+  },
+  palette: {
+    primary: {
+      light: deepPurple[300],
+      main: accentColor,
+      dark: deepPurple[700],
+    },
+    secondary: {
+      light: deepPurple.A200,
+      main: deepPurple.A400,
+      dark: deepPurple.A700,
+    },
+    error: {
+      light: deepPurple[300],
+      main: deepPurple[500],
+      dark: deepPurple[700],
+    },
   },
 })
 

@@ -1,5 +1,13 @@
 import * as React from 'react'
-import { FormControl, InputLabel, Input } from '@material-ui/core'
+import { FormControl, InputLabel, Input, Theme } from '@material-ui/core'
+import { makeStyles } from '@material-ui/styles';
+
+
+const useStyles = makeStyles((theme: Theme) => ({
+  wrap: {
+    marginTop: 0
+  }
+}))
 
 type TInputType = 'text' | 'password'
 type TName = 'username' | 'password' | 'firstname' | 'lastname' | 'city'
@@ -27,8 +35,9 @@ const CustomInput: React.FC<ICustomInput> = ({
   value = '',
   disabled,
 }) => {
+  const classes = useStyles()
   return (
-    <FormControl margin="normal" required fullWidth>
+    <FormControl margin="normal" required fullWidth className={classes.wrap}>
       <InputLabel htmlFor={name}>{placeholder[name]}</InputLabel>
       <Input
         value={value}
