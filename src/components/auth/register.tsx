@@ -88,7 +88,7 @@ export const Register: React.FC<CompProps> = props => {
               <CustomInput {...getInputProps('username')} type="text" />
             </Grid>
             <Grid item xs={12}>
-              <CustomInput {...getInputProps('city')} type="text" />
+              <CustomInput {...getInputProps('city')} type="text" required={false} />
             </Grid>
             <Grid item xs={12}>
               <CustomInput {...getInputProps('password')} type="password" />

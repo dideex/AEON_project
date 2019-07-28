@@ -9,8 +9,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   }
 }))
 
-type TInputType = 'text' | 'password'
-type TName = 'username' | 'password' | 'firstname' | 'lastname' | 'city'
+export type TInputType = 'text' | 'password'
+export type TName = 'username' | 'password' | 'firstname' | 'lastname' | 'city'
 
 export interface ICustomInput {
   name: TName
@@ -18,10 +18,11 @@ export interface ICustomInput {
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
   value: string
   disabled: boolean
+  required?: boolean
 }
 
 const placeholder = {
-  username: 'Username',
+  username: 'Email',
   password: 'Password',
   firstname: 'First name',
   lastname: 'Last name',
@@ -34,10 +35,11 @@ const CustomInput: React.FC<ICustomInput> = ({
   handleChange,
   value = '',
   disabled,
+  required = true
 }) => {
   const classes = useStyles()
   return (
-    <FormControl margin="normal" required fullWidth className={classes.wrap}>
+    <FormControl margin="normal" required={required} fullWidth className={classes.wrap}>
       <InputLabel htmlFor={name}>{placeholder[name]}</InputLabel>
       <Input
         value={value}

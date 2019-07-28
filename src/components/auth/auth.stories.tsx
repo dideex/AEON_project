@@ -34,7 +34,7 @@ stories
     },
   )
   .add(
-    'Auth: mobile layout',
+    'Auth: mobile view',
     () => (
       <Auth handleSubmit={handleSubmit} isLoading={boolean('Loading', false, 'LOADING-GR2')} />
     ),
@@ -52,5 +52,17 @@ stories
     ),
     {
       info: { inline: true },
+    },
+  )
+  .add(
+    'Register: mobile view',
+    () => (
+      <Register
+        handleSubmit={handleSubmit}
+        isLoading={boolean('Loading', false, 'LOADING-GR3')}
+      />
+    ),
+    {
+      viewport: { defaultViewport: 'iphonex' },
     },
   )
