@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { createMuiTheme } from '@material-ui/core/styles'
-import { deepPurple, grey } from '@material-ui/core/colors'
+import { deepPurple, grey, red } from '@material-ui/core/colors'
 import { ThemeProvider } from '@material-ui/styles'
 
 declare module '@material-ui/core/styles/createMuiTheme' {
@@ -36,16 +36,19 @@ const theme = createMuiTheme({
       light: deepPurple[300],
       main: accentColor,
       dark: deepPurple[700],
+      contrastText: 'white'
     },
     secondary: {
       light: deepPurple.A200,
       main: deepPurple.A400,
       dark: deepPurple.A700,
+      contrastText: 'white'
     },
     error: {
-      light: deepPurple[300],
-      main: deepPurple[500],
-      dark: deepPurple[700],
+      light: red[300],
+      main: red[400],
+      dark: red[700],
+      contrastText: 'white'
     },
   },
 })
