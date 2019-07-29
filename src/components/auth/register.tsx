@@ -10,7 +10,6 @@ import Container from '@material-ui/core/Container'
 import AuthHeader from './auth-header'
 import { IUserBio, IUserRequest } from '../../types'
 import { CustomInput, AccentButton } from '../common'
-import { variableDeclarator } from '@babel/types'
 
 const useStyles = makeStyles(theme => ({
   '@global': {
@@ -40,8 +39,8 @@ const useStyles = makeStyles(theme => ({
 const errors = {
   username: 'Enter correct e-mail',
   password: 'Password should be more than 6 letters',
-  firstname: 'First name should be more than 3 letters',
-  lastname: 'Last name should be more than 3 letters',
+  firstname: 'Field should contain more than 3 letters',
+  lastname: 'Field should contain more than 3 letters',
   city: '',
 }
 
@@ -66,15 +65,15 @@ export const Register: React.FC<CompProps> = props => {
   const validator = (name: keyof IUserStringFileds) => {
     switch (name) {
       case 'username':
-        return forceTouch && state[name].length >= 3
+        return forceTouch && state[name].length <= 3
       case 'lastname':
-        return forceTouch && state[name].length >= 3
+        return forceTouch && state[name].length <= 3
       case 'firstname':
-        return forceTouch && state[name].length >= 3
+        return forceTouch && state[name].length <= 3
       case 'password':
-        return forceTouch && state[name].length >= 6
+        return forceTouch && state[name].length <= 6
       default:
-        return true
+        return false
     }
   }
 

@@ -1,23 +1,20 @@
 import * as React from 'react'
-import {
-  FormControl,
-  InputLabel,
-  Input,
-  Theme,
-  Popover,
-  Typography,
-} from '@material-ui/core'
+import { FormControl, InputLabel, Input, Theme, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
 const useStyles = makeStyles((theme: Theme) => ({
   wrap: {
+    position: 'relative',
     marginTop: 0,
   },
-  paper: {
-    marginTop: theme.spacing(.5),
-    marginLeft: theme.spacing(.5),
-    padding: `${theme.spacing(.5)}px ${theme.spacing(1)}px`,
+  errorField: {
+    position: 'absolute',
+    top: '100%',
+    marginTop: theme.spacing(0.5),
+    marginLeft: theme.spacing(0.5),
+    padding: `${theme.spacing(0.5)}px ${theme.spacing(1)}px`,
     backgroundColor: theme.palette.error.main,
+    borderRadius: 5,
   },
   errorMessage: {
     color: theme.palette.error.contrastText,
@@ -58,43 +55,31 @@ const CustomInput: React.FC<ICustomInput> = props => {
     showError = false,
   } = props
   const classes = useStyles()
-  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null)
-  const inputRef = React.useRef<HTMLInputElement | null>(null)
-  React.useEffect(() => {
-    setAnchorEl(inputRef.current)
-  }, [])
+
+  const [isFocused, setFocus] = React.useState<boolean>(false)
+  const onFocus = () => setFocus(true)
+  const onBlur = () => setFocus(false)
   return (
     <FormControl margin="normal" required={required} fullWidth className={classes.wrap}>
       <InputLabel htmlFor={name}>{placeholder[name]}</InputLabel>
       <Input
-        ref={inputRef}
+        error={showError}
         value={value}
         onChange={handleChange}
         name={name}
         type={type}
         id={name}
         disabled={disabled}
+        onFocus={onFocus}
+        onBlur={onBlur}
       />
-      <Popover
-        open={showError}
-        anchorEl={anchorEl}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'left',
-        }}
-        classes={{
-          paper: classes.paper,
-        }}
-        disableRestoreFocus
-      >
-        <Typography className={classes.errorMessage} variant="subtitle2">
-          {errorMessage}
-        </Typography>
-      </Popover>
+      {isFocused && showError && (
+        <div className={classes.errorField}>
+          <Typography className={classes.errorMessage} variant="subtitle2">
+            {errorMessage}
+          </Typography>
+        </div>
+      )}
     </FormControl>
   )
 }

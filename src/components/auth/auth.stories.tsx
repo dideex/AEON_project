@@ -27,7 +27,7 @@ stories
   .add(
     'Auth: basic view',
     () => (
-      <Auth handleSubmit={handleSubmit} isLoading={boolean('Loading', false, 'LOADING-GR1')} />
+      <Auth handleSubmit={handleSubmit} isLoading={boolean('Loading', false)} />
     ),
     {
       info: { inline: true },
@@ -36,7 +36,7 @@ stories
   .add(
     'Auth: mobile view',
     () => (
-      <Auth handleSubmit={handleSubmit} isLoading={boolean('Loading', false, 'LOADING-GR2')} />
+      <Auth handleSubmit={handleSubmit} isLoading={boolean('Loading', false)} />
     ),
     {
       viewport: { defaultViewport: 'iphonex' },
