@@ -10,6 +10,7 @@ import Container from '@material-ui/core/Container'
 import AuthHeader from './auth-header'
 import { IUserBio, IUserRequest } from '../../types'
 import { CustomInput, AccentButton } from '../common'
+import { variableDeclarator } from '@babel/types'
 
 const useStyles = makeStyles(theme => ({
   '@global': {
@@ -36,6 +37,14 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
+const errors = {
+  username: 'Enter correct e-mail',
+  password: 'Password should be more than 6 letters',
+  firstname: 'First name should be more than 3 letters',
+  lastname: 'Last name should be more than 3 letters',
+  city: '',
+}
+
 interface CompProps {
   handleSubmit: (data: IUserRequest) => void
   isLoading: boolean
@@ -53,6 +62,21 @@ export const Register: React.FC<CompProps> = props => {
     lastname: '',
     city: '',
   })
+  const [forceTouch, setForceTouch] = React.useState<boolean>(false)
+  const validator = (name: keyof IUserStringFileds) => {
+    switch (name) {
+      case 'username':
+        return forceTouch && state[name].length >= 3
+      case 'lastname':
+        return forceTouch && state[name].length >= 3
+      case 'firstname':
+        return forceTouch && state[name].length >= 3
+      case 'password':
+        return forceTouch && state[name].length >= 6
+      default:
+        return true
+    }
+  }
 
   const getInputProps = (name: keyof IUserStringFileds) => {
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
@@ -62,12 +86,15 @@ export const Register: React.FC<CompProps> = props => {
       handleChange,
       name,
       disabled: isLoading,
+      errorMessage: errors[name],
+      showError: validator(name),
     }
   }
 
   const handleSubmit = (e: React.MouseEvent<HTMLFormElement>) => {
     e.preventDefault()
     // FIXME: replace it to container
+    setForceTouch(true)
     props.handleSubmit(state)
   }
 
