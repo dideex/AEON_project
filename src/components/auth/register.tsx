@@ -7,9 +7,11 @@ import Grid from '@material-ui/core/Grid'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
+
 import AuthHeader from './auth-header'
-import { IUserBio, IUserRequest } from '../../types'
 import { CustomInput, AccentButton } from '../common'
+import { validator } from '../../utils'
+import { IUserBio, IUserRequest } from '../../types'
 
 const useStyles = makeStyles(theme => ({
   '@global': {
@@ -44,13 +46,16 @@ const errors = {
   city: '',
 }
 
+
+
 interface CompProps {
   handleSubmit: (data: IUserRequest) => void
   isLoading: boolean
 }
 
-type IUserStringFileds = IUserRequest & IUserBio
+export type IUserStringFileds = IUserRequest & IUserBio
 
+// TODO: Add birth date fields
 export const Register: React.FC<CompProps> = props => {
   const { isLoading } = props
   const classes = useStyles()
@@ -62,20 +67,6 @@ export const Register: React.FC<CompProps> = props => {
     city: '',
   })
   const [forceTouch, setForceTouch] = React.useState<boolean>(false)
-  const validator = (name: keyof IUserStringFileds) => {
-    switch (name) {
-      case 'username':
-        return forceTouch && state[name].length <= 3
-      case 'lastname':
-        return forceTouch && state[name].length <= 3
-      case 'firstname':
-        return forceTouch && state[name].length <= 3
-      case 'password':
-        return forceTouch && state[name].length <= 6
-      default:
-        return false
-    }
-  }
 
   const getInputProps = (name: keyof IUserStringFileds) => {
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
@@ -86,7 +77,7 @@ export const Register: React.FC<CompProps> = props => {
       name,
       disabled: isLoading,
       errorMessage: errors[name],
-      showError: validator(name),
+      showError: forceTouch && validator(name, state[name]),
     }
   }
 

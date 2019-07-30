@@ -1,3 +1,7 @@
+import emailValidator from "email-validator";
+
+import { IUserStringFileds } from '../components/auth/register'
+
 export interface ITrim {
   [key: string]: string
 }
@@ -14,4 +18,19 @@ export function trimObject<T>(entity: T, initialObject: T = entity): T {
     (acc, [key, value]) => ({ ...acc, [key]: value.trim() }),
     initialObject,
   )
+}
+
+export function validator(name: keyof IUserStringFileds, field: string) {
+  switch (name) {
+    case 'username':
+      return !emailValidator.validate(field)
+    case 'lastname':
+      return field.length < 3
+    case 'firstname':
+      return field.length < 3
+    case 'password':
+      return field.length < 6
+    default:
+      return false
+  }
 }
