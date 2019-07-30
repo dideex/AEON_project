@@ -1,17 +1,14 @@
 import * as React from 'react'
+import { Context } from '../../common'
 
-
-const ProfileWidget: React.FC<IWidget> = props => {
-  return <div>Profile widget</div>
-}
-
-export interface IWidget {
-  // avatar: string
-  // firstName: string
-  // lastName: string
-  // status: string
-  // likes: number
-  // posts: number
+const ProfileWidget: React.FC = () => {
+  const { me } = React.useContext(Context)
+  return (
+    <div>
+      <img src={me.avatar} />
+      {me.firstname}
+    </div>
+  )
 }
 
 export default ProfileWidget

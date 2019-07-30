@@ -3,6 +3,10 @@ export interface IUserRequest {
   password: string
 }
 
+export interface IUsername {
+  username: string
+}
+
 type IGender = 'male' | 'female'
 
 export interface IUserBio {
@@ -15,9 +19,19 @@ export interface IUserGender {
 }
 
 export interface IUserBirthDate {
-  month: number
-  year: number
-  day: number
+  birthDate: {
+    month: number
+    year: number
+    day: number
+  }
+}
+
+export interface IUserInfo {
+  patronymic: string
+  avatar: string
+  about: string
+  age: number
 }
 
 export type TUserRegister = IUserRequest & IUserBio & IUserGender & IUserBirthDate
+export type TMyInfo = IUsername & IUserBio & IUserGender & IUserInfo & IUserBirthDate
