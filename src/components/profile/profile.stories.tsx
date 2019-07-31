@@ -8,6 +8,8 @@ import MyProfileCmp from './my-profile'
 import { ProfileWidget } from './widget'
 import { Provider as ContextProvider } from '../common'
 import { TMyInfo } from '../../types'
+import { grey } from '@material-ui/core/colors'
+import { CustomThemeProvider as ThemeProvider } from '../../service'
 
 const me: TMyInfo = {
   username: 'Tony@stark.com',
@@ -24,24 +26,34 @@ const me: TMyInfo = {
   avatar: '/image/avatar/me.jpg',
   about: 'Genius, Billionaire, Playboy, Philanthropist',
   age: 66,
+  statistic: {
+    posts: 13,
+    likes: 68,
+  },
 }
 
 const MyProfile = (props: any) => (
-  <Container component="main">
-    <MyProfileCmp {...props} />
-  </Container>
+  <ThemeProvider>
+    <ContextProvider value={{ me }}>
+      <Container component="main">
+        <MyProfileCmp {...props} />
+      </Container>
+    </ContextProvider>
+  </ThemeProvider>
 )
 
 const ProfileWidgetWrap = (props: any) => (
-  <ContextProvider value={{ me }}>
-    <Container component="main">
-      <Grid container spacing={4}>
-        <Grid item xs={12} sm={3}>
-          <ProfileWidget {...props} />
+  <ThemeProvider>
+    <ContextProvider value={{ me }}>
+      <Container component="main" style={{ backgroundColor: grey[50] }}>
+        <Grid container spacing={4}>
+          <Grid item xs={12} sm={3}>
+            <ProfileWidget {...props} />
+          </Grid>
         </Grid>
-      </Grid>
-    </Container>
-  </ContextProvider>
+      </Container>
+    </ContextProvider>
+  </ThemeProvider>
 )
 
 const stories = storiesOf('Profile', module)

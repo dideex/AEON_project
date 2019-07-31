@@ -18,6 +18,10 @@ const Context = createContext<IContext>({
     avatar: '',
     about: '',
     age: 0,
+    statistic: {
+      posts: 0,
+      likes: 0,
+    },
   },
 })
 

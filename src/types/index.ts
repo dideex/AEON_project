@@ -33,5 +33,17 @@ export interface IUserInfo {
   age: number
 }
 
+export interface IUserStatistic {
+  statistic: {
+    likes: number
+    posts: number
+  }
+}
+
 export type TUserRegister = IUserRequest & IUserBio & IUserGender & IUserBirthDate
-export type TMyInfo = IUsername & IUserBio & IUserGender & IUserInfo & IUserBirthDate
+export type TMyInfo = IUsername &
+  IUserBio &
+  IUserGender &
+  IUserInfo &
+  IUserBirthDate &
+  IUserStatistic

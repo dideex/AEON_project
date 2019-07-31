@@ -38,6 +38,12 @@ const theme = createMuiTheme({
     green: '#1AC686',
   },
   palette: {
+    text: {
+      primary: grey[900],
+      secondary: grey[500],
+      disabled: 'rgba(0, 0, 0, 0.38)',
+      hint: 'rgba(0, 0, 0, 0.38)',
+    },
     primary: {
       light: deepPurple[300],
       main: accentColor,
