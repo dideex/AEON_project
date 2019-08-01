@@ -1,9 +1,46 @@
 import * as React from 'react'
+import { Grid, Theme, Typography } from '@material-ui/core'
+import { makeStyles } from '@material-ui/styles'
 
-interface CompProps {}
+import { Context } from '../../common'
 
-const InfoPanel: React.FC<CompProps> = props => {
-  return <div>Info here</div>
+const useStyles = makeStyles((theme: Theme) => ({
+  label: {
+    color: theme.palette.text.secondary,
+  },
+  grid: {
+    padding: `${theme.spacing(1)}px 0`,
+  },
+}))
+
+const InfoPanel: React.FC = () => {
+  const classes = useStyles()
+  const { me } = React.useContext(Context)
+  const { firstname, lastname, patronymic, city, gender, registered, isOnline } = me
+  const fields = {
+    'Full name:': `${firstname} ${lastname} ${patronymic}`,
+    'City:': city,
+    'Gender:': gender,
+    // TODO: add common format
+    'Is online:': isOnline ? 'online' : 'offline',
+    'Registered:': new Date(Number(registered)).toLocaleDateString(),
+  }
+  return (
+    <Grid container>
+      {Object.entries(fields).map(([label, value], i) => (
+        <React.Fragment key={i}>
+          <Grid className={classes.grid} item xs={5} sm={3}>
+            <Typography className={classes.label} variant="subtitle1">
+              {label}
+            </Typography>
+          </Grid>
+          <Grid className={classes.grid} item xs={7} sm={9}>
+            {value}
+          </Grid>
+        </React.Fragment>
+      ))}
+    </Grid>
+  )
 }
 
 export default InfoPanel
