@@ -3,6 +3,8 @@ import SwipeableViews from 'react-swipeable-views'
 import { makeStyles, Theme, useTheme, createStyles } from '@material-ui/core/styles'
 import { Paper, Tab, Typography, Box, Tabs } from '@material-ui/core'
 
+import { InfoPanel, GalleryPanel, FriendsPanel } from '../tabs'
+
 interface TabPanelProps {
   children?: React.ReactNode
   dir?: string
@@ -103,15 +105,11 @@ export default function FullWidthTabs() {
           index={value}
           onChangeIndex={handleChangeIndex}
         >
-          <TabPanel value={value} index={0} dir={theme.direction}>
-            Item One
-          </TabPanel>
-          <TabPanel value={value} index={1} dir={theme.direction}>
-            Item Two
-          </TabPanel>
-          <TabPanel value={value} index={2} dir={theme.direction}>
-            Item Three
-          </TabPanel>
+          {[InfoPanel, GalleryPanel, FriendsPanel].map((Cmp, i) => (
+            <TabPanel key={i} value={value} index={i} dir={theme.direction}>
+              <Cmp />
+            </TabPanel>
+          ))}
         </SwipeableViews>
       </Paper>
     </>
