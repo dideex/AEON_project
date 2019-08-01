@@ -5,6 +5,9 @@ import { ThemeProvider } from '@material-ui/styles'
 
 declare module '@material-ui/core/styles/createMuiTheme' {
   interface Theme {
+    settings: {
+      borderRadius: string
+    }
     color: {
       accent: string
       subAccent: string
@@ -16,6 +19,9 @@ declare module '@material-ui/core/styles/createMuiTheme' {
   }
   // allow configuration using `createMuiTheme`
   interface ThemeOptions {
+    settings?: {
+      borderRadius?: string
+    }
     color?: {
       accent?: string
       subAccent?: string
@@ -29,6 +35,9 @@ declare module '@material-ui/core/styles/createMuiTheme' {
 
 const accentColor = deepPurple.A200
 const theme = createMuiTheme({
+  settings: {
+    borderRadius: '5px',
+  },
   color: {
     accent: accentColor,
     subAccent: pink[300],

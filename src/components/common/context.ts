@@ -22,6 +22,8 @@ const Context = createContext<IContext>({
       posts: 0,
       likes: 0,
     },
+    registered: '',
+    isOnline: false,
   },
 })
 

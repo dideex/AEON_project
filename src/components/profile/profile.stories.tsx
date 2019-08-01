@@ -30,12 +30,14 @@ const me: TMyInfo = {
     posts: 13,
     likes: 68,
   },
+  registered: '1547395200000',
+  isOnline: true,
 }
 
 const MyProfile = (props: any) => (
   <ThemeProvider>
     <ContextProvider value={{ me }}>
-      <Container component="main">
+      <Container component="main" style={{ backgroundColor: grey[50] }}>
         <MyProfileCmp {...props} />
       </Container>
     </ContextProvider>

@@ -27,10 +27,12 @@ export interface IUserBirthDate {
 }
 
 export interface IUserInfo {
+  isOnline: boolean
   patronymic: string
   avatar: string
   about: string
   age: number
+  registered: string
 }
 
 export interface IUserStatistic {

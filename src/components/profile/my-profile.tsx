@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Grid } from '@material-ui/core'
 
-import { ProfileWidget } from './widget'
+import { ProfileWidget, ProfileTabs } from './widget'
 
 interface CompProps {}
 
@@ -12,7 +12,7 @@ const Profile: React.FC<CompProps> = props => {
         <ProfileWidget />
       </Grid>
       <Grid item xs={12} sm={9}>
-        <div>Tabs</div>
+        <ProfileTabs />
       </Grid>
     </Grid>
   )
