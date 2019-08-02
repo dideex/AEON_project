@@ -18,9 +18,15 @@ const InfoPanel: React.FC = () => {
   const classes = useStyles()
   const { me } = React.useContext(Context)
   const { firstname, lastname, patronymic, city, gender, registered, isOnline, id } = me
+  
+  const firstAndLastName = `${firstname} ${lastname}`
+  const fullname = patronymic
+    ? `${firstAndLastName} ${patronymic}`
+    : `${firstAndLastName}`
+
   const fields = {
     'ID:': id,
-    'Full name:': `${firstname} ${lastname} ${patronymic}`,
+    'Full name:': fullname,
     'City:': city,
     'Gender:': gender,
     // TODO: add common format
