@@ -4,6 +4,7 @@ export interface IUserRequest {
 }
 
 export interface IUsername {
+  id: string
   username: string
 }
 
@@ -12,7 +13,7 @@ type IGender = 'male' | 'female'
 export interface IUserBio {
   firstname: string
   lastname: string
-  city: string
+  city?: string
 }
 export interface IUserGender {
   gender: IGender | null
@@ -28,11 +29,10 @@ export interface IUserBirthDate {
 
 export interface IUserInfo {
   isOnline: boolean
-  patronymic: string
+  patronymic?: string
   avatar: string
   about: string
   age: number
-  registered: string
 }
 
 export interface IUserStatistic {
@@ -40,6 +40,21 @@ export interface IUserStatistic {
     likes: number
     posts: number
   }
+  registered: string
+}
+
+export type IUserPreview = IUsername & IUserBio & IUserInfo
+
+export interface IPhoto {
+  id: string
+  title: string
+  url: string
+  date: string
+  likes?: IUserPreview[]
+}
+
+export interface IPhotos {
+  photos?: IPhoto[]
 }
 
 export type TUserRegister = IUserRequest & IUserBio & IUserGender & IUserBirthDate
@@ -48,4 +63,5 @@ export type TMyInfo = IUsername &
   IUserGender &
   IUserInfo &
   IUserBirthDate &
-  IUserStatistic
+  IUserStatistic &
+  IPhotos

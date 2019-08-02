@@ -3,6 +3,7 @@ import { Grid, Theme, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
 import { Context } from '../../common'
+import { parseDate } from '../../../utils'
 
 const useStyles = makeStyles((theme: Theme) => ({
   label: {
@@ -16,14 +17,15 @@ const useStyles = makeStyles((theme: Theme) => ({
 const InfoPanel: React.FC = () => {
   const classes = useStyles()
   const { me } = React.useContext(Context)
-  const { firstname, lastname, patronymic, city, gender, registered, isOnline } = me
+  const { firstname, lastname, patronymic, city, gender, registered, isOnline, id } = me
   const fields = {
+    'ID:': id,
     'Full name:': `${firstname} ${lastname} ${patronymic}`,
     'City:': city,
     'Gender:': gender,
     // TODO: add common format
     'Is online:': isOnline ? 'online' : 'offline',
-    'Registered:': new Date(Number(registered)).toLocaleDateString(),
+    'Registered:': parseDate(registered),
   }
   return (
     <Grid container>

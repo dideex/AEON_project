@@ -4,6 +4,7 @@ import { TMyInfo } from '../../types'
 export type IContext = { me: TMyInfo }
 const Context = createContext<IContext>({
   me: {
+    id: '',
     username: '',
     firstname: '',
     lastname: '',
@@ -24,6 +25,7 @@ const Context = createContext<IContext>({
     },
     registered: '',
     isOnline: false,
+    photos: [],
   },
 })
 

@@ -10,28 +10,39 @@ import { Provider as ContextProvider } from '../common'
 import { TMyInfo } from '../../types'
 import { grey } from '@material-ui/core/colors'
 import { CustomThemeProvider as ThemeProvider } from '../../service'
+import { users } from '../../mocks'
 
 const me: TMyInfo = {
+  id: 'x000001',
   username: 'Tony@stark.com',
   firstname: 'Tony',
   lastname: 'Stark',
   city: 'New-York',
   gender: 'male',
+  patronymic: 'Stark',
+  avatar: '/image/avatar/me.jpg',
+  about: 'Genius, Billionaire, Playboy, Philanthropist',
+  age: 66,
+  registered: '1547395200000',
+  isOnline: true,
   birthDate: {
     month: 2,
     year: 1963,
     day: 22,
   },
-  patronymic: 'Stark',
-  avatar: '/image/avatar/me.jpg',
-  about: 'Genius, Billionaire, Playboy, Philanthropist',
-  age: 66,
   statistic: {
     posts: 13,
     likes: 68,
   },
-  registered: '1547395200000',
-  isOnline: true,
+  photos: [
+    {
+      id: '0001',
+      title: 'Big insect in the city, call the police',
+      date: '1564713954069',
+      url: '/image/gallery/me_0.jpg',
+      likes: [users.batman],
+    },
+  ],
 }
 
 const MyProfile = (props: any) => (

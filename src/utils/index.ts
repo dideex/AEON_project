@@ -1,4 +1,4 @@
-import emailValidator from "email-validator";
+import emailValidator from 'email-validator'
 
 import { IUserStringFileds } from '../components/auth/register'
 
@@ -33,4 +33,8 @@ export function validator(name: keyof IUserStringFileds, field: string) {
     default:
       return false
   }
+}
+
+export function parseDate(date: string): string {
+  return new Date(Number(date)).toLocaleDateString()
 }
