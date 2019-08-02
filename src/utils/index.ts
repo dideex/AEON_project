@@ -1,6 +1,8 @@
 import emailValidator from 'email-validator'
 
+// Add locale-specific relative date/time formatting rules.
 import { IUserStringFileds } from '../components/auth/register'
+
 
 export interface ITrim {
   [key: string]: string

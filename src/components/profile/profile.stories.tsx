@@ -80,7 +80,7 @@ const me: TMyInfo = {
     {
       id: '0006',
       title: 'Sup?',
-      date: '1564113954069',
+      date: '1551113954069',
       url: '/image/gallery/me_6.jpg',
       likes: [],
     },

@@ -7,7 +7,8 @@ import Masonry from 'react-masonry-component'
 
 import { Context } from '../../common'
 import { IPhoto, IUserPreview } from '../../../types'
-import { parseDate, getFullName } from '../../../utils'
+import { getFullName } from '../../../utils'
+import { parseDateAgo } from '../../../utils/parseDate';
 
 const useStyles = makeStyles((theme: Theme) => ({
   grid: {
@@ -84,7 +85,7 @@ type IGalleryPost = IPhoto
 
 const GalleryPost: React.FC<IGalleryPost> = props => {
   const classes = useStyles()
-  const { id, title, date, url, likes = [] } = props
+  const { title, date, url, likes = [] } = props
   return (
     <div className={classes.grid}>
       <div className={classes.head}>
@@ -102,7 +103,7 @@ const GalleryPost: React.FC<IGalleryPost> = props => {
           {Boolean(likes.length) && <FriendsPopover likes={likes} />}
         </div>
         <div className={classes.date}>
-          <Typography variant="subtitle1">{parseDate(date)}</Typography>
+          <Typography variant="subtitle1">{parseDateAgo(date)}</Typography>
         </div>
       </div>
     </div>
