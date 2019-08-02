@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Typography, Theme, Grid } from '@material-ui/core'
+import { Typography, Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
@@ -8,7 +8,7 @@ import Masonry from 'react-masonry-component'
 import { Context } from '../../common'
 import { IPhoto, IUserPreview } from '../../../types'
 import { getFullName } from '../../../utils'
-import { parseDateAgo } from '../../../utils/parseDate';
+import { parseDateAgo } from '../../../utils/parseDate'
 
 const useStyles = makeStyles((theme: Theme) => ({
   grid: {
@@ -113,7 +113,7 @@ const GalleryPost: React.FC<IGalleryPost> = props => {
 const GalleryPanel: React.FC = () => {
   const { photos = [] } = React.useContext(Context).me
   return (
-    <Masonry options={{ transitionDuration: 0 }}>
+    <Masonry style={{ overflow: 'hidden' }} options={{ transitionDuration: 0 }}>
       {photos.map(photo => (
         <GalleryPost key={photo.id} {...photo} />
       ))}

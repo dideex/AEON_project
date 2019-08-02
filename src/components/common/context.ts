@@ -26,6 +26,7 @@ const Context = createContext<IContext>({
     registered: '',
     isOnline: false,
     photos: [],
+    friends: [],
   },
 })
 

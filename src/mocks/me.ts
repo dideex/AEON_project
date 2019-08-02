@@ -1,10 +1,12 @@
-import { IPhoto, TMyInfo } from '../types'
+import { IPhoto, TMyInfo, IUserPreview } from '../types'
 import users from './users'
+
+const friends: IUserPreview[] = [users.batman, users.spinderman, users.superman]
 
 const photos: IPhoto[] = [
   {
     id: '0000',
-    title: 'Big insect in the city, call the police',
+    title: 'Hungry insect in the city, call the police',
     date: '1564713854069',
     url: '/image/gallery/me_0.jpg',
     likes: [users.spinderman, users.batman, users.superman],
@@ -74,7 +76,7 @@ const photos: IPhoto[] = [
   },
   {
     id: '0010',
-    title: 'Look at me big ...cigar',
+    title: 'Look at my big cigar',
     date: '1564741291888',
     url: '/image/gallery/me_10.jpg',
     likes: [users.batman, users.spinderman, users.superman],
@@ -111,4 +113,5 @@ export const me: TMyInfo = {
     likes: 68,
   },
   photos,
+  friends,
 }

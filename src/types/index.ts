@@ -54,7 +54,11 @@ export interface IPhoto {
 }
 
 export interface IPhotos {
-  photos?: IPhoto[]
+  photos: IPhoto[]
+}
+
+export interface IFriends {
+  friends: IUserPreview[]
 }
 
 export type TUserRegister = IUserRequest & IUserBio & IUserGender & IUserBirthDate
@@ -64,4 +68,5 @@ export type TMyInfo = IUsername &
   IUserInfo &
   IUserBirthDate &
   IUserStatistic &
-  IPhotos
+  IPhotos &
+  IFriends
