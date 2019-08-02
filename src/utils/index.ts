@@ -38,3 +38,8 @@ export function validator(name: keyof IUserStringFileds, field: string) {
 export function parseDate(date: string): string {
   return new Date(Number(date)).toLocaleDateString()
 }
+
+export function getFullName<T>(first: T, last: T, patronymic?: T): string {
+  const firstAndLastName = `${first} ${last}`
+  return patronymic ? `${firstAndLastName} ${patronymic}` : `${firstAndLastName}`
+}

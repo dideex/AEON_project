@@ -6,8 +6,8 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import Masonry from 'react-masonry-component'
 
 import { Context } from '../../common'
-import { IPhoto } from '../../../types'
-import { parseDate } from '../../../utils'
+import { IPhoto, IUserPreview } from '../../../types'
+import { parseDate, getFullName } from '../../../utils'
 
 const useStyles = makeStyles((theme: Theme) => ({
   grid: {
@@ -23,24 +23,27 @@ const useStyles = makeStyles((theme: Theme) => ({
   head: {
     textAlign: 'center',
   },
+  tail: {
+    display: 'flex',
+    alignItems: 'center',
+    position: 'relative',
+    padding: `0 ${theme.spacing(1)}px`,
+  },
   date: {
     marginLeft: 'auto',
     color: theme.palette.text.secondary,
   },
   likes: {
-    position: 'relative',
     display: 'flex',
     alignItems: 'center',
     minWidth: '20%',
     cursor: 'pointer',
+    '&:hover > div': {
+      opacity: 1,
+    },
   },
   likesContent: {
     padding: theme.spacing(1),
-  },
-  tail: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: `0 ${theme.spacing(1)}px`,
   },
   heart: {
     color: theme.color.subAccent,
@@ -53,8 +56,29 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: theme.settings.borderRadius,
     width: '100%',
   },
-  friendsPopover: {},
+  friendsPopover: {
+    opacity: 0,
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: '100%',
+  },
 }))
+
+interface IFriendsPopover {
+  likes: IUserPreview[]
+}
+
+const FriendsPopover: React.FC<IFriendsPopover> = ({ likes }) => {
+  const classes = useStyles()
+  return (
+    <div className={classes.friendsPopover}>
+      {likes.map(like => (
+        <div>{getFullName(like.firstname, like.lastname)}</div>
+      ))}
+    </div>
+  )
+}
 
 type IGalleryPost = IPhoto
 
@@ -72,10 +96,10 @@ const GalleryPost: React.FC<IGalleryPost> = props => {
       <div className={classes.tail}>
         <div className={classes.likes}>
           <FontAwesomeIcon icon={faHeart} className={classes.heart} />
-          <Typography className={classes.likesContent} variant="h5">
+          <Typography className={classes.likesContent} variant="subtitle1">
             {likes.length}
           </Typography>
-          {likes.length && <div className={classes.friendsPopover}>render friends</div>}
+          {Boolean(likes.length) && <FriendsPopover likes={likes} />}
         </div>
         <div className={classes.date}>
           <Typography variant="subtitle1">{parseDate(date)}</Typography>
@@ -85,16 +109,10 @@ const GalleryPost: React.FC<IGalleryPost> = props => {
   )
 }
 
-const masonryOptions = { transitionDuration: 0 }
 const GalleryPanel: React.FC = () => {
   const { photos = [] } = React.useContext(Context).me
   return (
-    <Masonry
-      className="my-gallery-class" // default ''
-      options={masonryOptions} // default {}
-      disableImagesLoaded={false} // default false
-      updateOnEachImageLoad={false} // default false and works only if disableImagesLoaded is false
-    >
+    <Masonry options={{ transitionDuration: 0 }}>
       {photos.map(photo => (
         <GalleryPost key={photo.id} {...photo} />
       ))}

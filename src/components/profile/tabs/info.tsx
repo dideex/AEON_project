@@ -3,7 +3,7 @@ import { Grid, Theme, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
 import { Context } from '../../common'
-import { parseDate } from '../../../utils'
+import { parseDate, getFullName } from '../../../utils'
 
 const useStyles = makeStyles((theme: Theme) => ({
   label: {
@@ -18,15 +18,10 @@ const InfoPanel: React.FC = () => {
   const classes = useStyles()
   const { me } = React.useContext(Context)
   const { firstname, lastname, patronymic, city, gender, registered, isOnline, id } = me
-  
-  const firstAndLastName = `${firstname} ${lastname}`
-  const fullname = patronymic
-    ? `${firstAndLastName} ${patronymic}`
-    : `${firstAndLastName}`
 
   const fields = {
     'ID:': id,
-    'Full name:': fullname,
+    'Full name:': getFullName(firstname, lastname, patronymic),
     'City:': city,
     'Gender:': gender,
     // TODO: add common format
