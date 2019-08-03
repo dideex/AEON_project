@@ -62,14 +62,15 @@ export const captainAmerica: IUserPreview = {
   isOnline: false,
 }
 
-export const tor: IUserPreview = {
+export const thor: IUserPreview = {
   id: 'x0007',
   username: 'tor@azghard.com',
   firstname: 'Tor',
   lastname: 'Odison',
-  avatar: '/image/avatar/tor.jpg',
+  avatar: '/image/avatar/thor.jpg',
   city: 'Asghard',
   age: 679,
+  about: 'For every minute, the future is becoming the past',
   isOnline: true,
 }
 
@@ -78,9 +79,10 @@ export const venom: IUserPreview = {
   username: 'ediebrook@azghard.com',
   firstname: 'Eddy',
   lastname: 'Brock',
-  avatar: '/image/avatar/tor.jpg',
+  avatar: '/image/avatar/venom.jpg',
   city: 'New-York',
   age: 30,
+  about: 'Eyes, lungs, stomach, and would have eaten, but once.',
   isOnline: false,
 }
 
@@ -90,7 +92,7 @@ export const blackWidow: IUserPreview = {
   firstname: 'Natalya',
   lastname: 'Romanova',
   patronymic: 'Ivanova',
-  avatar: '/image/avatar/tor.jpg',
+  avatar: '/image/avatar/blackWidow.jpg',
   city: 'Stalingrad',
   age: 26,
   isOnline: false,
@@ -101,9 +103,10 @@ export const ant: IUserPreview = {
   username: 'slang@gmail.com',
   firstname: 'Scott',
   lastname: 'Lang',
-  avatar: '/image/avatar/tor.jpg',
+  avatar: '/image/avatar/ant.jpg',
   city: 'Florida',
   age: 27,
+  about: "Scott, you are an animal! No, I'm an insect!",
   isOnline: true,
 }
 
@@ -112,9 +115,10 @@ export const marvel: IUserPreview = {
   username: 'carol@marvel.com',
   firstname: 'Carol',
   lastname: 'Danvers',
-  avatar: '/image/avatar/tor.jpg',
+  avatar: '/image/avatar/marvel.jpg',
   city: 'Halu',
   age: 32,
+  about: 'You know nothing about me',
   isOnline: false,
 }
 
@@ -123,9 +127,10 @@ export const blackPanther: IUserPreview = {
   username: 'king@vakanda.com',
   firstname: "T'",
   lastname: 'Challa',
-  avatar: '/image/avatar/tor.jpg',
+  avatar: '/image/avatar/blackPanther.jpg',
   city: 'Vakanda',
   age: 28,
+  about: 'Vakanda forever',
   isOnline: true,
 }
 
@@ -134,32 +139,35 @@ export const strange: IUserPreview = {
   username: 'drstrange@avengers.com',
   firstname: 'Vincent',
   lastname: 'Strange',
-  avatar: '/image/avatar/tor.jpg',
+  avatar: '/image/avatar/strange.jpg',
   city: 'Philadelphy',
   age: 38,
+  about: 'Beyond the brink of consciousness lies a new reality',
   isOnline: true,
 }
 
-export const halk: IUserPreview = {
+export const hulk: IUserPreview = {
   id: 'x0014',
   username: 'bigboy@nyc.com',
   firstname: 'Robert',
   lastname: 'Bruce',
   patronymic: 'Banner',
-  avatar: '/image/avatar/tor.jpg',
+  avatar: '/image/avatar/hulk.jpg',
   city: 'New-York',
   age: 44,
+  about: "It's about time to added a little bit of anger",
   isOnline: false,
 }
 
-export const daredavil: IUserPreview = {
+export const daredevil: IUserPreview = {
   id: 'x0015',
   username: 'mardok@mail.com',
   firstname: 'Matthew',
   lastname: 'Murdock',
   patronymic: 'Michael',
-  avatar: '/image/avatar/tor.jpg',
+  avatar: '/image/avatar/daredevil.jpg',
   city: 'New-York',
+  about: 'The man without fear',
   age: 47,
   isOnline: true,
 }
@@ -170,9 +178,10 @@ export const deadpool: IUserPreview = {
   firstname: 'Wade',
   lastname: 'Winston',
   patronymic: 'Wilson',
-  avatar: '/image/avatar/tor.jpg',
+  avatar: '/image/avatar/deadpool.jpg',
   city: 'New-York',
   age: 33,
+  about: 'With great power comes great irresponsibility',
   isOnline: true,
 }
 
