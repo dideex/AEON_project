@@ -17,10 +17,21 @@ const useStyles = makeStyles((theme: Theme) => ({
 const InfoPanel: React.FC = () => {
   const classes = useStyles()
   const { me } = React.useContext(Context)
-  const { firstname, lastname, patronymic, city, gender, registered, isOnline, id } = me
+  const {
+    firstname,
+    lastname,
+    username,
+    patronymic,
+    city,
+    gender,
+    registered,
+    isOnline,
+    id,
+  } = me
 
   const fields = {
     'ID:': id,
+    'Email:': username,
     'Full name:': getFullName(firstname, lastname, patronymic),
     'City:': city,
     'Gender:': gender,

@@ -31,7 +31,7 @@ export interface IUserInfo {
   isOnline: boolean
   patronymic?: string
   avatar: string
-  about: string
+  about?: string
   age: number
 }
 
