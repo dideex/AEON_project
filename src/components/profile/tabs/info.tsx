@@ -31,18 +31,22 @@ const InfoPanel: React.FC = () => {
   } = me
 
   const fields = {
-    'ID:': id,
-    'Email:': username,
-    'Full name:': getFullName(firstname, lastname, patronymic),
-    'City:': city,
-    'Age:': age,
-    'Gender:': gender,
-    'Is online:': isOnline ? 'online' : 'offline',
-    'Registered:': parseDate(registered),
+    left: {
+      'ID:': id,
+      'Email:': username,
+      'Full name:': getFullName(firstname, lastname, patronymic),
+      'City:': city,
+    },
+    right: {
+      'Age:': age,
+      'Gender:': gender,
+      'Is online:': isOnline ? 'online' : 'offline',
+      'Registered:': parseDate(registered),
+    },
   }
-  return (
+  const getColumn = (rows: typeof fields.left | typeof fields.right) => (
     <Grid container>
-      {Object.entries(fields).map(([label, value], i) => (
+      {Object.entries(rows).map(([label, value], i) => (
         <React.Fragment key={i}>
           <Grid className={classes.grid} item xs={5} sm={3}>
             <Typography className={classes.label} variant="subtitle1">
@@ -54,6 +58,16 @@ const InfoPanel: React.FC = () => {
           </Grid>
         </React.Fragment>
       ))}
+    </Grid>
+  )
+  return (
+    <Grid container>
+      <Grid item xs={12} sm={6}>
+        {getColumn(fields.left)}
+      </Grid>
+      <Grid item xs={12} sm={6}>
+        {getColumn(fields.right)}
+      </Grid>
     </Grid>
   )
 }

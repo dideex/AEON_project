@@ -1,5 +1,15 @@
 import * as React from 'react'
-import { Typography, Theme, Avatar } from '@material-ui/core'
+import {
+  Typography,
+  Theme,
+  Avatar,
+  Tooltip,
+  Dialog,
+  DialogTitle,
+  DialogActions,
+  DialogContent,
+  Chip,
+} from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
@@ -23,10 +33,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: '30%',
     [theme.breakpoints.down('sm')]: {
       width: '100%',
+      margin: 0,
     },
   },
   head: {
     textAlign: 'center',
+    cursor: 'pointer',
   },
   tail: {
     display: 'flex',
@@ -43,9 +55,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignItems: 'center',
     minWidth: '20%',
     cursor: 'pointer',
-    '&:hover > div': {
-      opacity: 1,
-    },
   },
   likesContent: {
     padding: theme.spacing(1),
@@ -60,6 +69,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   image: {
     borderRadius: theme.settings.borderRadius,
     width: '100%',
+    cursor: 'pointer',
   },
   friendsPopover: {
     display: 'none',
@@ -106,6 +116,18 @@ const useStyles = makeStyles((theme: Theme) => ({
       transition: 'transform 200ms, opacity 200ms',
     },
   },
+  fullImage: {
+    width: '100%',
+  },
+  modalLikes: {
+    padding: theme.spacing(4),
+    justifyContent: 'flex-start',
+    flexWrap: 'wrap',
+  },
+  chip: {
+    margin: theme.spacing(1),
+    color: 'white',
+  },
 }))
 
 interface IFriendsPopover {
@@ -117,12 +139,16 @@ const FriendsPopover: React.FC<IFriendsPopover> = ({ likes }) => {
   return (
     <div className={classes.friendsPopover}>
       {likes.slice(0, 5).map(like => (
-        <div>
+        <Tooltip
+          enterDelay={500}
+          title={getFullName(like.firstname, like.lastname, like.patronymic)}
+          aria-label={getFullName(like.firstname, like.lastname, like.patronymic)}
+        >
           <Avatar
             src={like.avatar}
             alt={getFullName(like.firstname, like.lastname, like.patronymic)}
           />
-        </div>
+        </Tooltip>
       ))}
     </div>
   )
@@ -134,18 +160,52 @@ const GalleryPost: React.FC<IGalleryPost> = props => {
   const classes = useStyles()
   const { title, date, url, likes = [] } = props
   const [isHovered, setHover] = React.useState<boolean>(false)
+
+  const [isOpenModal, setOpenModal] = React.useState<boolean>(false)
+  const openModal = () => setOpenModal(true)
+  const closeModal = () => setOpenModal(false)
   const onHover = () => setHover(true)
   const onLeave = () => setHover(false)
+  const getModal = () => (
+    <Dialog
+      open={isOpenModal}
+      onClose={closeModal}
+      aria-labelledby="alert-dialog-title"
+      aria-describedby="alert-dialog-description"
+      maxWidth="sm"
+      fullWidth={true}
+    >
+      <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
+      <DialogContent>
+        <img className={classes.fullImage} src={url} alt={title} />
+      </DialogContent>
+      {Boolean(likes.length) && (
+        <DialogActions className={classes.modalLikes}>
+          <Typography variant="h6"> Likes:</Typography>
+          {likes.map(person => (
+            <Chip
+              key={person.id}
+              color="secondary"
+              avatar={<Avatar src={person.avatar} />}
+              label={getFullName(person.firstname, person.lastname, person.patronymic)}
+              className={classes.chip}
+            />
+          ))}
+        </DialogActions>
+      )}
+    </Dialog>
+  )
+
   return (
-    <div className={classes.grid}>
-      <div className={classes.head}>
+    <div className={classes.grid} onMouseLeave={onLeave}>
+      <div onClick={openModal} className={classes.head}>
         <Typography variant="h6" gutterBottom>
           {title}
         </Typography>
       </div>
-      <img className={classes.image} src={url} alt="" />
+      <img className={classes.image} src={url} alt={title} onClick={openModal} />
       <div className={classes.tail}>
-        <div className={classes.likes} onMouseEnter={onHover} onMouseLeave={onLeave}>
+        <div className={classes.likes} onMouseEnter={onHover}>
           <FontAwesomeIcon icon={faHeart} className={classes.heart} />
           <Typography className={classes.likesContent} variant="subtitle1">
             {likes.length}
@@ -160,6 +220,7 @@ const GalleryPost: React.FC<IGalleryPost> = props => {
           <Typography variant="subtitle1">{parseDateAgo(date)}</Typography>
         </div>
       </div>
+      {getModal()}
     </div>
   )
 }

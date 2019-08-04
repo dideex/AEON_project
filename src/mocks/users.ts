@@ -65,7 +65,7 @@ export const captainAmerica: IUserPreview = {
 export const thor: IUserPreview = {
   id: 'x0007',
   username: 'tor@azghard.com',
-  firstname: 'Tor',
+  firstname: 'Thor',
   lastname: 'Odison',
   avatar: '/image/avatar/thor.jpg',
   city: 'Asghard',
