@@ -66,7 +66,7 @@ export default function FullWidthTabs() {
   const classes = useStyles()
   const theme = useTheme()
   // FIXME: set initial value to 0
-  const [value, setValue] = React.useState<number>(2)
+  const [value, setValue] = React.useState<number>(1)
 
   function handleChange(event: React.ChangeEvent<{}>, newValue: number) {
     setValue(newValue)

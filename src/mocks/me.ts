@@ -73,7 +73,7 @@ const photos: IPhoto[] = [
     url: '/image/gallery/me_08.jpg',
     likes: [
       users.batman,
-      users.captainAmerica,
+      users.hulk,
       users.blackPanther,
       users.blackWidow,
       users.captainAmerica,
@@ -101,7 +101,7 @@ const photos: IPhoto[] = [
     title: 'The world is on fire',
     date: '1564741491888',
     url: '/image/gallery/me_11.jpg',
-    likes: [users.strange],
+    likes: [],
   },
 ]
 
@@ -112,7 +112,7 @@ export const me: TMyInfo = {
   lastname: 'Stark',
   city: 'New-York',
   gender: 'male',
-  patronymic: 'Stark',
+  patronymic: 'Ironman',
   avatar: '/image/avatar/me.jpg',
   about: 'Genius, Billionaire, Playboy, Philanthropist',
   age: 66,

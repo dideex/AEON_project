@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Typography, Theme } from '@material-ui/core'
+import { Typography, Theme, Avatar } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
@@ -11,6 +11,9 @@ import { getFullName } from '../../../utils'
 import { parseDateAgo } from '../../../utils/parseDate'
 
 const useStyles = makeStyles((theme: Theme) => ({
+  root: {
+    paddingBottom: theme.spacing(4),
+  },
   grid: {
     margin: '0 1.5%',
     paddingBottom: theme.spacing(1),
@@ -59,10 +62,16 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   friendsPopover: {
     opacity: 0,
+    zIndex: 9,
     position: 'absolute',
     left: 0,
     right: 0,
     top: '100%',
+    display: 'flex',
+    padding: `${theme.spacing(1)}px`,
+    backgroundColor: 'white',
+    boxShadow: theme.settings.boxShadow,
+    borderRadius: theme.settings.borderRadius,
   },
 }))
 
@@ -74,8 +83,13 @@ const FriendsPopover: React.FC<IFriendsPopover> = ({ likes }) => {
   const classes = useStyles()
   return (
     <div className={classes.friendsPopover}>
-      {likes.map(like => (
-        <div>{getFullName(like.firstname, like.lastname)}</div>
+      {likes.slice(0, 5).map(like => (
+        <div>
+          <Avatar
+            src={like.avatar}
+            alt={getFullName(like.firstname, like.lastname, like.patronymic)}
+          />
+        </div>
       ))}
     </div>
   )
@@ -111,9 +125,14 @@ const GalleryPost: React.FC<IGalleryPost> = props => {
 }
 
 const GalleryPanel: React.FC = () => {
+  const classes = useStyles()
   const { photos = [] } = React.useContext(Context).me
   return (
-    <Masonry style={{ overflow: 'hidden' }} options={{ transitionDuration: 0 }}>
+    <Masonry
+      className={classes.root}
+      style={{ overflow: 'hidden' }}
+      options={{ transitionDuration: 0 }}
+    >
       {photos.map(photo => (
         <GalleryPost key={photo.id} {...photo} />
       ))}

@@ -61,7 +61,7 @@ const FriendCard: React.FC<IFriendCard> = props => {
         <Typography variant="h5">
           {getFullName(firstname, lastname)}, {age}
         </Typography>
-        <Typography className={classes.about} variant="h6">
+        <Typography className={classes.about} variant="subtitle1">
           {about}
         </Typography>
       </div>

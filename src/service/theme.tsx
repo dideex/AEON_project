@@ -7,6 +7,7 @@ declare module '@material-ui/core/styles/createMuiTheme' {
   interface Theme {
     settings: {
       borderRadius: string
+      boxShadow: string
     }
     color: {
       accent: string
@@ -21,6 +22,7 @@ declare module '@material-ui/core/styles/createMuiTheme' {
   interface ThemeOptions {
     settings?: {
       borderRadius?: string
+      boxShadow?: string
     }
     color?: {
       accent?: string
@@ -37,6 +39,7 @@ const accentColor = deepPurple.A200
 const theme = createMuiTheme({
   settings: {
     borderRadius: '5px',
+    boxShadow: '0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12)',
   },
   color: {
     accent: accentColor,
