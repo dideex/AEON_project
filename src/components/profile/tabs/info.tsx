@@ -27,6 +27,7 @@ const InfoPanel: React.FC = () => {
     registered,
     isOnline,
     id,
+    age,
   } = me
 
   const fields = {
@@ -34,8 +35,8 @@ const InfoPanel: React.FC = () => {
     'Email:': username,
     'Full name:': getFullName(firstname, lastname, patronymic),
     'City:': city,
+    'Age:': age,
     'Gender:': gender,
-    // TODO: add common format
     'Is online:': isOnline ? 'online' : 'offline',
     'Registered:': parseDate(registered),
   }

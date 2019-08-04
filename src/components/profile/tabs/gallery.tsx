@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/styles'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import Masonry from 'react-masonry-component'
+import { CSSTransition } from 'react-transition-group'
 
 import { Context } from '../../common'
 import { IPhoto, IUserPreview } from '../../../types'
@@ -61,17 +62,49 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: '100%',
   },
   friendsPopover: {
-    opacity: 0,
+    display: 'none',
     zIndex: 9,
     position: 'absolute',
     left: 0,
     right: 0,
     top: '100%',
-    display: 'flex',
     padding: `${theme.spacing(1)}px`,
     backgroundColor: 'white',
     boxShadow: theme.settings.boxShadow,
     borderRadius: theme.settings.borderRadius,
+    transform: 'translateY(-25px)',
+  },
+  transition: {
+    '&-enter': {
+      opacity: 0,
+      display: 'flex',
+    },
+    '&-enter-done': {
+      opacity: 1,
+      display: 'flex',
+      transform: 'translateY(0)',
+    },
+    '&-enter-active': {
+      opacity: 1,
+      display: 'flex',
+      transform: 'translateY(0)',
+      transition: theme.transitions.create(['transform', 'opacity'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+    },
+    '&-exit': {
+      opacity: 1,
+      display: 'flex',
+      transform: 'translateY(0)',
+    },
+    '&-exit-done': {
+      display: 'none',
+    },
+    '&-exit-active': {
+      opacity: 0,
+      transition: 'transform 200ms, opacity 200ms',
+    },
   },
 }))
 
@@ -100,6 +133,9 @@ type IGalleryPost = IPhoto
 const GalleryPost: React.FC<IGalleryPost> = props => {
   const classes = useStyles()
   const { title, date, url, likes = [] } = props
+  const [isHovered, setHover] = React.useState<boolean>(false)
+  const onHover = () => setHover(true)
+  const onLeave = () => setHover(false)
   return (
     <div className={classes.grid}>
       <div className={classes.head}>
@@ -109,12 +145,16 @@ const GalleryPost: React.FC<IGalleryPost> = props => {
       </div>
       <img className={classes.image} src={url} alt="" />
       <div className={classes.tail}>
-        <div className={classes.likes}>
+        <div className={classes.likes} onMouseEnter={onHover} onMouseLeave={onLeave}>
           <FontAwesomeIcon icon={faHeart} className={classes.heart} />
           <Typography className={classes.likesContent} variant="subtitle1">
             {likes.length}
           </Typography>
-          {Boolean(likes.length) && <FriendsPopover likes={likes} />}
+          {Boolean(likes.length) && (
+            <CSSTransition in={isHovered} timeout={200} classNames={classes.transition}>
+              <FriendsPopover likes={likes} />
+            </CSSTransition>
+          )}
         </div>
         <div className={classes.date}>
           <Typography variant="subtitle1">{parseDateAgo(date)}</Typography>
