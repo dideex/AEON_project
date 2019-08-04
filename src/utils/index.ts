@@ -1,5 +1,6 @@
-import emailValidator from "email-validator";
+import emailValidator from 'email-validator'
 
+// Add locale-specific relative date/time formatting rules.
 import { IUserStringFileds } from '../components/auth/register'
 
 export interface ITrim {
@@ -33,4 +34,12 @@ export function validator(name: keyof IUserStringFileds, field: string) {
     default:
       return false
   }
+}
+
+export function parseDate(date: string): string {
+  return new Date(Number(date)).toLocaleDateString()
+}
+
+export function getFullName<T>(first: T, last: T, patronymic?: T): string {
+  return patronymic ? `${first} ${patronymic} ${last}` : `${first} ${last}`
 }

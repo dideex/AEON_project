@@ -7,8 +7,8 @@ export interface ICustomButton {
   title: string
   className?: string
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
-  classes: any
-  isLoading: boolean
+  classes?: any
+  isLoading?: boolean
 }
 
 const CustomButton: React.FC<ICustomButton> = props => {
