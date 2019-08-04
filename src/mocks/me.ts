@@ -1,7 +1,7 @@
 import { IPhoto, TMyInfo, IUserPreview } from '../types'
 import users from './users'
 
-const friends: IUserPreview[] = [users.batman, users.spinderman, users.superman]
+const friends: IUserPreview[] = Object.values(users)
 
 const photos: IPhoto[] = [
   {
@@ -16,63 +16,78 @@ const photos: IPhoto[] = [
     title: 'Istambul <3',
     date: '1564213954069',
     url: '/image/gallery/me_1.jpg',
-    likes: [users.batman, users.superman],
+    likes: [
+      users.batman,
+      users.superman,
+      users.blackWidow,
+      users.daredevil,
+      users.marvel,
+    ],
   },
   {
     id: '0002',
     title: 'Hi-tech undewear',
     date: '1564713954069',
     url: '/image/gallery/me_2.jpg',
-    likes: [users.superman],
+    likes: [users.superman, users.blackWidow, users.venom, users.thor],
   },
   {
     id: '0003',
     title: 'Ironman plays with ironman',
     date: '1564713959069',
     url: '/image/gallery/me_3.jpg',
-    likes: [users.batman],
+    likes: [users.batman, users.daredevil, users.deadpool],
   },
   {
     id: '0004',
     title: 'Look at my red glasses',
     date: '1564713954069',
     url: '/image/gallery/me_4.jpg',
-    likes: [],
+    likes: [users.ant],
   },
   {
     id: '0005',
     title: 'Peace (=',
     date: '1564213954069',
     url: '/image/gallery/me_5.jpg',
-    likes: [users.superman],
+    likes: [users.superman, users.deadpool, users.hulk, users.thor],
   },
   {
     id: '0006',
     title: 'Sup?',
     date: '1551113954069',
     url: '/image/gallery/me_6.jpg',
-    likes: [users.batman, users.superman],
+    likes: [users.batman, users.superman, users.blackPanther, users.wolverine],
   },
   {
     id: '0007',
     title: 'Who is stronger?!',
     date: '1564740260282',
     url: '/image/gallery/me_07.jpg',
-    likes: [users.batman],
+    likes: [users.batman, users.deadpool, users.venom],
   },
   {
     id: '0008',
     title: 'Chilling after Tanos ...',
     date: '1564740060282',
     url: '/image/gallery/me_08.jpg',
-    likes: [users.batman],
+    likes: [
+      users.batman,
+      users.captainAmerica,
+      users.blackPanther,
+      users.blackWidow,
+      users.captainAmerica,
+      users.daredevil,
+      users.strange,
+      users.venom
+    ],
   },
   {
     id: '0009',
     title: 'Do you know how is this ...man?!',
     date: '1564740050282',
     url: '/image/gallery/me_09.jpg',
-    likes: [users.spinderman],
+    likes: [users.spinderman, users.captainAmerica],
   },
   {
     id: '0010',
@@ -86,7 +101,7 @@ const photos: IPhoto[] = [
     title: 'The world is on fire',
     date: '1564741491888',
     url: '/image/gallery/me_11.jpg',
-    likes: [],
+    likes: [users.strange],
   },
 ]
 

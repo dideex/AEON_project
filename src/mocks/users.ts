@@ -185,4 +185,20 @@ export const deadpool: IUserPreview = {
   isOnline: true,
 }
 
-export default { batman, spinderman, superman }
+export default {
+  batman,
+  spinderman,
+  superman,
+  wolverine,
+  captainAmerica,
+  thor,
+  venom,
+  blackWidow,
+  ant,
+  marvel,
+  blackPanther,
+  strange,
+  hulk,
+  daredevil,
+  deadpool,
+}
