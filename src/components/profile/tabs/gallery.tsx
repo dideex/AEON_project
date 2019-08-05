@@ -154,11 +154,13 @@ const FriendsPopover: React.FC<IFriendsPopover> = ({ likes }) => {
   )
 }
 
-type IGalleryPost = IPhoto
+interface IGalleryPost extends IPhoto {
+  handleLike: (e: React.MouseEvent<HTMLDivElement>) => void
+}
 
 const GalleryPost: React.FC<IGalleryPost> = props => {
   const classes = useStyles()
-  const { title, date, url, likes = [] } = props
+  const { title, date, url, likes = [], handleLike } = props
   const [isHovered, setHover] = React.useState<boolean>(false)
 
   const [isOpenModal, setOpenModal] = React.useState<boolean>(false)
@@ -205,7 +207,7 @@ const GalleryPost: React.FC<IGalleryPost> = props => {
       </div>
       <img className={classes.image} src={url} alt={title} onClick={openModal} />
       <div className={classes.tail}>
-        <div className={classes.likes} onMouseEnter={onHover}>
+        <div className={classes.likes} onClick={handleLike} onMouseEnter={onHover}>
           <FontAwesomeIcon icon={faHeart} className={classes.heart} />
           <Typography className={classes.likesContent} variant="subtitle1">
             {likes.length}
@@ -227,7 +229,10 @@ const GalleryPost: React.FC<IGalleryPost> = props => {
 
 const GalleryPanel: React.FC = () => {
   const classes = useStyles()
-  const { photos = [] } = React.useContext(Context).me
+  const {
+    me: { photos = [] },
+    action: { handleLike },
+  } = React.useContext(Context)
   return (
     <Masonry
       className={classes.root}
@@ -235,7 +240,7 @@ const GalleryPanel: React.FC = () => {
       options={{ transitionDuration: 0 }}
     >
       {photos.map(photo => (
-        <GalleryPost key={photo.id} {...photo} />
+        <GalleryPost key={photo.id} handleLike={handleLike(photo.id)} {...photo} />
       ))}
     </Masonry>
   )

@@ -62,10 +62,10 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 )
 
-export default function FullWidthTabs() {
+const FullWidthTabs: React.FC = () => {
   const classes = useStyles()
   const theme = useTheme()
-  const [value, setValue] = React.useState<number>(1)
+  const [value, setValue] = React.useState<number>(0)
 
   function handleChange(event: React.ChangeEvent<{}>, newValue: number) {
     setValue(newValue)
@@ -115,3 +115,5 @@ export default function FullWidthTabs() {
     </>
   )
 }
+
+export default FullWidthTabs

@@ -3,9 +3,7 @@ import { Grid } from '@material-ui/core'
 
 import { ProfileWidget, ProfileTabs } from './widget'
 
-interface CompProps {}
-
-const Profile: React.FC<CompProps> = props => {
+const Profile: React.FC = () => {
   return (
     <Grid container spacing={4}>
       <Grid item xs={12} sm={3}>

@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { storiesOf } from '@storybook/react'
-import { withKnobs, boolean } from '@storybook/addon-knobs'
+import { withKnobs } from '@storybook/addon-knobs'
+import { action } from '@storybook/addon-actions'
 import { Grid, Container } from '@material-ui/core'
 import { grey } from '@material-ui/core/colors'
 // import { BrowserRouter as RouterProvider } from 'react-router-dom'
@@ -11,9 +12,13 @@ import { Provider as ContextProvider } from '../common'
 import { CustomThemeProvider as ThemeProvider } from '../../service'
 import { me } from '../../mocks'
 
+const handleLikeClick = (id: string) => () => {
+  action(`Handle click click ${id}`)
+}
+
 const MyProfile = (props: any) => (
   <ThemeProvider>
-    <ContextProvider value={{ me }}>
+    <ContextProvider value={{ me, action: { handleLike: handleLikeClick } }}>
       <Container component="main" style={{ backgroundColor: grey[50] }}>
         <MyProfileCmp {...props} />
       </Container>
@@ -23,7 +28,7 @@ const MyProfile = (props: any) => (
 
 const ProfileWidgetWrap = (props: any) => (
   <ThemeProvider>
-    <ContextProvider value={{ me }}>
+    <ContextProvider value={{ me, action: { handleLike: handleLikeClick } }}>
       <Container component="main" style={{ backgroundColor: grey[50] }}>
         <Grid container spacing={4}>
           <Grid item xs={12} sm={3}>

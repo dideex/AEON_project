@@ -1,7 +1,12 @@
 import { createContext } from 'react'
 import { TMyInfo } from '../../types'
 
-export type IContext = { me: TMyInfo }
+export type IHanldeLike = (id: string) => (e: React.MouseEvent<HTMLDivElement>) => void
+
+export interface IContext {
+  me: TMyInfo
+  action: { handleLike: IHanldeLike }
+}
 const Context = createContext<IContext>({
   me: {
     id: '',
@@ -27,6 +32,9 @@ const Context = createContext<IContext>({
     isOnline: false,
     photos: [],
     friends: [],
+  },
+  action: {
+    handleLike: () => () => {},
   },
 })
 
