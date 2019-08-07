@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Paper, Avatar, Typography, Theme, Divider } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
-import { Context } from '../../common'
+import { Context } from '../common'
 
 const useStyles = makeStyles((theme: Theme) => ({
   paper: {

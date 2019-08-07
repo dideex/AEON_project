@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { Grid } from '@material-ui/core'
 
-import { ProfileWidget, ProfileTabs } from './widget'
+import { ProfileTabs } from './tabs'
+import { ProfileWidget } from '../widget'
 
 const Profile: React.FC = () => {
   return (
