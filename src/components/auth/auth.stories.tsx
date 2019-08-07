@@ -24,36 +24,20 @@ const stories = storiesOf('Auth flow', module)
 stories.addDecorator(withKnobs)
 
 stories
-  .add(
-    'Auth: basic view',
-    () => (
-      <Auth handleSubmit={handleSubmit} isLoading={boolean('Loading', false)} />
-    ),
-    {
-      info: { inline: true },
-    },
-  )
+  .add('Auth: basic view', () => (
+    <Auth handleSubmit={handleSubmit} isLoading={boolean('Loading', false)} />
+  ))
   .add(
     'Auth: mobile view',
-    () => (
-      <Auth handleSubmit={handleSubmit} isLoading={boolean('Loading', false)} />
-    ),
-    {
-      viewport: { defaultViewport: 'iphonex' },
-    },
+    () => <Auth handleSubmit={handleSubmit} isLoading={boolean('Loading', false)} />,
+    { viewport: { defaultViewport: 'iphonex' } },
   )
-  .add(
-    'Register: basic view',
-    () => (
-      <Register
-        handleSubmit={handleSubmit}
-        isLoading={boolean('Loading', false, 'LOADING-GR3')}
-      />
-    ),
-    {
-      info: { inline: true },
-    },
-  )
+  .add('Register: basic view', () => (
+    <Register
+      handleSubmit={handleSubmit}
+      isLoading={boolean('Loading', false, 'LOADING-GR3')}
+    />
+  ))
   .add(
     'Register: mobile view',
     () => (
@@ -62,7 +46,5 @@ stories
         isLoading={boolean('Loading', false, 'LOADING-GR3')}
       />
     ),
-    {
-      viewport: { defaultViewport: 'iphonex' },
-    },
+    { viewport: { defaultViewport: 'iphonex' } },
   )

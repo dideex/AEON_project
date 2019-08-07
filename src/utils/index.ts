@@ -8,7 +8,7 @@ export interface ITrim {
 }
 
 // FIXME: add typeguard for extends initialObject
-// export function trimObject<T, K = T>(entity: T, initialObject: K = entity): K {
+// export function trimObject<T, K extends T = T>(entity: T, initialObject: K = entity): K {
 //   return Object.entries(entity).reduce<K>(
 //     (acc, [key, value]) => ({ ...acc, [key]: value.trim() }),
 //     initialObject,

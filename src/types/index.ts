@@ -19,12 +19,14 @@ export interface IUserGender {
   gender: IGender | null
 }
 
+export interface IParsedDate {
+  month: number
+  year: number
+  day: number
+}
+
 export interface IUserBirthDate {
-  birthDate: {
-    month: number
-    year: number
-    day: number
-  }
+  birthDate: IParsedDate
 }
 
 export interface IUserInfo {
