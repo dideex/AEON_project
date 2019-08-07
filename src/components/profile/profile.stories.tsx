@@ -1,23 +1,17 @@
 import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 import { withKnobs } from '@storybook/addon-knobs'
-import { action } from '@storybook/addon-actions'
 import { Container } from '@material-ui/core'
 import { grey } from '@material-ui/core/colors'
-// import { BrowserRouter as RouterProvider } from 'react-router-dom'
 
 import MyProfileCmp from './my-profile'
 import { Provider as ContextProvider } from '../common'
 import { CustomThemeProvider as ThemeProvider } from '../../service'
-import { me } from '../../mocks'
-
-const handleLikeClick = (id: string) => () => {
-  action(`Handle click click ${id}`)
-}
+import { me, action } from '../../mocks'
 
 const MyProfile = (props: any) => (
   <ThemeProvider>
-    <ContextProvider value={{ me, action: { handleLike: handleLikeClick } }}>
+    <ContextProvider value={{ me, action }}>
       <Container component="main" style={{ backgroundColor: grey[50] }}>
         <MyProfileCmp {...props} />
       </Container>

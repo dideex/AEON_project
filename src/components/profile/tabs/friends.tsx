@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Theme, Avatar, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
-import { Context } from '../../common'
+import { Context, VerticalMenu } from '../../common'
 import { IUserPreview } from '../../../types'
 import { getFullName } from '../../../utils'
 
@@ -40,13 +40,28 @@ const useStyles = makeStyles((theme: Theme) => ({
     height: '2vw',
     borderRadius: '50%',
   },
+  menu: {
+    marginLeft: 'auto',
+  },
 }))
 
 type IFriendCard = IUserPreview
 
 const FriendCard: React.FC<IFriendCard> = props => {
   const classes = useStyles()
+  const {
+    handleOpenChat,
+    handleInviteToChat,
+    handleRemoveFromFriends,
+    handleAddToMute,
+  } = React.useContext(Context).action
   const { id, firstname, lastname, age, avatar, isOnline, about } = props
+  const options = [
+    { label: 'Chat', onClick: handleOpenChat(id) },
+    { label: 'Invite to chat', onClick: handleInviteToChat(id) },
+    { label: 'Remove', onClick: handleRemoveFromFriends(id) },
+    { label: 'Mute', onClick: handleAddToMute(id) },
+  ]
   return (
     <div className={classes.card}>
       <figure className={classes.avatarWrap}>
@@ -65,6 +80,7 @@ const FriendCard: React.FC<IFriendCard> = props => {
           {about}
         </Typography>
       </div>
+      <VerticalMenu options={options} />
     </div>
   )
 }

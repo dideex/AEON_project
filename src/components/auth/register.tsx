@@ -56,13 +56,13 @@ interface CompProps {
   isLoading: boolean
 }
 
-export type IUserStringFileds = IUserRequest & IUserBio
+export type IUserInputFields = IUserRequest & IUserBio
 
 // TODO: Add birth date fields
 export const Register: React.FC<CompProps> = props => {
   const { isLoading } = props
   const classes = useStyles()
-  const [state, setState] = React.useState<IUserStringFileds>({
+  const [state, setState] = React.useState<IUserInputFields>({
     username: '',
     password: '',
     firstname: '',
@@ -71,7 +71,7 @@ export const Register: React.FC<CompProps> = props => {
   })
   const [forceTouch, setForceTouch] = React.useState<boolean>(false)
 
-  const getInputProps = (name: keyof IUserStringFileds) => {
+  const getInputProps = (name: keyof IUserInputFields) => {
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
       setState({ ...state, [name]: event.target.value || '' })
     return {
