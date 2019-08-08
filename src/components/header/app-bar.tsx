@@ -11,7 +11,7 @@ import {
 
 import Search from './search'
 import MobileMenu from './mobile-menu'
-import DesktopMenu from './web-menu'
+import ProfileMenu from './profile-menu'
 import { HeaderMenuIcons } from './header-link'
 import { Context } from '../common'
 import { RouterIconLink } from '../../types'
@@ -139,7 +139,7 @@ const HeaderAppBar: React.FC = () => {
         handleMenuClose={handleMobileMenuClose}
         icons={icons}
       />
-      <DesktopMenu
+      <ProfileMenu
         anchorEl={anchorEl}
         menuId={menuId}
         handleMenuClose={handleMenuClose}

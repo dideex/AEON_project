@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { makeStyles, Theme, InputBase } from '@material-ui/core'
 
 import { Search as SearchIcon } from '@material-ui/icons'
@@ -43,8 +44,18 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-const Search: React.FC = () => {
+const Search: React.FC<RouteComponentProps> = ({ history }) => {
   const classes = useStyles()
+  const [query, setQuery] = React.useState<string>('')
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value)
+  }
+  const handleEnterPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      history.push(`/search/${query}`)
+      setQuery('')
+    }
+  }
   return (
     <div className={classes.search}>
       <div className={classes.searchIcon}>
@@ -58,9 +69,12 @@ const Search: React.FC = () => {
           input: classes.inputInput,
         }}
         inputProps={{ 'aria-label': 'search' }}
+        value={query}
+        onChange={handleChange}
+        onKeyPress={handleEnterPress}
       />
     </div>
   )
 }
 
-export default Search
+export default withRouter(Search)

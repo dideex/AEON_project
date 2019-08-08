@@ -3,13 +3,13 @@ import { Menu, MenuItem } from '@material-ui/core'
 import { Link } from '../common'
 import { RouteLink } from '../../types'
 
-interface IWebMenu {
+interface IProfileMenu {
   menuId: string
   anchorEl: null | HTMLElement
   handleMenuClose: () => void
 }
 
-const WebMenu: React.FC<IWebMenu> = ({ anchorEl, menuId, handleMenuClose }) => {
+const ProfileMenu: React.FC<IProfileMenu> = ({ anchorEl, menuId, handleMenuClose }) => {
   const links: RouteLink[] = [
     { to: '/me', label: 'Account' },
     { to: '/me/gallery', label: 'Gallery' },
@@ -35,4 +35,4 @@ const WebMenu: React.FC<IWebMenu> = ({ anchorEl, menuId, handleMenuClose }) => {
   )
 }
 
-export default WebMenu
+export default ProfileMenu
