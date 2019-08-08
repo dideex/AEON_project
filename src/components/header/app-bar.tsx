@@ -6,11 +6,9 @@ import {
   IconButton,
   Typography,
   Badge,
-  MenuItem,
-  Menu,
+  Avatar,
 } from '@material-ui/core'
 import {
-  AccountCircle,
   Mail as MailIcon,
   Notifications as NotificationsIcon,
   MoreVert as MoreIcon,
@@ -21,6 +19,7 @@ import {
 import Search from './search'
 import MobileMenu from './mobile-menu'
 import WebMenu from './web-menu'
+import { Context } from '../common'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -69,6 +68,7 @@ const HeaderAppBar: React.FC = () => {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(
     null,
   )
+  const { me } = React.useContext(Context)
 
   function handleProfileMenuOpen(event: React.MouseEvent<HTMLElement>) {
     setAnchorEl(event.currentTarget)
@@ -135,7 +135,7 @@ const HeaderAppBar: React.FC = () => {
         onClick={handleProfileMenuOpen}
         color="inherit"
       >
-        <AccountCircle className={classes.menuIcon} />
+        <Avatar src={me.avatar} />
       </IconButton>
     </div>
   )

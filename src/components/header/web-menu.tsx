@@ -18,8 +18,9 @@ const WebMenu: React.FC<IWebMenu> = ({ anchorEl, menuId, handleMenuClose }) => {
       open={Boolean(anchorEl)}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Gallery</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Settings</MenuItem>
     </Menu>
   )
 }

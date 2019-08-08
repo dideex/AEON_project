@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Menu, MenuItem, IconButton, Badge, Theme } from '@material-ui/core'
+import { Menu, MenuItem, IconButton, Badge, Theme, Avatar } from '@material-ui/core'
 
 import {
   AccountCircle,
@@ -7,6 +7,8 @@ import {
   Notifications as NotificationsIcon,
 } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/styles'
+
+import { Context } from '../common'
 
 const useStyles = makeStyles((theme: Theme) => ({
   menuIcon: {
@@ -24,6 +26,7 @@ interface IMobileMenu {
 const MobileMenu: React.FC<IMobileMenu> = props => {
   const { handleProfileMenuOpen, mobileMenuId, anchorEl, handleMenuClose } = props
   const classes = useStyles()
+  const { me } = React.useContext(Context)
   return (
     <Menu
       anchorEl={anchorEl}
@@ -57,7 +60,7 @@ const MobileMenu: React.FC<IMobileMenu> = props => {
           aria-haspopup="true"
           color="inherit"
         >
-          <AccountCircle className={classes.menuIcon} />
+          <Avatar src={me.avatar} />
         </IconButton>
         <p>Profile</p>
       </MenuItem>
