@@ -127,6 +127,12 @@ export const me: TMyInfo = {
     posts: 13,
     likes: 68,
   },
+  socialStatistic: {
+    posts: 8,
+    invites: 4,
+    messages: 13,
+    notifications: 17,
+  },
   photos,
   friends,
 }

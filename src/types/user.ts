@@ -36,12 +36,20 @@ export interface IUserInfo {
   about?: string
   age: number
 }
+export interface IMyStats {
+  likes: number
+  posts: number
+}
 
+export interface ISocialStats {
+  notifications: number
+  invites: number
+  messages: number
+  posts: number
+}
 export interface IUserStatistic {
-  statistic: {
-    likes: number
-    posts: number
-  }
+  statistic: IMyStats
+  socialStatistic: ISocialStats
   registered: string
 }
 

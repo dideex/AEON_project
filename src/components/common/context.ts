@@ -34,6 +34,12 @@ const Context = createContext<IContext>({
       posts: 0,
       likes: 0,
     },
+    socialStatistic: {
+      posts: 0,
+      notifications: 0,
+      messages: 0,
+      invites: 0,
+    },
     registered: '',
     isOnline: false,
     photos: [],

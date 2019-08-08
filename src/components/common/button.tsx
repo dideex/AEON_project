@@ -1,7 +1,8 @@
 import * as React from 'react'
-import { Button, Theme, CircularProgress } from '@material-ui/core'
+import { Button, Theme } from '@material-ui/core'
 import { deepPurple } from '@material-ui/core/colors'
 import { withStyles } from '@material-ui/styles'
+import { Loading } from '.'
 
 export interface ICustomButton {
   title: string
@@ -25,7 +26,7 @@ const CustomButton: React.FC<ICustomButton> = props => {
       disabled={isLoading}
     >
       {title}
-      {isLoading && <CircularProgress color="secondary" size={24} className={classes.spinner} />}
+      {isLoading && <Loading />}
     </Button>
   )
 }
@@ -37,10 +38,5 @@ export const AccentButton = withStyles((theme: Theme) => ({
     '&:hover': {
       backgroundColor: deepPurple[500],
     },
-  },
-  spinner: {
-    position: 'absolute',
-    right: theme.spacing(3),
-    color: theme.color.accent,
   },
 }))(CustomButton)

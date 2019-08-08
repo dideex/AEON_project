@@ -54,7 +54,11 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 )
 
-const HeaderAppBar: React.FC = () => {
+export interface IHeaderAppBar {
+  isLoading?: boolean
+}
+
+const HeaderAppBar: React.FC<IHeaderAppBar> = ({ isLoading }) => {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(
@@ -80,12 +84,12 @@ const HeaderAppBar: React.FC = () => {
   }
   const mobileMenuId = 'primary-search-account-menu-mobile'
   const menuId = 'primary-search-account-menu'
-
+  // prettier-ignore
   const icons: RouterIconLink[] = [
-    { to: '/feed', count: 7, Icon: LibraryBooks },
-    { to: '/friends', count: 2, Icon: SupervisorAccount },
-    { to: '/chat', count: 5, Icon: MailIcon },
-    { to: '/notifications', count: 17, Icon: NotificationsIcon },
+    { to: '/feed', count: me.socialStatistic.posts, Icon: LibraryBooks },
+    { to: '/friends', count: me.socialStatistic.invites, Icon: SupervisorAccount },
+    { to: '/chat', count: me.socialStatistic.messages, Icon: MailIcon },
+    { to: '/notifications', count: me.socialStatistic.notifications, Icon: NotificationsIcon, },
   ]
 
   const getDesktopMenuIcons = () => (
