@@ -5,11 +5,18 @@ import { RouteTypes } from '../../types'
 
 interface ILink {
   to: RouteTypes
+  className?: string
 }
 
-const Link: React.FC<ILink> = ({ children, to }) => {
+const Link: React.FC<ILink> = ({ children, to, className = '' }) => {
   return (
-    <CoreLink color="textPrimary" underline="none" component={RouterLink} to={to}>
+    <CoreLink
+      className={className}
+      color="textPrimary"
+      underline="none"
+      component={RouterLink}
+      to={to}
+    >
       {children}
     </CoreLink>
   )

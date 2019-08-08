@@ -12,8 +12,7 @@ import AuthHeader from './auth-header'
 import { CustomInput, AccentButton, CustomSelect } from '../common'
 import { validator } from '../../utils'
 import { IUserBio, IUserRequest, IParsedDate } from '../../types'
-import { FormControl, InputLabel, Select, MenuItem } from '@material-ui/core'
-import { months, month, birthdatePlaceholders, days, years } from '../../constants'
+import { months, month, days, years } from '../../constants'
 
 const useStyles = makeStyles(theme => ({
   '@global': {

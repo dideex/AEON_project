@@ -1,5 +1,7 @@
 import * as React from 'react'
 import { Menu, MenuItem } from '@material-ui/core'
+import { Link } from '../common'
+import { RouteLink } from '../../types'
 
 interface IWebMenu {
   menuId: string
@@ -8,6 +10,12 @@ interface IWebMenu {
 }
 
 const WebMenu: React.FC<IWebMenu> = ({ anchorEl, menuId, handleMenuClose }) => {
+  const links: RouteLink[] = [
+    { to: '/me', label: 'Account' },
+    { to: '/me/gallery', label: 'Gallery' },
+    { to: '/settings', label: 'Settings' },
+    { to: '/logout', label: 'Logout' },
+  ]
   return (
     <Menu
       anchorEl={anchorEl}
@@ -18,9 +26,11 @@ const WebMenu: React.FC<IWebMenu> = ({ anchorEl, menuId, handleMenuClose }) => {
       open={Boolean(anchorEl)}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Account</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Gallery</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Settings</MenuItem>
+      {links.map(({ to, label }) => (
+        <Link key={to} to={to}>
+          <MenuItem onClick={handleMenuClose}>{label}</MenuItem>
+        </Link>
+      ))}
     </Menu>
   )
 }

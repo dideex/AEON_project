@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
-import { AppBar, Toolbar, IconButton, Typography, Badge, Avatar } from '@material-ui/core'
+import { AppBar, Toolbar, IconButton, Typography, Avatar } from '@material-ui/core'
 import {
   Mail as MailIcon,
   Notifications as NotificationsIcon,
@@ -11,18 +11,15 @@ import {
 
 import Search from './search'
 import MobileMenu from './mobile-menu'
-import WebMenu from './web-menu'
-import { Context, Link } from '../common'
-import { RouteTypes } from '../../types'
-import { SvgIconProps } from '@material-ui/core/SvgIcon'
+import DesktopMenu from './web-menu'
+import { HeaderMenuIcons } from './header-link'
+import { Context } from '../common'
+import { RouterIconLink } from '../../types'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     menuIcon: {
       color: theme.palette.text.secondary,
-    },
-    iconButton: {
-      margin: `0 ${theme.spacing(1)}px`,
     },
     root: {
       paddingTop: theme.spacing(1),
@@ -57,27 +54,6 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 )
 
-interface IHeaderIconLink {
-  to: RouteTypes
-  count: number
-}
-const HeaderIconLink: React.FC<IHeaderIconLink> = ({ to, children, count }) => {
-  const classes = useStyles()
-  return (
-    <Link to={to}>
-      <IconButton
-        className={classes.iconButton}
-        aria-label={`show ${count} new fields`}
-        color="inherit"
-      >
-        <Badge badgeContent={count} color="secondary">
-          {children}
-        </Badge>
-      </IconButton>
-    </Link>
-  )
-}
-
 const HeaderAppBar: React.FC = () => {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -104,24 +80,17 @@ const HeaderAppBar: React.FC = () => {
   }
   const mobileMenuId = 'primary-search-account-menu-mobile'
   const menuId = 'primary-search-account-menu'
-  const icons: {
-    to: RouteTypes
-    count: number
-    Icon: React.ComponentType<SvgIconProps>
-  }[] = [
+
+  const icons: RouterIconLink[] = [
     { to: '/feed', count: 7, Icon: LibraryBooks },
     { to: '/friends', count: 2, Icon: SupervisorAccount },
     { to: '/chat', count: 5, Icon: MailIcon },
     { to: '/notifications', count: 17, Icon: NotificationsIcon },
   ]
 
-  const getDesctopMenuIcons = () => (
+  const getDesktopMenuIcons = () => (
     <div className={classes.sectionDesktop}>
-      {icons.map(({ to, count, Icon }, i) => (
-        <HeaderIconLink key={i} to={to} count={count}>
-          <Icon className={classes.menuIcon} fontSize="large" />
-        </HeaderIconLink>
-      ))}
+      <HeaderMenuIcons icons={icons} />
       <IconButton
         edge="end"
         aria-label="account of current user"
@@ -159,7 +128,7 @@ const HeaderAppBar: React.FC = () => {
           <Search />
           <div className={classes.grow} />
 
-          {getDesctopMenuIcons()}
+          {getDesktopMenuIcons()}
           {getMobileMenuIcons()}
         </Toolbar>
       </AppBar>
@@ -168,8 +137,13 @@ const HeaderAppBar: React.FC = () => {
         handleProfileMenuOpen={handleProfileMenuOpen}
         mobileMenuId={mobileMenuId}
         handleMenuClose={handleMobileMenuClose}
+        icons={icons}
       />
-      <WebMenu anchorEl={anchorEl} menuId={menuId} handleMenuClose={handleMenuClose} />
+      <DesktopMenu
+        anchorEl={anchorEl}
+        menuId={menuId}
+        handleMenuClose={handleMenuClose}
+      />
     </div>
   )
 }
