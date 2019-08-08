@@ -1,0 +1,7 @@
+export const home = '/'
+export const feed = '/feed'
+export const feedId = '/feed/:id'
+export const notifications = '/notifications'
+export const friends = '/friends'
+export const chat = '/chat'
+export const chats = '/chat/:id'

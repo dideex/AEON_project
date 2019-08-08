@@ -1,13 +1,6 @@
 import * as React from 'react'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
-import {
-  AppBar,
-  Toolbar,
-  IconButton,
-  Typography,
-  Badge,
-  Avatar,
-} from '@material-ui/core'
+import { AppBar, Toolbar, IconButton, Typography, Badge, Avatar } from '@material-ui/core'
 import {
   Mail as MailIcon,
   Notifications as NotificationsIcon,
@@ -19,7 +12,9 @@ import {
 import Search from './search'
 import MobileMenu from './mobile-menu'
 import WebMenu from './web-menu'
-import { Context } from '../common'
+import { Context, Link } from '../common'
+import { RouteTypes } from '../../types'
+import { SvgIconProps } from '@material-ui/core/SvgIcon'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -62,6 +57,27 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 )
 
+interface IHeaderIconLink {
+  to: RouteTypes
+  count: number
+}
+const HeaderIconLink: React.FC<IHeaderIconLink> = ({ to, children, count }) => {
+  const classes = useStyles()
+  return (
+    <Link to={to}>
+      <IconButton
+        className={classes.iconButton}
+        aria-label={`show ${count} new fields`}
+        color="inherit"
+      >
+        <Badge badgeContent={count} color="secondary">
+          {children}
+        </Badge>
+      </IconButton>
+    </Link>
+  )
+}
+
 const HeaderAppBar: React.FC = () => {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -88,45 +104,24 @@ const HeaderAppBar: React.FC = () => {
   }
   const mobileMenuId = 'primary-search-account-menu-mobile'
   const menuId = 'primary-search-account-menu'
+  const icons: {
+    to: RouteTypes
+    count: number
+    Icon: React.ComponentType<SvgIconProps>
+  }[] = [
+    { to: '/feed', count: 7, Icon: LibraryBooks },
+    { to: '/friends', count: 2, Icon: SupervisorAccount },
+    { to: '/chat', count: 5, Icon: MailIcon },
+    { to: '/notifications', count: 17, Icon: NotificationsIcon },
+  ]
 
   const getDesctopMenuIcons = () => (
     <div className={classes.sectionDesktop}>
-      <IconButton
-        className={classes.iconButton}
-        aria-label="show 7 new post"
-        color="inherit"
-      >
-        <Badge badgeContent={7} color="secondary">
-          <LibraryBooks className={classes.menuIcon} fontSize="large" />
-        </Badge>
-      </IconButton>
-      <IconButton
-        className={classes.iconButton}
-        aria-label="show 2 new friend invite"
-        color="inherit"
-      >
-        <Badge badgeContent={2} color="secondary">
-          <SupervisorAccount className={classes.menuIcon} fontSize="large" />
-        </Badge>
-      </IconButton>
-      <IconButton
-        className={classes.iconButton}
-        aria-label="show 4 new mail"
-        color="inherit"
-      >
-        <Badge badgeContent={4} color="secondary">
-          <MailIcon className={classes.menuIcon} fontSize="large" />
-        </Badge>
-      </IconButton>
-      <IconButton
-        className={classes.iconButton}
-        aria-label="show 17 new notification"
-        color="inherit"
-      >
-        <Badge badgeContent={17} color="secondary">
-          <NotificationsIcon className={classes.menuIcon} fontSize="large" />
-        </Badge>
-      </IconButton>
+      {icons.map(({ to, count, Icon }, i) => (
+        <HeaderIconLink key={i} to={to} count={count}>
+          <Icon className={classes.menuIcon} fontSize="large" />
+        </HeaderIconLink>
+      ))}
       <IconButton
         edge="end"
         aria-label="account of current user"

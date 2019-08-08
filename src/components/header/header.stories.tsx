@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 import { withKnobs } from '@storybook/addon-knobs'
-import { BrowserRouter as RouterProvider } from 'react-router-dom'
+import StoryRouter from 'storybook-react-router'
 
 import HeaderAppBar from './app-bar'
 import { CustomThemeProvider } from '../../service'
@@ -11,9 +11,7 @@ import { me, action } from '../../mocks'
 const Header = () => (
   <ContextProvider value={{ me, action }}>
     <CustomThemeProvider>
-      <RouterProvider>
-        <HeaderAppBar />
-      </RouterProvider>
+      <HeaderAppBar />
     </CustomThemeProvider>
   </ContextProvider>
 )
@@ -21,6 +19,7 @@ const Header = () => (
 const stories = storiesOf('Header menu', module)
 
 stories.addDecorator(withKnobs)
+stories.addDecorator(StoryRouter())
 
 stories
   .addParameters({ viewport: { defaultViewport: 'responsive' } })

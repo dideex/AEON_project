@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react'
 import { withKnobs } from '@storybook/addon-knobs'
 import { Container } from '@material-ui/core'
 import { grey } from '@material-ui/core/colors'
+import StoryRouter from 'storybook-react-router'
 
 import MyProfileCmp from './my-profile'
 import { Provider as ContextProvider } from '../common'
@@ -22,6 +23,7 @@ const MyProfile = (props: any) => (
 const stories = storiesOf('Profile', module)
 
 stories.addDecorator(withKnobs)
+stories.addDecorator(StoryRouter())
 
 stories
   .addParameters({ viewport: { defaultViewport: 'responsive' } })

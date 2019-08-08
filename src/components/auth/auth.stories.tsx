@@ -2,6 +2,7 @@ import * as React from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { withKnobs, boolean } from '@storybook/addon-knobs'
+import StoryRouter from 'storybook-react-router'
 
 import { CustomThemeProvider as ThemeProvider } from '../../service'
 import AuthCmp from './auth'
@@ -22,6 +23,7 @@ const Register = (props: any) => (
 
 const stories = storiesOf('Auth flow', module)
 stories.addDecorator(withKnobs)
+stories.addDecorator(StoryRouter())
 
 stories
   .add('Auth: basic view', () => (
