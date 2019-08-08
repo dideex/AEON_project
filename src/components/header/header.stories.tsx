@@ -1,13 +1,17 @@
 import * as React from 'react'
 import { storiesOf } from '@storybook/react'
-import { HeaderAppBar } from './app-bar'
 import { withKnobs } from '@storybook/addon-knobs'
 import { BrowserRouter as RouterProvider } from 'react-router-dom'
 
+import HeaderAppBar from './app-bar'
+import { CustomThemeProvider } from '../../service'
+
 const Header = () => (
-  <RouterProvider>
-    <HeaderAppBar />
-  </RouterProvider>
+  <CustomThemeProvider>
+    <RouterProvider>
+      <HeaderAppBar />
+    </RouterProvider>
+  </CustomThemeProvider>
 )
 
 const stories = storiesOf('Header menu', module)

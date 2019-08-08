@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginLeft: theme.spacing(0.5),
     padding: `${theme.spacing(0.5)}px ${theme.spacing(1)}px`,
     backgroundColor: theme.palette.error.main,
-    borderRadius: 5,
+    borderRadius: theme.shape.borderRadius,
   },
   errorMessage: {
     color: theme.palette.error.contrastText,

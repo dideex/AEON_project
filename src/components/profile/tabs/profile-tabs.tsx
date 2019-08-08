@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: theme.spacing(1),
     },
     root: {
-      borderRadius: theme.settings.borderRadius,
+      borderRadius: theme.shape.borderRadius,
       margin: theme.spacing(1),
     },
     tabs: {

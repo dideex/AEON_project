@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   image: {
-    borderRadius: theme.settings.borderRadius,
+    borderRadius: theme.shape.borderRadius,
     width: '100%',
     cursor: 'pointer',
   },
@@ -81,7 +81,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: `${theme.spacing(1)}px`,
     backgroundColor: 'white',
     boxShadow: theme.settings.boxShadow,
-    borderRadius: theme.settings.borderRadius,
+    borderRadius: theme.shape.borderRadius,
     transform: 'translateY(-25px)',
   },
   transition: {

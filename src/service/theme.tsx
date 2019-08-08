@@ -6,7 +6,6 @@ import { ThemeProvider } from '@material-ui/styles'
 declare module '@material-ui/core/styles/createMuiTheme' {
   interface Theme {
     settings: {
-      borderRadius: string
       boxShadow: string
     }
     color: {
@@ -21,7 +20,6 @@ declare module '@material-ui/core/styles/createMuiTheme' {
   // allow configuration using `createMuiTheme`
   interface ThemeOptions {
     settings?: {
-      borderRadius?: string
       boxShadow?: string
     }
     color?: {
@@ -38,8 +36,11 @@ declare module '@material-ui/core/styles/createMuiTheme' {
 const accentColor = deepPurple.A200
 const theme = createMuiTheme({
   settings: {
-    borderRadius: '5px',
-    boxShadow: '0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12)',
+    boxShadow:
+      '0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12)',
+  },
+  shape: {
+    borderRadius: 5,
   },
   color: {
     accent: accentColor,
@@ -52,7 +53,7 @@ const theme = createMuiTheme({
   palette: {
     text: {
       primary: grey[900],
-      secondary: grey[500],
+      secondary: grey[50],
       disabled: 'rgba(0, 0, 0, 0.38)',
       hint: 'rgba(0, 0, 0, 0.38)',
     },
@@ -66,7 +67,7 @@ const theme = createMuiTheme({
       light: pink[200],
       main: pink[300],
       dark: pink[500],
-      contrastText: grey[800],
+      contrastText: 'white',
     },
     error: {
       light: red[300],
