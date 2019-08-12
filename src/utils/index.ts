@@ -2,6 +2,7 @@ import emailValidator from 'email-validator'
 
 // Add locale-specific relative date/time formatting rules.
 import { IUserInputFields } from '../components/auth/register'
+import { parseDateAgo } from './parseDate'
 
 export interface ITrim {
   [key: string]: string
@@ -38,6 +39,16 @@ export function validator(name: keyof IUserInputFields, field: string) {
 
 export function parseDate(date: string): string {
   return new Date(Number(date)).toLocaleDateString()
+}
+
+export function parseTime(date: string): string {
+  const messageDate = new Date(Number(date))
+  const now = new Date()
+  if (messageDate.getDate() === now.getDate()) {
+    return parseDateAgo(date)
+  } else {
+    return parseDate(date)
+  }
 }
 
 export function getFullName<T>(first: T, last: T, patronymic?: T): string {

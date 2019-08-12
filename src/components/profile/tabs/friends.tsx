@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     paddingLeft: theme.spacing(2),
   },
   about: {
-    color: theme.palette.text.secondary,
+    color: theme.color.fontSecondary,
   },
   avatar: {
     width: '8vw',

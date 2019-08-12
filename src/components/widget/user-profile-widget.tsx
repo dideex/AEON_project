@@ -44,6 +44,9 @@ const useStyles = makeStyles((theme: Theme) => ({
       margin: `${theme.spacing(1)}px 0`,
     },
   },
+  about: {
+    color: theme.color.fontSecondary,
+  },
 }))
 
 export interface IUserProfile {
@@ -64,7 +67,7 @@ const UserProfile: React.FC<IUserProfile> = props => {
           {user.firstname} {user.lastname}
           {Boolean(user.age) && `, ${user.age}`}
         </Typography>
-        <Typography variant="caption" color="textPrimary">
+        <Typography className={classes.about} variant="caption">
           {user.about}
         </Typography>
       </div>

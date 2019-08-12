@@ -13,6 +13,7 @@ declare module '@material-ui/core/styles/createMuiTheme' {
       subAccent: string
       background: string
       font: string
+      fontSecondary: string
       blue: string
       green: string
     }
@@ -27,6 +28,7 @@ declare module '@material-ui/core/styles/createMuiTheme' {
       subAccent?: string
       background?: string
       font?: string
+      fontSecondary?: string
       blue?: string
       green?: string
     }
@@ -47,6 +49,7 @@ const theme = createMuiTheme({
     subAccent: pink[300],
     background: grey[50],
     font: grey[800],
+    fontSecondary: grey[700],
     blue: '#00A6E6',
     green: '#1AC686',
   },

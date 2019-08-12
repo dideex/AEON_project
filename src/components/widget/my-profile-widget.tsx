@@ -39,6 +39,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   ttu: {
     textTransform: 'uppercase',
   },
+  about: {
+    color: theme.color.fontSecondary,
+  },
 }))
 
 const ProfileWidget: React.FC = () => {
@@ -51,7 +54,7 @@ const ProfileWidget: React.FC = () => {
         <Typography variant="h5" gutterBottom className={classes.ttu}>
           {me.firstname} {me.lastname}
         </Typography>
-        <Typography variant="caption" color="textPrimary">
+        <Typography className={classes.about} variant="caption" color="textPrimary">
           {me.about}
         </Typography>
       </div>
