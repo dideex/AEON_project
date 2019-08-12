@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import { TMyInfo } from '../../types'
+import { TMyInfo, IUserPreview } from '../../types'
 
 export type IHandleAction = (id: string) => (e: React.MouseEvent<HTMLElement>) => void
 
@@ -54,5 +54,34 @@ const Context = createContext<IContext>({
   },
 })
 
+export interface IUserContext {
+  user: IUserPreview
+  action: {
+    handleOpenChat: IHandleAction
+    handleInviteToChat: IHandleAction
+    handleRemoveFromFriends: IHandleAction
+    handleAddToMute: IHandleAction
+  }
+}
+export const UserContext = createContext<IUserContext>({
+  user: {
+    id: '',
+    username: '',
+    firstname: '',
+    lastname: '',
+    age: 0,
+    city: '',
+    isOnline: true,
+    avatar: '',
+  },
+  action: {
+    handleOpenChat: () => () => {},
+    handleInviteToChat: () => () => {},
+    handleRemoveFromFriends: () => () => {},
+    handleAddToMute: () => () => {},
+  },
+})
+
+export const { Provider: UserCtxProvider, Consumer: UserCtxConsumer } = UserContext
 export const { Provider, Consumer } = Context
 export default Context

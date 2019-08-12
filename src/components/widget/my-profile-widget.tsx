@@ -51,7 +51,7 @@ const ProfileWidget: React.FC = () => {
         <Typography variant="h5" gutterBottom className={classes.ttu}>
           {me.firstname} {me.lastname}
         </Typography>
-        <Typography variant="caption" color="textSecondary">
+        <Typography variant="caption" color="textPrimary">
           {me.about}
         </Typography>
       </div>

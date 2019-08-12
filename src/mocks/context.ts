@@ -9,3 +9,10 @@ export const action = {
   handleRemoveFromFriends: handleAction('Remove friend '),
   handleAddToMute: handleAction('Add to mute '),
 }
+
+export const userAction = {
+  handleOpenChat: handleAction('Open chat '),
+  handleInviteToChat: handleAction('Invite to chat '),
+  handleRemoveFromFriends: handleAction('Remove friend '),
+  handleAddToMute: handleAction('Add to mute '),
+}

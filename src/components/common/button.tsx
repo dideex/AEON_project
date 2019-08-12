@@ -14,7 +14,7 @@ export interface ICustomButton {
 
 const CustomButton: React.FC<ICustomButton> = props => {
   const { title, className = '', onClick = () => {}, classes, isLoading } = props
-  const customClassName = className ? `${className} ${classes.root}` : 'classes.root'
+  const customClassName = className ? `${className} ${classes.root}` : classes.root
   return (
     <Button
       type="submit"

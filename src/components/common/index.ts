@@ -5,4 +5,11 @@ export { default as Link } from './router-link'
 export { default as Loading } from './loading'
 export * from './button'
 
-export { default as Context, Provider, Consumer } from './context'
+export {
+  default as Context,
+  Provider,
+  Consumer,
+  UserCtxProvider,
+  UserCtxConsumer,
+  UserContext,
+} from './context'
