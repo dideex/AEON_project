@@ -38,8 +38,8 @@ const genMsg = (body: string, author: IUserPreview, mins: number): IMessage => (
 
 export const messageFlow: IMessage[] = [
   genMsg('What the hell happened to this planet?', users.quill, 3500),
-  genMsg("It's 8 degrees off its axis", users.quill, 1500),
-  genMsg('Gravitational pull is all over the place', users.quill, 21),
+  genMsg("It's 8 degrees off its axis", users.quill, 1501),
+  genMsg('Gravitational pull is all over the place', users.quill, 1500),
 
   genMsg("Yeah, we got one advantage. He's coming to us", stark, 19),
   genMsg("We'll use it. Alright, I have a plan", stark, 19),
