@@ -2,13 +2,11 @@ import * as React from 'react'
 import { Theme, Avatar, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
-import { IMessage, IFormattedMessage } from '../../types'
-import { IUserPreview } from '../../types'
+import { IFormattedMessage } from '../../types'
 import { getFullName, parseTime } from '../../utils'
 
 export interface IChatMessage {
-  message: IMessage
-  author?: IUserPreview
+  message: IFormattedMessage
 }
 const useStyles = makeStyles((theme: Theme) => ({
   message: {
@@ -66,8 +64,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-const ChatMessage: React.FC<IChatMessage> = ({ message, author }) => {
-  const { isMine, unread, body } = message
+const ChatMessage: React.FC<IChatMessage> = ({ message }) => {
+  const { isMine, unread, body, author } = message
   const showUnreadIcon = !message.isMine && unread
   // const { firstname, lastname, avatar } = author
   const classes = useStyles()

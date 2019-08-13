@@ -21,16 +21,21 @@ export interface IGroupChat extends ICommonChat {
   members: IUserPreview[]
 }
 
-export interface IFormattedMessage {
+interface ICommonMessage {
   id: string
   date: string
   unread: boolean
-  isMine: boolean
   body: string
+}
+
+// After formatting messages from the backend
+export interface IFormattedMessage extends ICommonMessage {
+  isMine: boolean
   author?: IUserPreview
 }
 
-export interface IMessage extends IFormattedMessage {
+// Inteface from the backend
+export interface IMessage extends ICommonMessage {
   author: IUserPreview
 }
 

@@ -1,16 +1,18 @@
 import { IMessage, IFormattedMessage, IUserPreview } from '../types'
 import users from './users'
-import { stark } from './me';
+import { stark } from './me'
 
-const now = new Date()
-const minsFromNow = (min: number): string =>
-  now.setMinutes(now.getMinutes() - min).toString()
+const minsFromNow = (min: number): string => {
+  const now = new Date()
+  return now.setMinutes(now.getMinutes() - min).toString()
+}
 
 export const chatSingleMessage: IFormattedMessage = {
   id: 'x000000001',
   date: `${Date.now()}`,
   unread: false,
   isMine: false,
+  author: users.deadpool,
   body: 'Hello world',
 }
 
@@ -19,18 +21,15 @@ export const chatSecondMessage: IFormattedMessage = {
   date: `${Date.now()}`,
   unread: false,
   isMine: false,
+  author: users.deadpool,
   body:
     'You’re probably thinking, “My boyfriend said this was a superhero movie but that guy in the suit just turned that other guy into a fucking kebab!” Well, I may be super, but I’m no hero. And yeah, technically, this is a murder. But some of the best love stories start with a murder. And that’s exactly what this is, a love story. And to tell it right… I gotta take you back to long before I squeezed this ass into red spandex.',
 }
 
 const genMsg = (body: string, author: IUserPreview, mins: number): IMessage => ({
-  id:
-    Date.now()
-      .toString()
-      .slice(-9) + Math.floor(Math.random() * 100),
+  id: guidGenerator(),
   date: minsFromNow(mins),
   unread: false,
-  isMine: author === stark,
   body,
   author,
 })
@@ -42,11 +41,7 @@ export const messageFlow: IMessage[] = [
 
   genMsg("Yeah, we got one advantage. He's coming to us", stark, 19),
   genMsg("We'll use it. Alright, I have a plan", stark, 19),
-  genMsg(
-    "It's pretty simple. We draw him in, pin him down, get what we need",
-    stark,
-    18,
-  ),
+  genMsg("It's pretty simple. We draw him in, pin him down, get what we need", stark, 18),
   genMsg(
     "We definitely don't want to dance with this guy, we just want the gauntlet",
     stark,
@@ -120,3 +115,8 @@ export const messageFlow: IMessage[] = [
 
   genMsg('One', users.strange, 0),
 ]
+
+function guidGenerator() {
+  const S4 = () => (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1)
+  return S4() + S4() + '-' + S4() + '-' + S4() + '-' + S4() + '-' + S4() + S4() + S4()
+}

@@ -6,9 +6,22 @@ import { withKnobs, boolean } from '@storybook/addon-knobs'
 import { CustomThemeProvider } from '../../service'
 import CustomInput, { IChat } from './chat'
 import CustMessageCmp from './chat-message'
-import { users, chatSingleMessage, chatSecondMessage } from '../../mocks'
+import {
+  chatSingleMessage,
+  chatSecondMessage,
+  messageFlow,
+  me,
+  action,
+} from '../../mocks'
+import { Provider as ContextProvider } from '../common'
 
-const Chat = (props: IChat) => <CustomInput {...props} />
+const Chat = (props: IChat) => (
+  <CustomThemeProvider>
+    <ContextProvider value={{ me, action }}>
+      <CustomInput {...props} />
+    </ContextProvider>
+  </CustomThemeProvider>
+)
 
 const stories = storiesOf('Chat', module)
 
@@ -31,8 +44,8 @@ const CustomMessage = (props: any) => (
 
 stories
   .addParameters({ viewport: { defaultViewport: 'responsive' } })
-  .add('Basic view', () => <Chat />)
-  .add('Mobile layout', () => <Chat />, {
+  .add('Basic view', () => <Chat messages={messageFlow} />)
+  .add('Mobile layout', () => <Chat messages={messageFlow} />, {
     viewport: { defaultViewport: 'iphonex' },
   })
   .add('Desktop message', () => (
@@ -42,7 +55,6 @@ stories
         isMine: boolean('Is mine', false),
         unread: boolean('Unread', false),
       }}
-      author={users.deadpool}
     />
   ))
   .add(
@@ -54,7 +66,6 @@ stories
           isMine: boolean('Is mine', false),
           unread: boolean('Unread', false),
         }}
-        author={users.deadpool}
       />
     ),
     {
