@@ -19,6 +19,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   errorMessage: {
     color: theme.palette.error.contrastText,
   },
+  label: {
+    color: theme.color.fontSecondary,
+  },
 }))
 
 export type TInputType = 'text' | 'password'
@@ -61,7 +64,9 @@ const CustomInput: React.FC<ICustomInput> = props => {
   const onBlur = () => setFocus(false)
   return (
     <FormControl margin="normal" required={required} fullWidth className={classes.wrap}>
-      <InputLabel htmlFor={name}>{placeholder[name]}</InputLabel>
+      <InputLabel htmlFor={name} className={classes.label}>
+        {placeholder[name]}
+      </InputLabel>
       <Input
         error={showError}
         value={value}

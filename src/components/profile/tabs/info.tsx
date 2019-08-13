@@ -7,7 +7,7 @@ import { parseDate, getFullName } from '../../../utils'
 
 const useStyles = makeStyles((theme: Theme) => ({
   label: {
-    color: theme.palette.text.secondary,
+    color: theme.color.fontSecondary,
   },
   grid: {
     padding: `${theme.spacing(1)}px 0`,
