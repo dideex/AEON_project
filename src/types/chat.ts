@@ -28,10 +28,17 @@ interface ICommonMessage {
   body: string
 }
 
+export const messageType = 'message'
 // After formatting messages from the backend
 export interface IFormattedMessage extends ICommonMessage {
   isMine: boolean
+  type: typeof messageType
   author?: IUserPreview
+}
+
+export interface IChatDivider {
+  type: 'divider'
+  date: string
 }
 
 // Inteface from the backend
@@ -40,3 +47,4 @@ export interface IMessage extends ICommonMessage {
 }
 
 export type IChat = IPrivatChat | IGroupChat
+export type TMsgOrDivider = IChatDivider | IFormattedMessage

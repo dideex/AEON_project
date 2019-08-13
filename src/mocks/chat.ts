@@ -9,6 +9,7 @@ const minsFromNow = (min: number): string => {
 
 export const chatSingleMessage: IFormattedMessage = {
   id: 'x000000001',
+  type: 'message',
   date: `${Date.now()}`,
   unread: false,
   isMine: false,
@@ -18,6 +19,7 @@ export const chatSingleMessage: IFormattedMessage = {
 
 export const chatSecondMessage: IFormattedMessage = {
   id: 'x000000002',
+  type: 'message',
   date: `${Date.now()}`,
   unread: false,
   isMine: false,
@@ -35,8 +37,8 @@ const genMsg = (body: string, author: IUserPreview, mins: number): IMessage => (
 })
 
 export const messageFlow: IMessage[] = [
-  genMsg('What the hell happened to this planet?', users.quill, 21),
-  genMsg("It's 8 degrees off its axis", users.quill, 21),
+  genMsg('What the hell happened to this planet?', users.quill, 3500),
+  genMsg("It's 8 degrees off its axis", users.quill, 1500),
   genMsg('Gravitational pull is all over the place', users.quill, 21),
 
   genMsg("Yeah, we got one advantage. He's coming to us", stark, 19),
