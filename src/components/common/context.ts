@@ -1,16 +1,21 @@
 import { createContext } from 'react'
-import { TMyInfo, IUserPreview } from '../../types'
+import { TMyInfo, IUserPreview, TMsgOrDivider, IChat } from '../../types'
+const no_op = () => () => {}
 
-export type IHandleAction = (id: string) => (e: React.MouseEvent<HTMLElement>) => void
+export type THandleAction = (id: string) => (e: React.MouseEvent<HTMLElement>) => void
+export type THandleSendMessage = (
+  id: string,
+  body: string,
+) => (e: React.MouseEvent<HTMLElement>) => void
 
 export interface IContext {
   me: TMyInfo
   action: {
-    handleLike: IHandleAction
-    handleOpenChat: IHandleAction
-    handleInviteToChat: IHandleAction
-    handleRemoveFromFriends: IHandleAction
-    handleAddToMute: IHandleAction
+    handleLike: THandleAction
+    handleOpenChat: THandleAction
+    handleInviteToChat: THandleAction
+    handleRemoveFromFriends: THandleAction
+    handleAddToMute: THandleAction
   }
 }
 const Context = createContext<IContext>({
@@ -46,21 +51,21 @@ const Context = createContext<IContext>({
     friends: [],
   },
   action: {
-    handleLike: () => () => {},
-    handleOpenChat: () => () => {},
-    handleInviteToChat: () => () => {},
-    handleRemoveFromFriends: () => () => {},
-    handleAddToMute: () => () => {},
+    handleLike: no_op,
+    handleOpenChat: no_op,
+    handleInviteToChat: no_op,
+    handleRemoveFromFriends: no_op,
+    handleAddToMute: no_op,
   },
 })
 
 export interface IUserContext {
   user: IUserPreview
   action: {
-    handleOpenChat: IHandleAction
-    handleInviteToChat: IHandleAction
-    handleRemoveFromFriends: IHandleAction
-    handleAddToMute: IHandleAction
+    handleOpenChat: THandleAction
+    handleInviteToChat: THandleAction
+    handleRemoveFromFriends: THandleAction
+    handleAddToMute: THandleAction
   }
 }
 export const UserContext = createContext<IUserContext>({
@@ -75,13 +80,30 @@ export const UserContext = createContext<IUserContext>({
     avatar: '',
   },
   action: {
-    handleOpenChat: () => () => {},
-    handleInviteToChat: () => () => {},
-    handleRemoveFromFriends: () => () => {},
-    handleAddToMute: () => () => {},
+    handleOpenChat: no_op,
+    handleInviteToChat: no_op,
+    handleRemoveFromFriends: no_op,
+    handleAddToMute: no_op,
   },
 })
 
+export interface IChatContext {
+  messages?: TMsgOrDivider[]
+  chats?: IChat[]
+  action: {
+    openChat: THandleAction
+    sendMessage: THandleSendMessage
+  }
+}
+
+export const ChatContext = createContext<IChatContext>({
+  action: {
+    openChat: no_op,
+    sendMessage: no_op,
+  },
+})
+
+export const { Provider: ChatProvider, Consumer: ChatConsumer } = ChatContext
 export const { Provider: UserCtxProvider, Consumer: UserCtxConsumer } = UserContext
 export const { Provider, Consumer } = Context
 export default Context

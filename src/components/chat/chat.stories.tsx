@@ -14,11 +14,15 @@ import {
   action,
 } from '../../mocks'
 import { Provider as ContextProvider } from '../common'
+import { ChatContainer } from '../../containers'
 
+const no_op = () => () => {}
 const Chat = (props: IChat) => (
   <CustomThemeProvider>
     <ContextProvider value={{ me, action }}>
-      <CustomInput {...props} />
+      <ChatContainer messages={messageFlow} openChat={no_op} sendMessage={no_op}>
+        <CustomInput {...props} />
+      </ChatContainer>
     </ContextProvider>
   </CustomThemeProvider>
 )
