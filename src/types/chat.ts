@@ -21,12 +21,17 @@ export interface IGroupChat extends ICommonChat {
   members: IUserPreview[]
 }
 
-export interface IMessage {
+export interface IFormattedMessage {
   id: string
   date: string
   unread: boolean
   isMine: boolean
   body: string
+  author?: IUserPreview
+}
+
+export interface IMessage extends IFormattedMessage {
+  author: IUserPreview
 }
 
 export type IChat = IPrivatChat | IGroupChat

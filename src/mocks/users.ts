@@ -1,6 +1,8 @@
 import { IUserPreview } from '../types'
+import { me } from './me'
 
-export const batman: IUserPreview = {
+
+const batman: IUserPreview = {
   id: 'x0002',
   username: 'batman@gothem.com',
   firstname: 'Bruce',
@@ -12,7 +14,7 @@ export const batman: IUserPreview = {
   isOnline: true,
 }
 
-export const spinderman: IUserPreview = {
+const spinderman: IUserPreview = {
   id: 'x0003',
   username: 'pspidy@nyc.com',
   firstname: 'Peter',
@@ -24,7 +26,7 @@ export const spinderman: IUserPreview = {
   isOnline: true,
 }
 
-export const superman: IUserPreview = {
+const superman: IUserPreview = {
   id: 'x0004',
   username: 'superman@nyc.com',
   firstname: 'Clark',
@@ -36,7 +38,7 @@ export const superman: IUserPreview = {
   isOnline: true,
 }
 
-export const wolverine: IUserPreview = {
+const wolverine: IUserPreview = {
   id: 'x0005',
   username: 'wolverine@rats.com',
   firstname: 'James',
@@ -50,7 +52,7 @@ export const wolverine: IUserPreview = {
   isOnline: false,
 }
 
-export const captainAmerica: IUserPreview = {
+const captainAmerica: IUserPreview = {
   id: 'x0006',
   username: 'captain@usa.com',
   firstname: 'Steve',
@@ -62,7 +64,7 @@ export const captainAmerica: IUserPreview = {
   isOnline: false,
 }
 
-export const thor: IUserPreview = {
+const thor: IUserPreview = {
   id: 'x0007',
   username: 'tor@azghard.com',
   firstname: 'Thor',
@@ -74,7 +76,7 @@ export const thor: IUserPreview = {
   isOnline: true,
 }
 
-export const venom: IUserPreview = {
+const venom: IUserPreview = {
   id: 'x0008',
   username: 'ediebrook@azghard.com',
   firstname: 'Eddy',
@@ -86,7 +88,7 @@ export const venom: IUserPreview = {
   isOnline: false,
 }
 
-export const blackWidow: IUserPreview = {
+const blackWidow: IUserPreview = {
   id: 'x0009',
   username: 'bwidnow@mail.ru',
   firstname: 'Natalya',
@@ -98,7 +100,7 @@ export const blackWidow: IUserPreview = {
   isOnline: false,
 }
 
-export const ant: IUserPreview = {
+const ant: IUserPreview = {
   id: 'x0010',
   username: 'slang@gmail.com',
   firstname: 'Scott',
@@ -110,7 +112,7 @@ export const ant: IUserPreview = {
   isOnline: true,
 }
 
-export const marvel: IUserPreview = {
+const marvel: IUserPreview = {
   id: 'x0011',
   username: 'carol@marvel.com',
   firstname: 'Carol',
@@ -122,7 +124,7 @@ export const marvel: IUserPreview = {
   isOnline: false,
 }
 
-export const blackPanther: IUserPreview = {
+const blackPanther: IUserPreview = {
   id: 'x0012',
   username: 'king@vakanda.com',
   firstname: "T'",
@@ -134,7 +136,7 @@ export const blackPanther: IUserPreview = {
   isOnline: true,
 }
 
-export const strange: IUserPreview = {
+const strange: IUserPreview = {
   id: 'x0013',
   username: 'drstrange@avengers.com',
   firstname: 'Vincent',
@@ -146,7 +148,7 @@ export const strange: IUserPreview = {
   isOnline: true,
 }
 
-export const hulk: IUserPreview = {
+const hulk: IUserPreview = {
   id: 'x0014',
   username: 'bigboy@nyc.com',
   firstname: 'Robert',
@@ -159,7 +161,7 @@ export const hulk: IUserPreview = {
   isOnline: false,
 }
 
-export const daredevil: IUserPreview = {
+const daredevil: IUserPreview = {
   id: 'x0015',
   username: 'mardok@mail.com',
   firstname: 'Matthew',
@@ -172,7 +174,7 @@ export const daredevil: IUserPreview = {
   isOnline: true,
 }
 
-export const deadpool: IUserPreview = {
+const deadpool: IUserPreview = {
   id: 'x0016',
   username: 'asshole@nyc.com',
   firstname: 'Wade',
@@ -183,6 +185,44 @@ export const deadpool: IUserPreview = {
   age: 33,
   about: 'With great power comes great irresponsibility',
   isOnline: true,
+}
+
+const quill: IUserPreview = {
+  id: 'x0017',
+  username: 'quill@galaxy.com',
+  firstname: 'Peter',
+  lastname: 'Quill',
+  patronymic: 'Jason',
+  avatar: '/image/avatar/quill.jpg',
+  city: 'New-York',
+  age: 43,
+  about: 'Star-Lord',
+  isOnline: true,
+}
+
+const drax: IUserPreview = {
+  id: 'x0018',
+  username: 'chak@galaxy.com',
+  firstname: 'Arthur',
+  lastname: 'Sampson',
+  patronymic: 'Douglas',
+  avatar: '/image/avatar/drax.jpg',
+  city: 'Kronos',
+  age: 37,
+  about: 'Drax the Destroyer',
+  isOnline: true,
+}
+
+const gamora: IUserPreview = {
+  id: 'x0019',
+  username: 'gamora@tanos.com',
+  firstname: 'Gamora',
+  lastname: 'Long',
+  avatar: '/image/avatar/gamora.jpg',
+  city: 'Kronos',
+  age: 28,
+  about: 'The Most Dangerous Woman in the Universe',
+  isOnline: false,
 }
 
 export default {
@@ -201,4 +241,7 @@ export default {
   hulk,
   daredevil,
   deadpool,
+  quill,
+  gamora,
+  drax,
 }

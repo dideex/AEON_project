@@ -6,7 +6,7 @@ import { withKnobs, boolean } from '@storybook/addon-knobs'
 import { CustomThemeProvider } from '../../service'
 import CustomInput, { IChat } from './chat'
 import CustMessageCmp from './chat-message'
-import { users, chatSingleMessage } from '../../mocks'
+import { users, chatSingleMessage, chatSecondMessage } from '../../mocks'
 
 const Chat = (props: IChat) => <CustomInput {...props} />
 
@@ -16,10 +16,13 @@ stories.addDecorator(withKnobs)
 
 const CustomMessage = (props: any) => (
   <CustomThemeProvider>
-    <Grid container justify="center">
+    <Grid container spacing={2} justify="center">
       <Grid item xs={12} sm={3} />
       <Grid item xs={12} sm={6}>
         <CustMessageCmp {...props} />
+        <CustMessageCmp
+          message={{ ...chatSecondMessage, isMine: props.message.isMine }}
+        />
       </Grid>
       <Grid item xs={12} sm={3} />
     </Grid>

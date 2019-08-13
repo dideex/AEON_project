@@ -79,7 +79,7 @@ const photos: IPhoto[] = [
       users.captainAmerica,
       users.daredevil,
       users.strange,
-      users.venom
+      users.venom,
     ],
   },
   {
@@ -135,4 +135,16 @@ export const me: TMyInfo = {
   },
   photos,
   friends,
+}
+
+export const stark: IUserPreview = {
+  id: me.id,
+  username: me.username,
+  firstname: me.firstname,
+  lastname: me.lastname,
+  avatar: me.avatar,
+  city: me.city,
+  about: me.about,
+  age: me.age,
+  isOnline: me.isOnline,
 }

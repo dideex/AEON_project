@@ -2,9 +2,9 @@ import * as React from 'react'
 import { Theme, Avatar, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
-import { IMessage } from '../../types'
+import { IMessage, IFormattedMessage } from '../../types'
 import { IUserPreview } from '../../types'
-import { getFullName, parseDate, parseTime } from '../../utils'
+import { getFullName, parseTime } from '../../utils'
 
 export interface IChatMessage {
   message: IMessage
@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignItems: 'flex-end',
   },
   content: {
+    position: 'relative',
     width: '80%',
     margin: `${theme.spacing(1)}px 0`,
     padding: theme.spacing(2),
@@ -28,6 +29,22 @@ const useStyles = makeStyles((theme: Theme) => ({
     boxSizing: 'border-box',
     [theme.breakpoints.down('sm')]: {
       width: '100%',
+    },
+  },
+  unread: {
+    position: 'absolute',
+    right: 'calc(100% + 1vh)',
+    top: 0,
+    bottom: 0,
+    margin: 'auto',
+    width: '3vh',
+    height: '3vh',
+    backgroundColor: theme.color.green,
+    borderRadius: '50%',
+    [theme.breakpoints.down('sm')]: {
+      right: '1vh',
+      width: '2vh',
+      height: '2vh',
     },
   },
   myContent: {
@@ -51,6 +68,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const ChatMessage: React.FC<IChatMessage> = ({ message, author }) => {
   const { isMine, unread, body } = message
+  const showUnreadIcon = !message.isMine && unread
   // const { firstname, lastname, avatar } = author
   const classes = useStyles()
   const wrapper = isMine ? `${classes.myMessage} ${classes.message}` : classes.message
@@ -77,6 +95,7 @@ const ChatMessage: React.FC<IChatMessage> = ({ message, author }) => {
     <div className={wrapper}>
       <MessageHeader />
       <div className={content}>
+        {showUnreadIcon && <div className={classes.unread} />}
         <Typography>{body}</Typography>
       </div>
     </div>
