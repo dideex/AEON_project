@@ -16,3 +16,6 @@ export const userAction = {
   handleRemoveFromFriends: handleAction('Remove friend '),
   handleAddToMute: handleAction('Add to mute '),
 }
+
+export const sendMessage = (id: string, body: string) =>
+  storybookAction(`Send message to ${id}: ${body}`)()

@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/styles'
 
 const useStyles = makeStyles(() => ({
   messages: {
-    height: '80vh',
+    height: '70vh',
     paddingRight: 15,
     overflowX: 'scroll',
   },
@@ -28,20 +28,18 @@ const ChatList: React.FC = () => {
   const classes = useStyles()
   if (!messages) return <p>No messages yet</p>
   return (
-    <>
-      <div className={classes.messages} ref={chatHistory}>
-        {messages.map((entity, i) => {
-          switch (entity.type) {
-            case 'message':
-              return <ChatMessage key={entity.id} message={entity} />
-            case 'divider':
-              return <ChatDivider key={i} {...entity} />
-            default:
-              return null
-          }
-        })}
-      </div>
-    </>
+    <div className={classes.messages} ref={chatHistory}>
+      {messages.map((entity, i) => {
+        switch (entity.type) {
+          case 'message':
+            return <ChatMessage key={entity.id} message={entity} />
+          case 'divider':
+            return <ChatDivider key={i} {...entity} />
+          default:
+            return null
+        }
+      })}
+    </div>
   )
 }
 

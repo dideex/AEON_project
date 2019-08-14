@@ -3,10 +3,7 @@ import { TMyInfo, IUserPreview, TMsgOrDivider, IChat } from '../../types'
 const noOp = () => () => {}
 
 export type THandleAction = (id: string) => (e: React.MouseEvent<HTMLElement>) => void
-export type THandleSendMessage = (
-  id: string,
-  body: string,
-) => (e: React.MouseEvent<HTMLElement>) => void
+export type THandleSendMessage = (id: string, body: string) => void
 
 export interface IContext {
   me: TMyInfo
@@ -92,7 +89,7 @@ export interface IChatContext {
   chats?: IChat[]
   openChatId?: string
   action: {
-    openChat: THandleAction
+    openChat: (id: string) => void
     sendMessage: THandleSendMessage
   }
 }

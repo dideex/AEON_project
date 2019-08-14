@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Context, ChatProvider } from '../components/common'
-import { THandleAction, THandleSendMessage } from '../components/common/context'
+import { THandleSendMessage } from '../components/common/context'
 import {
   TMsgOrDivider,
   IChat,
@@ -12,16 +12,21 @@ import {
 
 interface IChatContainer {
   children: React.ReactNode
-  openChat: THandleAction
   sendMessage: THandleSendMessage
   messages?: IMessage[]
   chats?: IChat[]
+  initialOpenChatId?: string
 }
 
 export const ChatContainer: React.FC<IChatContainer> = props => {
-  const { children, openChat, sendMessage, messages, chats } = props
-  const { me } = React.useContext(Context)
+  const { children, sendMessage, messages, chats } = props
+  const { initialOpenChatId = '' } = props
+  const [openChatId, setOpenChatId] = React.useState<string>(initialOpenChatId)
+  const openChat = (id: string) => {
+    setOpenChatId(id)
+  }
 
+  const { me } = React.useContext(Context)
   function formateMessages(messages: IMessage[]): TMsgOrDivider[] {
     let prevAuthor: IUserPreview
     let curDate: string
@@ -60,7 +65,9 @@ export const ChatContainer: React.FC<IChatContainer> = props => {
   const formattedChats = chats ? chats : undefined
   const action = { openChat, sendMessage }
   return (
-    <ChatProvider value={{ action, messages: formattedMessages, chats: formattedChats }}>
+    <ChatProvider
+      value={{ action, messages: formattedMessages, chats: formattedChats, openChatId }}
+    >
       {children}
     </ChatProvider>
   )
