@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import { IUser } from '../store/user/types'
 
 export const incorrect_login_or_password = 'incorrect_login_or_password'

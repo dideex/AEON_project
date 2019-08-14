@@ -9,8 +9,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-export interface ILoading {}
-const Loading: React.FC<ILoading> = () => {
+const Loading: React.FC = () => {
   const classes = useStyles()
   return <CircularProgress color="secondary" size={24} className={classes.spinner} />
 }

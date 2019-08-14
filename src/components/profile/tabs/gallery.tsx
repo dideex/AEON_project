@@ -138,8 +138,9 @@ const FriendsPopover: React.FC<IFriendsPopover> = ({ likes }) => {
   const classes = useStyles()
   return (
     <div className={classes.friendsPopover}>
-      {likes.slice(0, 5).map(like => (
+      {likes.slice(0, 5).map((like, i) => (
         <Tooltip
+          key={i}
           enterDelay={500}
           title={getFullName(like.firstname, like.lastname, like.patronymic)}
           aria-label={getFullName(like.firstname, like.lastname, like.patronymic)}

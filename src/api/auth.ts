@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import config from '../config'
 import { incorrect_login_or_password, IAuthResponse } from './types'
 import { IUserRequest } from '../types'

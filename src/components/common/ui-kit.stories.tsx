@@ -7,7 +7,7 @@ import { withKnobs, boolean, text, select } from '@storybook/addon-knobs'
 import { CustomThemeProvider as ThemeProvider } from '../../service'
 import CustomInputCmp, { ICustomInput, TInputType, TName } from './custom-input'
 import VerticalMenuCmp, { IVerticalMenu } from './vertical-menu'
-import LoadingCmp, { ILoading } from './loading'
+import LoadingCmp from './loading'
 
 const handleChange = action('Handle change')
 const CustomInput = (props: ICustomInput) => (
@@ -28,7 +28,7 @@ const VerticalMenu = (props: IVerticalMenu) => (
   </Grid>
 )
 
-const Loading = (props: ILoading) => (
+const Loading = (props: any) => (
   <ThemeProvider>
     <Grid container justify="center">
       <Grid style={{ position: 'relative' }} item xs={1} sm={1}>

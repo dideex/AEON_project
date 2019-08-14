@@ -1,11 +1,11 @@
 import * as React from 'react'
-import { FormControl, Theme, InputLabel, Select, MenuItem } from '@material-ui/core'
+import { FormControl, InputLabel, Select, MenuItem } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
 import { birthdatePlaceholders } from '../../constants'
 import { IParsedDate } from '../../types'
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles(() => ({
   select: {
     width: '100%',
   },
@@ -41,7 +41,11 @@ const CustomSelect: React.FC<ICustomSelect> = props => {
         {options.map(o => {
           const key = typeof o === 'object' ? o.key : o
           const value = typeof o === 'object' ? o.value : o
-          return <MenuItem value={value}>{key}</MenuItem>
+          return (
+            <MenuItem key={value} value={value}>
+              {key}
+            </MenuItem>
+          )
         })}
       </Select>
     </FormControl>

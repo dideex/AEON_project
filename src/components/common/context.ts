@@ -1,6 +1,6 @@
 import { createContext } from 'react'
 import { TMyInfo, IUserPreview, TMsgOrDivider, IChat } from '../../types'
-const no_op = () => () => {}
+const noOp = () => () => {}
 
 export type THandleAction = (id: string) => (e: React.MouseEvent<HTMLElement>) => void
 export type THandleSendMessage = (
@@ -51,11 +51,11 @@ const Context = createContext<IContext>({
     friends: [],
   },
   action: {
-    handleLike: no_op,
-    handleOpenChat: no_op,
-    handleInviteToChat: no_op,
-    handleRemoveFromFriends: no_op,
-    handleAddToMute: no_op,
+    handleLike: noOp,
+    handleOpenChat: noOp,
+    handleInviteToChat: noOp,
+    handleRemoveFromFriends: noOp,
+    handleAddToMute: noOp,
   },
 })
 
@@ -80,17 +80,17 @@ export const UserContext = createContext<IUserContext>({
     avatar: '',
   },
   action: {
-    handleOpenChat: no_op,
-    handleInviteToChat: no_op,
-    handleRemoveFromFriends: no_op,
-    handleAddToMute: no_op,
+    handleOpenChat: noOp,
+    handleInviteToChat: noOp,
+    handleRemoveFromFriends: noOp,
+    handleAddToMute: noOp,
   },
 })
 
 export interface IChatContext {
   messages?: TMsgOrDivider[]
   chats?: IChat[]
-  openChatId?: string,
+  openChatId?: string
   action: {
     openChat: THandleAction
     sendMessage: THandleSendMessage
@@ -99,8 +99,8 @@ export interface IChatContext {
 
 export const ChatContext = createContext<IChatContext>({
   action: {
-    openChat: no_op,
-    sendMessage: no_op,
+    openChat: noOp,
+    sendMessage: noOp,
   },
 })
 

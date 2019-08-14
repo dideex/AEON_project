@@ -3,9 +3,7 @@ import { Grid } from '@material-ui/core'
 
 import MessageList from './chat-list'
 
-export interface IChat {}
-
-const Chat: React.FC<IChat> = () => {
+const Chat: React.FC = () => {
   return (
     <Grid container spacing={2} justify="center">
       <Grid item xs={12} sm={3} />

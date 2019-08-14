@@ -2,19 +2,17 @@ import * as React from 'react'
 import ChatMessage from './chat-message'
 import ChatDivider from './chat-divider'
 import { ChatContext } from '../common'
-import { Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles(() => ({
   messages: {
     height: '80vh',
     paddingRight: 15,
     overflowX: 'scroll',
   },
 }))
-interface IChatList {}
 
-const ChatList: React.FC<IChatList> = () => {
+const ChatList: React.FC = () => {
   const chatHistory = React.useRef<HTMLDivElement | null>(null)
   const scrollToBottom = (): void => {
     const { current: target } = chatHistory

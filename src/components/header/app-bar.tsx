@@ -58,7 +58,7 @@ export interface IHeaderAppBar {
   isLoading?: boolean
 }
 
-const HeaderAppBar: React.FC<IHeaderAppBar> = ({ isLoading }) => {
+const HeaderAppBar: React.FC<IHeaderAppBar> = () => {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(

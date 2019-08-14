@@ -2,8 +2,9 @@ import { ThunkAction } from 'redux-thunk'
 import { AnyAction } from 'redux'
 
 import * as actions from './actions'
-import { authenticate, IUserRequest } from '../../api'
+import { authenticate } from '../../api'
 import { RootStore } from '..'
+import { IUserRequest } from '../../types'
 
 export const thunkAction = (
   delay: number,

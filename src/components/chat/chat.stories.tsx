@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react'
 import { withKnobs, boolean } from '@storybook/addon-knobs'
 
 import { CustomThemeProvider } from '../../service'
-import CustomInput, { IChat } from './chat'
+import CustomInput from './chat'
 import CustMessageCmp from './chat-message'
 import {
   chatSingleMessage,
@@ -16,11 +16,11 @@ import {
 import { Provider as ContextProvider } from '../common'
 import { ChatContainer } from '../../containers'
 
-const no_op = () => () => {}
-const Chat = (props: IChat) => (
+const noOp = () => () => {}
+const Chat = (props: any) => (
   <CustomThemeProvider>
     <ContextProvider value={{ me, action }}>
-      <ChatContainer messages={messageFlow} openChat={no_op} sendMessage={no_op}>
+      <ChatContainer messages={messageFlow} openChat={noOp} sendMessage={noOp}>
         <CustomInput {...props} />
       </ChatContainer>
     </ContextProvider>

@@ -2,9 +2,16 @@ import { ThunkAction } from 'redux-thunk'
 import { InferableComponentEnhancerWithProps } from 'react-redux'
 import { Action } from 'redux'
 
-export type TypeOfConnect<T> = T extends InferableComponentEnhancerWithProps<infer Props, infer _> ? Props : never
+export type TypeOfConnect<T> = T extends InferableComponentEnhancerWithProps<
+  infer Props,
+  infer _
+>
+  ? Props
+  : never
 
-export type CutMiddleFunction<T> = T extends (...arg: infer Args) => (...args: any[]) => infer R
+export type CutMiddleFunction<T> = T extends (
+  ...arg: infer Args
+) => (...args: any[]) => infer R
   ? (...arg: Args) => R
   : never
 

@@ -3,7 +3,11 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import { createLogger } from 'redux-logger'
 import thunk from 'redux-thunk'
 
-import { reducer as userReducer, initialState as userInitialState, UserStore } from './user'
+import {
+  reducer as userReducer,
+  initialState as userInitialState,
+  UserStore,
+} from './user'
 
 export interface RootStore {
   user: UserStore
@@ -18,6 +22,10 @@ const reducer = combineReducers({
 })
 
 const middleWareEnhancer = applyMiddleware(thunk, createLogger())
-export const store = createStore(reducer, initialState, composeWithDevTools(middleWareEnhancer))
+export const store = createStore(
+  reducer,
+  initialState,
+  composeWithDevTools(middleWareEnhancer),
+)
 
 export default store

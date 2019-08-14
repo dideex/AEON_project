@@ -1,6 +1,5 @@
 import { IUserPreview } from '../types'
 
-
 const batman: IUserPreview = {
   id: 'x0002',
   username: 'batman@gothem.com',
