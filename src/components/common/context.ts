@@ -87,7 +87,7 @@ export const UserContext = createContext<IUserContext>({
 export interface IChatContext {
   messages?: TMsgOrDivider[]
   chats?: IChat[]
-  openChatId?: string
+  activeChat?: IChat
   action: {
     openChat: (id: string) => void
     sendMessage: THandleSendMessage

@@ -13,6 +13,7 @@ import {
   me,
   action,
   sendMessage,
+  fakeChatList,
 } from '../../mocks'
 import { Provider as ContextProvider } from '../common'
 import { ChatContainer } from '../../containers'
@@ -23,7 +24,8 @@ const Chat = (props: any) => (
     <ContextProvider value={{ me, action }}>
       <ChatContainer
         messages={messageFlow}
-        initialOpenChatId="test-id"
+        chats={fakeChatList}
+        initialOpenChatId={fakeChatList[0].id}
         sendMessage={sendMessage}
       >
         <ChatCmp {...props} />

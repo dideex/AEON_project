@@ -1,4 +1,4 @@
-import { IMessage, IFormattedMessage, IUserPreview } from '../types'
+import { IMessage, IFormattedMessage, IUserPreview, IChat } from '../types'
 import users from './users'
 import { stark } from './me'
 
@@ -115,6 +115,27 @@ export const messageFlow: IMessage[] = [
   genMsg('How many did we win?', stark, 2),
 
   genMsg('One', users.strange, 0),
+]
+
+const genGroupChat = (name: string, image: string, members: IUserPreview[]): IChat => ({
+  id: guidGenerator(),
+  unreadMessages: 0,
+  type: 'group',
+  name,
+  owner: stark,
+  image,
+  members,
+})
+
+export const fakeChatList: IChat[] = [
+  genGroupChat('How to defeat Thanos?', '/image/chat/group1.jpg', [
+    stark,
+    users.quill,
+    users.drax,
+    users.spinderman,
+    users.strange,
+    users.gamora,
+  ]),
 ]
 
 function guidGenerator() {

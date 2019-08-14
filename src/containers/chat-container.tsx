@@ -21,9 +21,10 @@ interface IChatContainer {
 export const ChatContainer: React.FC<IChatContainer> = props => {
   const { children, sendMessage, messages, chats } = props
   const { initialOpenChatId = '' } = props
-  const [openChatId, setOpenChatId] = React.useState<string>(initialOpenChatId)
+  const initialChat = findChat(initialOpenChatId, chats)
+  const [activeChat, setActiveChat] = React.useState<IChat | undefined>(initialChat)
   const openChat = (id: string) => {
-    setOpenChatId(id)
+    setActiveChat(findChat(id, chats))
   }
 
   const { me } = React.useContext(Context)
@@ -66,7 +67,7 @@ export const ChatContainer: React.FC<IChatContainer> = props => {
   const action = { openChat, sendMessage }
   return (
     <ChatProvider
-      value={{ action, messages: formattedMessages, chats: formattedChats, openChatId }}
+      value={{ action, messages: formattedMessages, chats: formattedChats, activeChat }}
     >
       {children}
     </ChatProvider>
@@ -78,4 +79,8 @@ function isNewDay(date1: string, date2: string): boolean {
     new Date(Number(date1)).toLocaleDateString() !==
     new Date(Number(date2)).toLocaleDateString()
   )
+}
+
+function findChat(id: string, chats?: IChat[]): IChat | undefined {
+  return chats ? chats.find(chat => id === chat.id) : undefined
 }

@@ -6,17 +6,17 @@ export interface ICommonChat {
   id: string
   unreadMessages: number
   type: TChatType
-  messages: IMessage[]
 }
 
 export interface IPrivatChat extends ICommonChat {
   type: 'private'
-  user: IUserPreview
+  author: IUserPreview
 }
 
 export interface IGroupChat extends ICommonChat {
   type: 'group'
   name: string
+  image: string
   owner: IUserPreview
   members: IUserPreview[]
 }
@@ -28,22 +28,21 @@ interface ICommonMessage {
   body: string
 }
 
-export const messageType = 'message'
 // After formatting messages from the backend
 export interface IFormattedMessage extends ICommonMessage {
   isMine: boolean
-  type: typeof messageType
+  type: 'message'
   author?: IUserPreview
-}
-
-export interface IChatDivider {
-  type: 'divider'
-  date: string
 }
 
 // Inteface from the backend
 export interface IMessage extends ICommonMessage {
   author: IUserPreview
+}
+
+export interface IChatDivider {
+  type: 'divider'
+  date: string
 }
 
 export type IChat = IPrivatChat | IGroupChat
