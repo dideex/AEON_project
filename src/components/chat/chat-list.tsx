@@ -1,33 +1,49 @@
 import * as React from 'react'
-import {
-  IMessage,
-  IFormattedMessage,
-  IUserPreview,
-  IChatDivider,
-  TMsgOrDivider,
-} from '../../types'
 import ChatMessage from './chat-message'
 import ChatDivider from './chat-divider'
-import { Context, ChatContext } from '../common'
+import { ChatContext } from '../common'
+import { Theme } from '@material-ui/core'
+import { makeStyles } from '@material-ui/styles'
 
+const useStyles = makeStyles((theme: Theme) => ({
+  messages: {
+    height: '80vh',
+    paddingRight: 15,
+    overflowX: 'scroll',
+  },
+}))
 interface IChatList {}
 
 const ChatList: React.FC<IChatList> = () => {
+  const chatHistory = React.useRef<HTMLDivElement | null>(null)
+  const scrollToBottom = (): void => {
+    const { current: target } = chatHistory
+    if (!target) return
+    const scrollHeight: number = Math.max(target.scrollHeight, target.clientHeight)
+    target.scrollTop = scrollHeight - target.clientHeight
+  }
+  React.useEffect(() => {
+    scrollToBottom()
+  }, [])
+
   const { messages } = React.useContext(ChatContext)
+  const classes = useStyles()
   if (!messages) return <p>No messages yet</p>
   return (
-    <div>
-      {messages.map((entity, i) => {
-        switch (entity.type) {
-          case 'message':
-            return <ChatMessage key={entity.id} message={entity} />
-          case 'divider':
-            return <ChatDivider key={i} {...entity} />
-          default:
-            return null
-        }
-      })}
-    </div>
+    <>
+      <div className={classes.messages} ref={chatHistory}>
+        {messages.map((entity, i) => {
+          switch (entity.type) {
+            case 'message':
+              return <ChatMessage key={entity.id} message={entity} />
+            case 'divider':
+              return <ChatDivider key={i} {...entity} />
+            default:
+              return null
+          }
+        })}
+      </div>
+    </>
   )
 }
 

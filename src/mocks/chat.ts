@@ -23,7 +23,6 @@ export const chatSecondMessage: IFormattedMessage = {
   date: `${Date.now()}`,
   unread: false,
   isMine: false,
-  author: users.deadpool,
   body:
     'You’re probably thinking, “My boyfriend said this was a superhero movie but that guy in the suit just turned that other guy into a fucking kebab!” Well, I may be super, but I’m no hero. And yeah, technically, this is a murder. But some of the best love stories start with a murder. And that’s exactly what this is, a love story. And to tell it right… I gotta take you back to long before I squeezed this ass into red spandex.',
 }

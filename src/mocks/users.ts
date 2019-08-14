@@ -1,5 +1,4 @@
 import { IUserPreview } from '../types'
-import { me } from './me'
 
 
 const batman: IUserPreview = {
