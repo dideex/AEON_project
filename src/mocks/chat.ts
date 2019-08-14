@@ -117,25 +117,137 @@ export const messageFlow: IMessage[] = [
   genMsg('One', users.strange, 0),
 ]
 
-const genGroupChat = (name: string, image: string, members: IUserPreview[]): IChat => ({
-  id: guidGenerator(),
-  unreadMessages: 0,
+const genGroupChat = (
+  name: string,
+  image: string,
+  members: IUserPreview[],
+  unreadMessages: number,
+  id: string,
+): IChat => ({
+  id,
+  unreadMessages,
   type: 'group',
   name,
   owner: stark,
   image,
   members,
 })
+const genPrivateChat = (
+  author: IUserPreview,
+  unreadMessages: number,
+  id: string,
+): IChat => ({
+  id,
+  unreadMessages,
+  type: 'private',
+  author,
+})
 
 export const fakeChatList: IChat[] = [
-  genGroupChat('How to defeat Thanos?', '/image/chat/group1.jpg', [
+  genGroupChat(
+    'How to defeat Thanos?',
+    '/image/chat/group1.jpg',
+    [stark, users.quill, users.drax, users.spinderman, users.strange, users.gamora],
+    5,
+    '0',
+  ),
+  genGroupChat(
+    'Where is gamora??',
+    '/image/chat/group2.jpg',
+    [stark, users.quill, users.drax],
+    0,
+    '1',
+  ),
+  genPrivateChat(users.pepper, 1, '2'),
+  genPrivateChat(users.blackWidow, 1, '3'),
+  genPrivateChat(users.quill, 0, '4'),
+  genPrivateChat(users.spinderman, 0, '5'),
+  genPrivateChat(users.hulk, 0, '6'),
+  genPrivateChat(users.strange, 0, '7'),
+]
+
+const groupChat2: IMessage[] = [
+  genMsg("I'm gonna ask you this one time.", users.quill, 60),
+  genMsg('Where is Gamora?', users.quill, 60),
+  genMsg("Yeah, I'll do you one better.", stark, 60),
+  genMsg('Who is Gamora', stark, 60),
+  genMsg("I'll do you one better.", users.drax, 60),
+  genMsg('Why is Gamora', users.drax, 60),
+]
+
+const chatWithPaper: IMessage[] = [
+  genMsg('What, you got plans?', stark, 10),
+  genMsg('What, you got plans?', users.pepper, 10),
+  genMsg("I don't like it when you have plans", stark, 10),
+  genMsg("I'm allowed to have plans on my birthday", users.pepper, 10),
+  genMsg("It's your birthday?", stark, 10),
+  genMsg('Yes', users.pepper, 10),
+  genMsg('I knew that. Already?', stark, 5),
+  genMsg("Yeah, isn't that strange? It's the same day as last year", users.pepper, 5),
+  genMsg('Get yourself something nice from me', stark, 5),
+  genMsg('I already did', users.pepper, 5),
+  genMsg('Yeah? And?', stark, 5),
+  genMsg("Oh, it's very nice... very tasteful. Thank you, Mr. Stark", users.pepper, 5),
+  genMsg("You're welcome, Ms. Potts", stark, 0),
+]
+
+const chatWithNatasha: IMessage[] = [
+  genMsg("I'm surprised you could keep your mouth shut.", users.blackWidow, 5),
+  genMsg(
+    "You're good. You are mind-blowingly duplicitous. How do you do it? You're a triple impostor, I've never seen anything like it. Is there anything real about you? Do you even speak Latin?",
     stark,
-    users.quill,
-    users.drax,
-    users.spinderman,
+    5,
+  ),
+  genMsg('Fallaces sunt rerum species.', users.blackWidow, 2),
+  genMsg('Which means? Wait, what did you just say?', stark, 2),
+  genMsg(
+    'It means you can either drive yourself home or I can have you collected.',
+    users.blackWidow,
+    2,
+  ),
+]
+
+const chatWithQuill: IMessage[] = [
+  genMsg("You're from Earth?", stark, 5),
+  genMsg("I'm not from Earth, I'm from Missouri.", users.quill, 2),
+  genMsg("Yeah, that's on Earth, dipshit!", stark, 2),
+]
+
+const chatWithParker: IMessage[] = [
+  genMsg(
+    "You just don't do anything I would do... and definitely don't do anything I wouldn't do. There's a little gray area in there and that's where you operate.",
+    stark,
+    5,
+  ),
+  genMsg("Wait, does that mean that I'm an Avenger?", users.spinderman, 2),
+  genMsg('No.', stark, 2),
+]
+
+const chatWithHulk: IMessage[] = [
+  genMsg("The Avengers broke up. We're toast.", stark, 5),
+  genMsg('Broke up? Like a band? Like the Beatles?', users.hulk, 2),
+]
+
+const chatWithStrange: IMessage[] = [
+  genMsg(
+    'He has the Power and Space stones, that already makes him the strongest creature in the whole universe. If he gets his hands on all six stones, Tony...',
     users.strange,
-    users.gamora,
-  ]),
+    5,
+  ),
+  genMsg('He could destroy life on a scale hitherto undreamt of.', users.strange, 2),
+  genMsg("Did you seriously just say 'hitherto undreamt of?'", stark, 2),
+  genMsg('Are you seriously leaning on the Cauldron of the Cosmos?', users.strange, 2),
+]
+
+export const chatList: IMessage[][] = [
+  messageFlow,
+  groupChat2,
+  chatWithPaper,
+  chatWithNatasha,
+  chatWithQuill,
+  chatWithParker,
+  chatWithHulk,
+  chatWithStrange,
 ]
 
 function guidGenerator() {

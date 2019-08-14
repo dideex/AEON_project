@@ -223,6 +223,18 @@ const gamora: IUserPreview = {
   isOnline: false,
 }
 
+const pepper: IUserPreview = {
+  id: 'x0020',
+  username: 'peper@stark.net',
+  firstname: 'Virginia',
+  lastname: 'Potts',
+  patronymic: 'Pepper',
+  avatar: '/image/avatar/pepper.jpg',
+  city: 'New-York',
+  age: 23,
+  isOnline: true,
+}
+
 export default {
   batman,
   spinderman,
@@ -242,4 +254,5 @@ export default {
   quill,
   gamora,
   drax,
+  pepper,
 }

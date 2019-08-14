@@ -9,7 +9,6 @@ import CustMessageCmp from './chat-message'
 import {
   chatSingleMessage,
   chatSecondMessage,
-  messageFlow,
   me,
   action,
   sendMessage,
@@ -23,7 +22,6 @@ const Chat = (props: any) => (
   <CustomThemeProvider>
     <ContextProvider value={{ me, action }}>
       <ChatContainer
-        messages={messageFlow}
         chats={fakeChatList}
         initialOpenChatId={fakeChatList[0].id}
         sendMessage={sendMessage}
@@ -55,8 +53,8 @@ const CustomMessage = (props: any) => (
 
 stories
   .addParameters({ viewport: { defaultViewport: 'responsive' } })
-  .add('Basic view', () => <Chat messages={messageFlow} />)
-  .add('Mobile layout', () => <Chat messages={messageFlow} />, {
+  .add('Basic view', () => <Chat />)
+  .add('Mobile layout', () => <Chat />, {
     viewport: { defaultViewport: 'iphonex' },
   })
   .add('Desktop message', () => (
