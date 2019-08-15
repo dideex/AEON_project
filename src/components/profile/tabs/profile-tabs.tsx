@@ -1,9 +1,10 @@
 import React from 'react'
 import SwipeableViews from 'react-swipeable-views'
 import { makeStyles, Theme, useTheme, createStyles } from '@material-ui/core/styles'
-import { Paper, Tab, Typography, Box, Tabs } from '@material-ui/core'
+import { Paper, Typography, Box } from '@material-ui/core'
 
 import { InfoPanel, GalleryPanel, FriendsPanel } from '../tabs'
+import { CustomTabs } from '../../common'
 
 interface TabPanelProps {
   children?: React.ReactNode
@@ -29,33 +30,8 @@ function TabPanel(props: TabPanelProps) {
   )
 }
 
-function a11yProps(index: any) {
-  return {
-    id: `full-width-tab-${index}`,
-    'aria-controls': `full-width-tabpanel-${index}`,
-  }
-}
-
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    tab: {
-      color: 'white',
-      backgroundColor: theme.color.accent,
-    },
-    selected: {
-      color: theme.color.accent,
-      backgroundColor: 'white',
-    },
-    wrapper: {
-      padding: theme.spacing(1),
-    },
-    root: {
-      borderRadius: theme.shape.borderRadius,
-      margin: theme.spacing(1),
-    },
-    tabs: {
-      margin: `0 -${theme.spacing(1)}px`,
-    },
     paper: {
       marginTop: theme.spacing(4),
     },
@@ -75,30 +51,13 @@ const FullWidthTabs: React.FC = () => {
     setValue(index)
   }
 
-  const { selected, wrapper, root } = classes
-
   return (
     <>
-      <Tabs
-        className={classes.tabs}
+      <CustomTabs
+        tabs={['Info', 'Gallery', 'Friends']}
         value={value}
-        onChange={handleChange}
-        indicatorColor="primary"
-        textColor="primary"
-        variant="fullWidth"
-        aria-label="full width tabs example"
-      >
-        {['Info', 'Gallery', 'Friends'].map((tab, i) => (
-          <Tab
-            classes={{ selected, wrapper, root }}
-            className={classes.tab}
-            label={tab}
-            key={i}
-            wrapped
-            {...a11yProps(i)}
-          />
-        ))}
-      </Tabs>
+        handleChange={handleChange}
+      />
       <Paper className={classes.paper}>
         <SwipeableViews
           axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
