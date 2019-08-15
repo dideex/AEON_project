@@ -6,6 +6,7 @@ export interface ICommonChat {
   id: string
   unreadMessages: number
   type: TChatType
+  lastMessage: IMessage
 }
 
 export interface IChatPreview extends ICommonChat {

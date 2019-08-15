@@ -46,7 +46,7 @@ export const ChatContainer: React.FC<IChatContainer> = props => {
         <ChatProvider
           value={{
             action,
-            messages: messages ? formateMessages({ myId: me.id, messages }) : undefined,
+            messages: messages ? formatMessages({ myId: me.id, messages }) : undefined,
             chats,
             activeChat,
           }}
@@ -58,11 +58,12 @@ export const ChatContainer: React.FC<IChatContainer> = props => {
   )
 }
 
-interface IformateMessages {
+interface IformatMessages {
   myId: string
   messages?: IMessage[]
 }
-function formateMessages(props: IformateMessages): TMsgOrDivider[] | undefined {
+
+function formatMessages(props: IformatMessages): TMsgOrDivider[] | undefined {
   const { myId, messages } = props
   let prevAuthor: IUserPreview
   let curDate: string
@@ -75,14 +76,14 @@ function formateMessages(props: IformateMessages): TMsgOrDivider[] | undefined {
       // Add a divider between new days
       // And force add author to the first message per day
       .reduce((acc: TMsgOrDivider[], message): TMsgOrDivider[] => {
-        let newMessage: IFormattedMessage = {
+        let formattedMessage: IFormattedMessage = {
           ...message,
           type: 'message',
           author: undefined,
         }
         if (!prevAuthor || message.author.id !== prevAuthor.id) {
           prevAuthor = message.author
-          newMessage = { ...newMessage, author: prevAuthor }
+          formattedMessage = { ...formattedMessage, author: prevAuthor }
         }
         if (!curDate || isNewDay(curDate, message.date)) {
           curDate = message.date
@@ -90,9 +91,9 @@ function formateMessages(props: IformateMessages): TMsgOrDivider[] | undefined {
             type: 'divider',
             date: curDate,
           }
-          return [...acc, divider, { ...newMessage, author: prevAuthor }]
+          return [...acc, divider, { ...formattedMessage, author: prevAuthor }]
         } else {
-          return [...acc, newMessage]
+          return [...acc, formattedMessage]
         }
       }, [])
   )

@@ -117,55 +117,6 @@ export const messageFlow: IMessage[] = [
   genMsg('One', users.strange, 0),
 ]
 
-const genGroupChat = (
-  name: string,
-  image: string,
-  members: IUserPreview[],
-  unreadMessages: number,
-  id: string,
-): IChat => ({
-  id,
-  unreadMessages,
-  type: 'group',
-  name,
-  owner: stark,
-  image,
-  members,
-})
-const genPrivateChat = (
-  author: IUserPreview,
-  unreadMessages: number,
-  id: string,
-): IChat => ({
-  id,
-  unreadMessages,
-  type: 'private',
-  author,
-})
-
-export const fakeChatList: IChat[] = [
-  genGroupChat(
-    'How to defeat Thanos?',
-    '/image/chat/group1.jpg',
-    [stark, users.quill, users.drax, users.spinderman, users.strange, users.gamora],
-    5,
-    '0',
-  ),
-  genGroupChat(
-    'Where is gamora??',
-    '/image/chat/group2.jpg',
-    [stark, users.quill, users.drax],
-    0,
-    '1',
-  ),
-  genPrivateChat(users.pepper, 1, '2'),
-  genPrivateChat(users.blackWidow, 1, '3'),
-  genPrivateChat(users.quill, 0, '4'),
-  genPrivateChat(users.spinderman, 0, '5'),
-  genPrivateChat(users.hulk, 0, '6'),
-  genPrivateChat(users.strange, 0, '7'),
-]
-
 const groupChat2: IMessage[] = [
   genMsg("I'm gonna ask you this one time.", users.quill, 60),
   genMsg('Where is Gamora?', users.quill, 60),
@@ -249,6 +200,65 @@ export const chatList: IMessage[][] = [
   chatWithHulk,
   chatWithStrange,
 ]
+
+const genGroupChat = (
+  name: string,
+  image: string,
+  members: IUserPreview[],
+  unreadMessages: number,
+  id: string,
+  lastMessage: IMessage,
+): IChat => ({
+  id,
+  unreadMessages,
+  type: 'group',
+  name,
+  owner: stark,
+  image,
+  members,
+  lastMessage,
+})
+const genPrivateChat = (
+  author: IUserPreview,
+  unreadMessages: number,
+  id: string,
+  lastMessage: IMessage,
+): IChat => ({
+  id,
+  unreadMessages,
+  type: 'private',
+  author,
+  lastMessage,
+})
+
+export const fakeChatList: IChat[] = [
+  genGroupChat(
+    'How to defeat Thanos?',
+    '/image/chat/group1.jpg',
+    [stark, users.quill, users.drax, users.spinderman, users.strange, users.gamora],
+    5,
+    '0',
+    getLastMessage(0),
+  ),
+  genGroupChat(
+    'Where is gamora??',
+    '/image/chat/group2.jpg',
+    [stark, users.quill, users.drax],
+    0,
+    '1',
+    getLastMessage(1),
+  ),
+  genPrivateChat(users.pepper, 1, '2', getLastMessage(2)),
+  genPrivateChat(users.blackWidow, 11, '3', getLastMessage(3)),
+  genPrivateChat(users.quill, 0, '4', getLastMessage(4)),
+  genPrivateChat(users.spinderman, 0, '5', getLastMessage(5)),
+  genPrivateChat(users.hulk, 0, '6', getLastMessage(6)),
+  genPrivateChat(users.strange, 0, '7', getLastMessage(7)),
+]
+
+function getLastMessage(chatId: number): IMessage {
+  return chatList[chatId][chatList[chatId].length - 1]
+}
 
 function guidGenerator() {
   const S4 = () => (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1)
