@@ -44,8 +44,7 @@ const CustomTabs: React.FC<ITabs> = ({ value, handleChange, tabs }) => {
       onChange={handleChange}
       indicatorColor="primary"
       textColor="primary"
-      variant="fullWidth"
-      aria-label="full width tabs example"
+      variant="standard"
     >
       {tabs.map((tab, i) => (
         <Tab

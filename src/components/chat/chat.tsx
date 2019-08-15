@@ -5,9 +5,12 @@ import MessageList from './chat-history'
 import ChatForm from './chat-form'
 import ChatHeader from './chat-header'
 import ChatList from './chat-list'
+import GroupChatPreview from './group-chat-preview'
 import { ChatContext } from '../common'
 import { IChat } from '../../types'
 import { getFullName } from '../../utils'
+import { UserContainer } from '../../containers'
+import { UserProfileWidget } from '../widget'
 
 const Chat: React.FC = () => {
   const { activeChat, chats } = React.useContext(ChatContext)
@@ -22,6 +25,11 @@ const Chat: React.FC = () => {
   )
   const EmptyChat = () => <div>No chat seleced</div>
   const EmptyList = () => <div>No chat available yet</div>
+  const UserProfile = ({ userId }: any) => (
+    <UserContainer userId={userId}>
+      <UserProfileWidget showChatBtn={false} />
+    </UserContainer>
+  )
   return (
     <Grid container spacing={2} justify="center">
       <Grid item xs={12} sm={3}>
@@ -30,7 +38,13 @@ const Chat: React.FC = () => {
       <Grid item xs={12} sm={6}>
         {activeChat ? <ChatContent /> : <EmptyChat />}
       </Grid>
-      <Grid item xs={12} sm={3} />
+      <Grid item xs={12} sm={3}>
+        {activeChat && activeChat.type === 'private' ? (
+          <UserProfile userId={activeChat.author.id} />
+        ) : (
+          <GroupChatPreview />
+        )}
+      </Grid>
     </Grid>
   )
 }

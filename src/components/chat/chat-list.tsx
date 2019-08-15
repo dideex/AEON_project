@@ -20,13 +20,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
     padding: `${theme.spacing(1)}px ${theme.spacing(1)}px`,
     cursor: 'pointer',
+    borderLeft: '2px solid transparent',
     '&:hover': {
       backgroundColor: 'white',
     },
-    '&:last-child': {
-      paddingTop: 0,
-      paddingBottom: 0,
-    },
+  },
+  activeChat: {
+    borderLeftColor: theme.color.accent,
   },
   chatTitle: {
     fontSize: '1rem',
@@ -60,7 +60,7 @@ interface IChatList {
 
 const ChatList: React.FC<IChatList> = ({ chats }) => {
   const classes = useStyles()
-  const { action } = React.useContext(ChatContext)
+  const { action, activeChat } = React.useContext(ChatContext)
 
   // Tab stuff
   const theme = useTheme()
@@ -124,6 +124,20 @@ const ChatList: React.FC<IChatList> = ({ chats }) => {
       getAvatar
     )
   }
+  const isActiveChat = (chat: IChatPreview) => activeChat && chat.id === activeChat.id
+  const renderChatListByType = (chats: IChat[]) =>
+    formatChatList(chats).map(chat => (
+      <div
+        onClick={action.openChat(chat.id)}
+        className={`${classes.container} ${
+          isActiveChat(chat) ? classes.activeChat : null
+        }`}
+        key={chat.id}
+      >
+        {getAvatar(chat)}
+        {getChatInfo(chat)}
+      </div>
+    ))
   return (
     <div>
       <CustomTabs tabs={['Group', 'Private']} value={value} handleChange={handleChange} />
@@ -134,28 +148,10 @@ const ChatList: React.FC<IChatList> = ({ chats }) => {
           onChangeIndex={handleChangeIndex}
         >
           <TabPanel value={value} index={0} dir={theme.direction}>
-            {formatChatList(groupChats).map(chat => (
-              <div
-                onClick={action.openChat(chat.id)}
-                className={classes.container}
-                key={chat.id}
-              >
-                {getAvatar(chat)}
-                {getChatInfo(chat)}
-              </div>
-            ))}
+            {renderChatListByType(groupChats)}
           </TabPanel>
           <TabPanel value={value} index={1} dir={theme.direction}>
-            {formatChatList(privatChats).map(chat => (
-              <div
-                onClick={action.openChat(chat.id)}
-                className={classes.container}
-                key={chat.id}
-              >
-                {getAvatar(chat)}
-                {getChatInfo(chat)}
-              </div>
-            ))}
+            {renderChatListByType(privatChats)}
           </TabPanel>
         </SwipeableViews>
       </div>
