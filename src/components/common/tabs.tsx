@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Tab, Tabs, createStyles, Theme } from '@material-ui/core'
+import { Tab, Tabs, createStyles, Theme, Typography, Box } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
 interface ITabs {
@@ -66,6 +66,30 @@ function a11yProps(index: any) {
     id: `full-width-tab-${index}`,
     'aria-controls': `full-width-tabpanel-${index}`,
   }
+}
+
+interface TabPanelProps {
+  children?: React.ReactNode
+  dir?: string
+  index: any
+  value: any
+}
+
+export function TabPanel(props: TabPanelProps) {
+  const { children, value, index, ...rest } = props
+
+  return (
+    <Typography
+      component="div"
+      role="tabpanel"
+      hidden={value !== index}
+      id={`full-width-tabpanel-${index}`}
+      aria-labelledby={`full-width-tab-${index}`}
+      {...rest}
+    >
+      <Box p={3}>{children}</Box>
+    </Typography>
+  )
 }
 
 export default CustomTabs

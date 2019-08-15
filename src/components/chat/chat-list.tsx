@@ -1,13 +1,15 @@
 import * as React from 'react'
-
-import { IChat, IChatPreview } from '../../types'
 import { makeStyles, Theme, Avatar, Typography, Badge } from '@material-ui/core'
+import SwipeableViews from 'react-swipeable-views'
+import { useTheme } from '@material-ui/core/styles'
+
+import { IChat, IChatPreview, IGroupChat, IPrivatChat } from '../../types'
 import { getFullName } from '../../utils'
 import { chatHeight } from '../../constants'
-import { ChatContext } from '../common'
+import { ChatContext, CustomTabs, TabPanel } from '../common'
 
 const useStyles = makeStyles((theme: Theme) => ({
-  wrap: {
+  listWrap: {
     backgroundColor: theme.color.background,
     padding: `${theme.spacing(2)}px 0`,
     height: chatHeight,
@@ -59,7 +61,23 @@ interface IChatList {
 const ChatList: React.FC<IChatList> = ({ chats }) => {
   const classes = useStyles()
   const { action } = React.useContext(ChatContext)
-  const getAvatar = (image: string, name: string) => <Avatar src={image} alt={name} />
+
+  // Tab stuff
+  const theme = useTheme()
+  function handleChangeIndex(index: number) {
+    setValue(index)
+  }
+  const [value, setValue] = React.useState<number>(0)
+  function handleChange(event: React.ChangeEvent<{}>, newValue: number) {
+    setValue(newValue)
+  }
+
+  const groupChats = chats
+    .filter(chat => chat.type === 'group')
+    .sort(sortByUnreadMessage) as IGroupChat[]
+  const privatChats = chats
+    .filter(chat => chat.type === 'private')
+    .sort(sortByUnreadMessage) as IPrivatChat[]
 
   const getChatInfo = ({ name, type, lastMessage }: IChatPreview) => (
     <div className={classes.content}>
@@ -90,29 +108,57 @@ const ChatList: React.FC<IChatList> = ({ chats }) => {
       )}
     </div>
   )
+
+  const getAvatar = ({ unreadMessages, image, name }: IChatPreview) => {
+    const getAvatar = <Avatar src={image} alt={name} />
+    return Boolean(unreadMessages) ? (
+      <Badge
+        classes={{ badge: classes.badge }}
+        badgeContent={unreadMessages}
+        max={9}
+        color="primary"
+      >
+        {getAvatar}
+      </Badge>
+    ) : (
+      getAvatar
+    )
+  }
   return (
-    <div className={classes.wrap}>
-      {formatChatList(chats).map(chat => (
-        <div
-          onClick={action.openChat(chat.id)}
-          className={classes.container}
-          key={chat.id}
+    <div>
+      <CustomTabs tabs={['Group', 'Private']} value={value} handleChange={handleChange} />
+      <div className={classes.listWrap}>
+        <SwipeableViews
+          axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+          index={value}
+          onChangeIndex={handleChangeIndex}
         >
-          {Boolean(chat.unreadMessages) ? (
-            <Badge
-              classes={{ badge: classes.badge }}
-              badgeContent={chat.unreadMessages}
-              max={9}
-              color="primary"
-            >
-              {getAvatar(chat.image, chat.name)}
-            </Badge>
-          ) : (
-            getAvatar(chat.image, chat.name)
-          )}
-          {getChatInfo(chat)}
-        </div>
-      ))}
+          <TabPanel value={value} index={0} dir={theme.direction}>
+            {formatChatList(groupChats).map(chat => (
+              <div
+                onClick={action.openChat(chat.id)}
+                className={classes.container}
+                key={chat.id}
+              >
+                {getAvatar(chat)}
+                {getChatInfo(chat)}
+              </div>
+            ))}
+          </TabPanel>
+          <TabPanel value={value} index={1} dir={theme.direction}>
+            {formatChatList(privatChats).map(chat => (
+              <div
+                onClick={action.openChat(chat.id)}
+                className={classes.container}
+                key={chat.id}
+              >
+                {getAvatar(chat)}
+                {getChatInfo(chat)}
+              </div>
+            ))}
+          </TabPanel>
+        </SwipeableViews>
+      </div>
     </div>
   )
 }
@@ -123,12 +169,16 @@ function formatChatList(chats: IChat[]): IChatPreview[] {
       const { id, name, image, unreadMessages, type, lastMessage } = chat
       return { id, name, image, unreadMessages, type, lastMessage }
     } else {
-      const { id, unreadMessages, type, author, lastMessage } = chat
+      const { id, unreadMessages, author, lastMessage } = chat
       const name = getFullName(author.firstname, author.lastname, author.patronymic)
       const { avatar: image } = author
-      return { id, name, image, unreadMessages, type, lastMessage }
+      return { id, name, image, unreadMessages, type: 'private', lastMessage }
     }
   })
+}
+
+function sortByUnreadMessage(b: IChat, a: IChat) {
+  return a.unreadMessages - b.unreadMessages
 }
 
 export default ChatList

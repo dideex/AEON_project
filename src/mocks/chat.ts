@@ -104,7 +104,7 @@ export const messageFlow: IMessage[] = [
   genMsg('Excuse me?', users.gamora, 4),
   genMsg('But does your friend often do that?', users.gamora, 4),
   genMsg('Strange! You all right?', stark, 4),
-  genMsg("You\re back. You're all right", stark, 4),
+  genMsg("You're back. You're all right", stark, 4),
   genMsg('Hey, what was that?', users.spinderman, 4),
 
   genMsg('I went forward in time, to view alternate futures...', users.strange, 3),

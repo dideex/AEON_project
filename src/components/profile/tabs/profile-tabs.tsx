@@ -1,34 +1,10 @@
 import React from 'react'
 import SwipeableViews from 'react-swipeable-views'
 import { makeStyles, Theme, useTheme, createStyles } from '@material-ui/core/styles'
-import { Paper, Typography, Box } from '@material-ui/core'
+import { Paper } from '@material-ui/core'
 
 import { InfoPanel, GalleryPanel, FriendsPanel } from '../tabs'
-import { CustomTabs } from '../../common'
-
-interface TabPanelProps {
-  children?: React.ReactNode
-  dir?: string
-  index: any
-  value: any
-}
-
-function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...rest } = props
-
-  return (
-    <Typography
-      component="div"
-      role="tabpanel"
-      hidden={value !== index}
-      id={`full-width-tabpanel-${index}`}
-      aria-labelledby={`full-width-tab-${index}`}
-      {...rest}
-    >
-      <Box p={3}>{children}</Box>
-    </Typography>
-  )
-}
+import { CustomTabs, TabPanel } from '../../common'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
