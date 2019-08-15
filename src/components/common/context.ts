@@ -89,7 +89,7 @@ export interface IChatContext {
   chats?: IChat[]
   activeChat?: IChat
   action: {
-    openChat: (id: string) => void
+    openChat: THandleAction
     sendMessage: THandleSendMessage
   }
 }

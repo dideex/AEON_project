@@ -8,6 +8,11 @@ export interface ICommonChat {
   type: TChatType
 }
 
+export interface IChatPreview extends ICommonChat {
+  name: string
+  image: string
+}
+
 export interface IPrivatChat extends ICommonChat {
   type: 'private'
   author: IUserPreview

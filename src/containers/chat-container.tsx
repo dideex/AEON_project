@@ -33,7 +33,7 @@ export const ChatContainer: React.FC<IChatContainer> = props => {
   const { initialOpenChatId = '' } = props
   const initialChat = findChat(initialOpenChatId, chats)
   const [activeChat, setActiveChat] = React.useState<IChat | undefined>(initialChat)
-  const openChat = (id: string) => {
+  const openChat = (id: string) => () => {
     setActiveChat(findChat(id, chats))
   }
 
