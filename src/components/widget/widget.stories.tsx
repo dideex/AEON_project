@@ -5,10 +5,11 @@ import { Grid, Container } from '@material-ui/core'
 import { grey } from '@material-ui/core/colors'
 
 import { ProfileWidget, UserProfileWidget } from './'
-import { Provider as ContextProvider, UserCtxProvider } from '../common'
+import { Provider as ContextProvider } from '../common'
 import { CustomThemeProvider as ThemeProvider } from '../../service'
 import { IUserProfile } from './user-profile-widget'
-import { me, action, users, userAction } from '../../mocks'
+import { me, action, users } from '../../mocks'
+import { UserContainer } from '../../containers'
 
 const ProfileWidgetWrap = (props: any) => (
   <ThemeProvider>
@@ -26,7 +27,7 @@ const ProfileWidgetWrap = (props: any) => (
 
 const UserProfileWidgetWrap = (props: IUserProfile) => (
   <ThemeProvider>
-    <UserCtxProvider value={{ user: users.deadpool, action: userAction }}>
+    <UserContainer userId={users.deadpool.id}>
       <Container component="main" style={{ backgroundColor: grey[50] }}>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={3}>
@@ -34,7 +35,7 @@ const UserProfileWidgetWrap = (props: IUserProfile) => (
           </Grid>
         </Grid>
       </Container>
-    </UserCtxProvider>
+    </UserContainer>
   </ThemeProvider>
 )
 const stories = storiesOf('Widgets', module)

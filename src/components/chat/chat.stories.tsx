@@ -3,7 +3,7 @@ import { Grid } from '@material-ui/core'
 import { storiesOf } from '@storybook/react'
 import { withKnobs, boolean } from '@storybook/addon-knobs'
 
-import { CustomThemeProvider } from '../../service'
+import { CustomThemeProvider, CustomRouterProvider } from '../../service'
 import ChatCmp from './chat'
 import CustMessageCmp from './chat-message'
 import {
@@ -20,15 +20,17 @@ import { ChatContainer } from '../../containers'
 // const noOp = () => () => {}
 const Chat = (props: any) => (
   <CustomThemeProvider>
-    <ContextProvider value={{ me, action }}>
-      <ChatContainer
-        chats={fakeChatList}
-        initialOpenChatId={fakeChatList[0].id}
-        sendMessage={sendMessage}
-      >
-        <ChatCmp {...props} />
-      </ChatContainer>
-    </ContextProvider>
+    <CustomRouterProvider>
+      <ContextProvider value={{ me, action }}>
+        <ChatContainer
+          chats={fakeChatList}
+          initialOpenChatId={fakeChatList[0].id}
+          sendMessage={sendMessage}
+        >
+          <ChatCmp {...props} />
+        </ChatContainer>
+      </ContextProvider>
+    </CustomRouterProvider>
   </CustomThemeProvider>
 )
 
