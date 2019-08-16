@@ -46,7 +46,7 @@ const GroupChatPreview: React.FC = () => {
         </Typography>
       </div>
       <Divider className={classes.divider} />
-      <Typography variant="h5">Group members:</Typography>
+      <Typography variant="h6">Group members:</Typography>
       <div className={classes.members}>
         {members.map(user => (
           <div key={user.id} className={classes.user}>

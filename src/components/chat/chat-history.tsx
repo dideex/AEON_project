@@ -1,15 +1,20 @@
 import * as React from 'react'
 import ChatMessage from './chat-message'
-import ChatDivider from './chat-divider'
+import ChatDivider from './chat-date-divider'
 import { ChatContext } from '../common'
 import { makeStyles } from '@material-ui/styles'
 import { chatHeight } from '../../constants'
+import { Theme } from '@material-ui/core'
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme: Theme) => ({
   messages: {
     height: chatHeight,
     paddingRight: 15,
     overflowY: 'scroll',
+    [theme.breakpoints.down('sm')]: {
+      height: 'auto',
+      paddingRight: 0,
+    },
   },
 }))
 

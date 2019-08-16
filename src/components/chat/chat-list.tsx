@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: `${theme.spacing(2)}px 0`,
     height: chatHeight,
     overflowY: 'scroll',
+    [theme.breakpoints.down('sm')]: {
+      height: 'auto',
+    },
   },
   container: {
     position: 'relative',
