@@ -6,19 +6,28 @@ import ChatForm from './chat-form'
 import ChatHeader from './chat-header'
 import ChatList from './chat-list'
 import GroupChatPreview from './group-chat-preview'
-import { ChatContext } from '../common'
-import { IChat } from '../../types'
+import { ChatContext, Context } from '../common'
+import { IChat, TMyInfo } from '../../types'
 import { getFullName } from '../../utils'
 import { UserContainer } from '../../containers'
 import { UserProfileWidget } from '../widget'
 
 const Chat: React.FC = () => {
   const { activeChat, chats } = React.useContext(ChatContext)
+  const { me } = React.useContext(Context)
   const title = getChatTitle(activeChat)
   const url = getChatUrl(activeChat)
+  const chatType = activeChat ? activeChat.type : 'private'
+  const chatId = activeChat ? activeChat.id : ''
   const ChatContent = () => (
     <>
-      <ChatHeader title={title} url={url} />
+      <ChatHeader
+        isOwner={isOwner(me, activeChat)}
+        id={chatId}
+        type={chatType}
+        title={title}
+        url={url}
+      />
       <MessageList />
       <ChatForm />
     </>
@@ -76,6 +85,13 @@ function getChatUrl(chat: IChat | undefined): string {
     default:
       return noImage
   }
+}
+
+function isOwner(user: TMyInfo, chat?: IChat): boolean {
+  if (!chat) return false
+  if (chat.type === 'private') return true
+  if (chat.owner.id === user.id) return true
+  return false
 }
 
 export default Chat

@@ -213,7 +213,7 @@ const genGroupChat = (
   unreadMessages,
   type: 'group',
   name,
-  owner: stark,
+  owner: Number(id) >= 1 ? users.quill : stark,
   image,
   members,
   lastMessage,

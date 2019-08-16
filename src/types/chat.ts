@@ -1,6 +1,6 @@
 import { IUserPreview } from './user'
 
-type TChatType = 'group' | 'private'
+export type TChatType = 'group' | 'private'
 
 export interface ICommonChat {
   id: string
