@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Paper, Avatar, Typography, Divider, makeStyles, Theme } from '@material-ui/core'
 
-import { UserContext, AccentButton } from '../common'
+import { UserContext, AccentButton, Context } from '../common'
 
 const useStyles = makeStyles((theme: Theme) => ({
   paper: {
@@ -58,6 +58,8 @@ export interface IUserProfile {
 const UserProfile: React.FC<IUserProfile> = props => {
   const { showChatBtn = true, showMessageBtn = true, showMuteBtn = true } = props
   const { user, action } = React.useContext(UserContext)
+  const { me } = React.useContext(Context)
+  const isFriend = Boolean(me.friends.find(({ id }) => user && id === user.id))
   const classes = useStyles()
   return (
     <Paper className={classes.paper}>
@@ -82,7 +84,7 @@ const UserProfile: React.FC<IUserProfile> = props => {
         )}
         {showMessageBtn && (
           <AccentButton
-            title="Add to friend"
+            title={isFriend ? 'Remove friend' : 'Add to friend'}
             className={classes.friendButton}
             onClick={action.handleRemoveFromFriends(user.id)}
           />

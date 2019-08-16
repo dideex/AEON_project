@@ -28,12 +28,19 @@ const ChatHeader: React.FC<IChatHeader> = ({ title, url, type, isOwner }) => {
   const classes = useStyles()
   const groupOptions = isOwner
     ? [
+        { label: 'Mute chat', onClick: () => {} },
         { label: 'Change title', onClick: () => {} },
         { label: 'Change avatar', onClick: () => {} },
         { label: 'Delete group', onClick: () => {} },
       ]
-    : [{ label: 'Leave from chat', onClick: () => {} }]
-  const privateOptions = [{ label: 'Delete chat', onClick: () => {} }]
+    : [
+        { label: 'Mute chat', onClick: () => {} },
+        { label: 'Leave from chat', onClick: () => {} },
+      ]
+  const privateOptions = [
+    { label: 'Mute chat', onClick: () => {} },
+    { label: 'Delete chat', onClick: () => {} },
+  ]
   return (
     <div className={classes.wrap}>
       <Avatar className={classes.image} src={url} />

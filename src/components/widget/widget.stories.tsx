@@ -27,15 +27,17 @@ const ProfileWidgetWrap = (props: any) => (
 
 const UserProfileWidgetWrap = (props: IUserProfile) => (
   <ThemeProvider>
-    <UserContainer userId={users.deadpool.id}>
-      <Container component="main" style={{ backgroundColor: grey[50] }}>
-        <Grid container spacing={2}>
-          <Grid item xs={12} sm={3}>
-            <UserProfileWidget {...props} />
+    <ContextProvider value={{ me, action }}>
+      <UserContainer userId={users.deadpool.id}>
+        <Container component="main" style={{ backgroundColor: grey[50] }}>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={3}>
+              <UserProfileWidget {...props} />
+            </Grid>
           </Grid>
-        </Grid>
-      </Container>
-    </UserContainer>
+        </Container>
+      </UserContainer>
+    </ContextProvider>
   </ThemeProvider>
 )
 const stories = storiesOf('Widgets', module)

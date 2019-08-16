@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Theme, makeStyles, Avatar, Paper, Typography, Divider } from '@material-ui/core'
+import { Theme, makeStyles, Avatar, Paper, Typography } from '@material-ui/core'
 import { Star } from '@material-ui/icons'
 
 import { ChatContext, Context, VerticalMenu } from '../common'
@@ -14,10 +14,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: `${theme.spacing(2)}px 0`,
     height: chatHeight,
     overflowY: 'scroll',
-  },
-  header: {
-    display: 'flex',
-    alignItems: 'center',
   },
   title: {
     paddingLeft: theme.spacing(2),
@@ -53,13 +49,6 @@ const GroupChatPreview: React.FC = () => {
   const { members } = activeChat
   return (
     <Paper className={classes.root}>
-      <div className={classes.header}>
-        <Avatar src={activeChat.image} />
-        <Typography className={classes.title} variant="h5">
-          {activeChat.name}
-        </Typography>
-      </div>
-      <Divider className={classes.divider} />
       <Typography variant="h6">Group members:</Typography>
       <div className={classes.members}>
         {members.map(user => (
