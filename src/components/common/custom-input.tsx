@@ -25,7 +25,14 @@ const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 export type TInputType = 'text' | 'password'
-export type TName = 'username' | 'password' | 'firstname' | 'lastname' | 'city'
+export type TName =
+  | 'username'
+  | 'password'
+  | 'firstname'
+  | 'lastname'
+  | 'city'
+  | 'about'
+  | 'patronymic'
 
 const placeholder = {
   username: 'Email',
@@ -33,6 +40,8 @@ const placeholder = {
   firstname: 'First name',
   lastname: 'Last name',
   city: 'City',
+  about: 'About me',
+  patronymic: 'Patronymic',
 }
 
 export interface ICustomInput {

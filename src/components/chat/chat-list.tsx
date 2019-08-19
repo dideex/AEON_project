@@ -56,6 +56,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     lineHeight: 1.1,
     fontWeight: 700,
   },
+  box: {
+    padding: `${theme.spacing(1)}px 0`,
+  },
 }))
 interface IChatList {
   chats: IChat[]
@@ -131,11 +134,11 @@ const ChatList: React.FC<IChatList> = ({ chats }) => {
   const renderChatListByType = (chats: IChat[]) =>
     formatChatList(chats).map(chat => (
       <div
-        onClick={action.openChat(chat.id)}
-        className={`${classes.container} ${
-          isActiveChat(chat) ? classes.activeChat : null
-        }`}
         key={chat.id}
+        onClick={action.openChat(chat.id)}
+        className={
+          classes.container + (isActiveChat(chat) ? ` ${classes.activeChat}` : '')
+        }
       >
         {getAvatar(chat)}
         {getChatInfo(chat)}
@@ -150,10 +153,10 @@ const ChatList: React.FC<IChatList> = ({ chats }) => {
           index={value}
           onChangeIndex={handleChangeIndex}
         >
-          <TabPanel value={value} index={0} dir={theme.direction}>
+          <TabPanel className={classes.box} value={value} index={0} dir={theme.direction}>
             {renderChatListByType(groupChats)}
           </TabPanel>
-          <TabPanel value={value} index={1} dir={theme.direction}>
+          <TabPanel className={classes.box} value={value} index={1} dir={theme.direction}>
             {renderChatListByType(privatChats)}
           </TabPanel>
         </SwipeableViews>

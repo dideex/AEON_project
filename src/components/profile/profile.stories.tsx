@@ -6,7 +6,7 @@ import { grey } from '@material-ui/core/colors'
 import StoryRouter from 'storybook-react-router'
 
 import MyProfileCmp from './my-profile'
-import SettingsCmp, { ISettings } from './settings'
+import SettingsCmp from './settings'
 import { Provider as ContextProvider } from '../common'
 import { CustomThemeProvider as ThemeProvider } from '../../service'
 import { me, action } from '../../mocks'
@@ -22,13 +22,11 @@ const MyProfile = (props: any) => (
   </ThemeProvider>
 )
 
-const Settings = (props: ISettings) => (
+const Settings = () => (
   <ThemeProvider>
     <ContextProvider value={{ me, action }}>
       <ProfileAndInfo>
-        <Container component="main" style={{ backgroundColor: grey[50] }}>
-          <SettingsCmp {...props} />
-        </Container>
+        <SettingsCmp />
       </ProfileAndInfo>
     </ContextProvider>
   </ThemeProvider>

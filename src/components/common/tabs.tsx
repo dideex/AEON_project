@@ -72,10 +72,11 @@ interface TabPanelProps {
   dir?: string
   index: any
   value: any
+  className?: string
 }
 
 export function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...rest } = props
+  const { children, value, index, className = '', ...rest } = props
 
   return (
     <Typography
@@ -86,7 +87,9 @@ export function TabPanel(props: TabPanelProps) {
       aria-labelledby={`full-width-tab-${index}`}
       {...rest}
     >
-      <Box p={3}>{children}</Box>
+      <Box className={className} p={3}>
+        {children}
+      </Box>
     </Typography>
   )
 }

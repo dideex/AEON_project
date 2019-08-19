@@ -36,6 +36,11 @@ export interface IUserInfo {
   about?: string
   age: number
 }
+
+export interface IUserSettingsInfo {
+  about: string
+  patronymic: string
+}
 export interface IMyStats {
   likes: number
   posts: number
@@ -52,8 +57,6 @@ export interface IUserStatistic {
   socialStatistic: ISocialStats
   registered: string
 }
-
-export type IUserPreview = IUsername & IUserBio & IUserInfo
 
 export interface IPhoto {
   id: string
@@ -75,6 +78,7 @@ export interface IIgnores {
   ignores: IUserPreview[]
 }
 
+export type IUserPreview = IUsername & IUserBio & IUserInfo
 export type TUserRegister = IUserRequest & IUserBio & IUserGender & IUserBirthDate
 export type TMyInfo = IUsername &
   IUserBio &
@@ -85,3 +89,4 @@ export type TMyInfo = IUsername &
   IPhotos &
   IFriends &
   IIgnores
+export type IUserSettings = IUserBio & IUserSettingsInfo
