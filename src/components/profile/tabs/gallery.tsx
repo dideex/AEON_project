@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
     alignItems: 'center',
     position: 'relative',
-    padding: `0 ${theme.spacing(1)}px`,
+    padding: theme.spacing(0, 1),
   },
   date: {
     marginLeft: 'auto',
@@ -78,7 +78,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     left: 0,
     right: 0,
     top: '100%',
-    padding: `${theme.spacing(1)}px`,
+    padding: theme.spacing(1),
     backgroundColor: 'white',
     boxShadow: theme.settings.boxShadow,
     borderRadius: theme.shape.borderRadius,

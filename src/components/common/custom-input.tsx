@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     top: '100%',
     marginTop: theme.spacing(0.5),
     marginLeft: theme.spacing(0.5),
-    padding: `${theme.spacing(0.5)}px ${theme.spacing(1)}px`,
+    padding: theme.spacing(0.5, 1),
     backgroundColor: theme.palette.error.main,
     borderRadius: theme.shape.borderRadius,
   },

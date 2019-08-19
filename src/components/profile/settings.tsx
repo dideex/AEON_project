@@ -50,16 +50,16 @@ const Settings: React.FC = () => {
         Edit personal data:
       </Typography>
       <Grid className={classes.form} container spacing={4}>
-        <Grid item sm={12} md={6}>
+        <Grid item xs={12} sm={6}>
           <CustomInput {...getInputProps('firstname')} type="text" />
         </Grid>
-        <Grid item sm={12} md={6}>
+        <Grid item xs={12} sm={6}>
           <CustomInput {...getInputProps('lastname')} type="text" />
         </Grid>
-        <Grid item sm={12} md={6}>
+        <Grid item xs={12} sm={6}>
           <CustomInput {...getInputProps('patronymic')} type="text" />
         </Grid>
-        <Grid item sm={12} md={6}>
+        <Grid item xs={12} sm={6}>
           <CustomInput {...getInputProps('city')} type="text" />
         </Grid>
         <Grid item xs={12} sm={4}>
@@ -86,7 +86,7 @@ const Settings: React.FC = () => {
             value={values.year}
           />
         </Grid>
-        <Grid item sm={12} md={12}>
+        <Grid item xs={12} sm={12}>
           <CustomInput {...getInputProps('about')} type="text" />
         </Grid>
       </Grid>

@@ -11,7 +11,7 @@ import { ChatContext, CustomTabs, TabPanel } from '../common'
 const useStyles = makeStyles((theme: Theme) => ({
   listWrap: {
     backgroundColor: theme.color.background,
-    padding: `${theme.spacing(2)}px 0`,
+    padding: theme.spacing(2, 0),
     height: chatHeight,
     overflowY: 'scroll',
     [theme.breakpoints.down('sm')]: {
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   container: {
     position: 'relative',
     display: 'flex',
-    padding: `${theme.spacing(1)}px ${theme.spacing(1)}px`,
+    padding: theme.spacing(1),
     cursor: 'pointer',
     borderLeft: '2px solid transparent',
     '&:hover': {
@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: 700,
   },
   box: {
-    padding: `${theme.spacing(1)}px 0`,
+    padding: theme.spacing(1, 0),
   },
 }))
 interface IChatList {

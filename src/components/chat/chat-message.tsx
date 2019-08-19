@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   messageDate: {
     color: theme.color.fontSecondary,
     fontSize: '1rem',
-    padding: `0 ${theme.spacing(1)}px`,
+    padding: theme.spacing(0, 1),
   },
   avatar: {
     marginRight: theme.spacing(2),

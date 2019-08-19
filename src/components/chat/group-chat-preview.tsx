@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: theme.spacing(2),
   },
   members: {
-    padding: `${theme.spacing(2)}px 0`,
+    padding: theme.spacing(2, 0),
     height: chatHeight,
     overflowY: 'scroll',
   },

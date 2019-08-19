@@ -39,9 +39,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundColor: theme.color.subAccent,
   },
   buttons: {
-    padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`,
+    padding: theme.spacing(1, 2),
     '& > *': {
-      margin: `${theme.spacing(1)}px 0`,
+      margin: theme.spacing(1, 0),
     },
   },
   about: {

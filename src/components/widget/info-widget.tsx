@@ -7,10 +7,10 @@ import { Link, InfoContext } from '../common'
 
 const useStyles = makeStyles((theme: Theme) => ({
   paper: {
-    padding: `${theme.spacing(2)}px 0`,
+    padding: theme.spacing(2, 0),
   },
   padding: {
-    padding: `0 ${theme.spacing(2)}px`,
+    padding: theme.spacing(0, 2),
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',

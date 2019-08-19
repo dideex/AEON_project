@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: theme.color.fontSecondary,
   },
   grid: {
-    padding: `${theme.spacing(1)}px 0`,
+    padding: theme.spacing(1, 0),
   },
 }))
 
