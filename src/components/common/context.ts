@@ -102,6 +102,19 @@ export const ChatContext = createContext<IChatContext>({
   },
 })
 
+export interface IInfoWidgetCtx {
+  users: IUserPreview[]
+  friendInvites: number
+  chatInvites: number
+}
+
+export const InfoContext = createContext<IInfoWidgetCtx>({
+  users: [],
+  friendInvites: 0,
+  chatInvites: 0,
+})
+
+export const { Provider: InfoProvider, Consumer: InfoConsumer } = InfoContext
 export const { Provider: ChatProvider, Consumer: ChatConsumer } = ChatContext
 export const { Provider: UserCtxProvider, Consumer: UserCtxConsumer } = UserContext
 export const { Provider, Consumer } = Context

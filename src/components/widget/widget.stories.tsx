@@ -10,8 +10,7 @@ import { Provider as ContextProvider } from '../common'
 import { CustomThemeProvider as ThemeProvider } from '../../service'
 import { IUserProfile } from './user-profile-widget'
 import { me, action, users } from '../../mocks'
-import { UserContainer } from '../../containers'
-import { IInfoWidget } from './info-widget'
+import { UserContainer, InfoWidgetContainer } from '../../containers'
 
 const ProfileWidgetWrap = (props: any) => (
   <ThemeProvider>
@@ -43,18 +42,18 @@ const UserProfileWidgetWrap = (props: IUserProfile) => (
   </ThemeProvider>
 )
 
-const InfoWidgetWrap = (props: IInfoWidget) => (
+const InfoWidgetWrap = () => (
   <ThemeProvider>
     <ContextProvider value={{ me, action }}>
-      <UserContainer userId={users.deadpool.id}>
+      <InfoWidgetContainer>
         <Container component="main" style={{ backgroundColor: grey[50] }}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={3}>
-              <InfoWidget {...props} />
+              <InfoWidget />
             </Grid>
           </Grid>
         </Container>
-      </UserContainer>
+      </InfoWidgetContainer>
     </ContextProvider>
   </ThemeProvider>
 )
@@ -67,10 +66,4 @@ stories
   .addParameters({ viewport: { defaultViewport: 'responsive' } })
   .add('My profile widget', () => <ProfileWidgetWrap />)
   .add('User profile widget', () => <UserProfileWidgetWrap />)
-  .add('Info widget', () => (
-    <InfoWidgetWrap
-      users={[users.deadpool, users.quill]}
-      friendInvites={1}
-      chatInvites={3}
-    />
-  ))
+  .add('Info widget', () => <InfoWidgetWrap />)

@@ -3,7 +3,7 @@ import { Paper, makeStyles, Theme, Typography, Divider, Avatar } from '@material
 
 import { IUserPreview } from '../../types'
 import { getFullName } from '../../utils'
-import { Link } from '../common'
+import { Link, InfoContext } from '../common'
 
 const useStyles = makeStyles((theme: Theme) => ({
   paper: {
@@ -38,18 +38,13 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-export interface IInfoWidget {
-  users: IUserPreview[]
-  friendInvites: number
-  chatInvites: number
-}
-
-const InfoWidget: React.FC<IInfoWidget> = ({ users, friendInvites, chatInvites }) => {
+const InfoWidget: React.FC = () => {
   const classes = useStyles()
+  const { users, friendInvites, chatInvites } = React.useContext(InfoContext)
   return (
     <Paper className={classes.paper}>
       <div className={classes.padding}>
-        <Typography variant="h6">People you may know</Typography>
+        <Typography variant="h6">People you may know:</Typography>
       </div>
       {users.map(user => (
         <React.Fragment key={user.id}>

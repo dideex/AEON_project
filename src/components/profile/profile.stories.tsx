@@ -6,9 +6,11 @@ import { grey } from '@material-ui/core/colors'
 import StoryRouter from 'storybook-react-router'
 
 import MyProfileCmp from './my-profile'
+import SettingsCmp, { ISettings } from './settings'
 import { Provider as ContextProvider } from '../common'
 import { CustomThemeProvider as ThemeProvider } from '../../service'
 import { me, action } from '../../mocks'
+import { ProfileAndInfo } from '../../layout'
 
 const MyProfile = (props: any) => (
   <ThemeProvider>
@@ -16,6 +18,18 @@ const MyProfile = (props: any) => (
       <Container component="main" style={{ backgroundColor: grey[50] }}>
         <MyProfileCmp {...props} />
       </Container>
+    </ContextProvider>
+  </ThemeProvider>
+)
+
+const Settings = (props: ISettings) => (
+  <ThemeProvider>
+    <ContextProvider value={{ me, action }}>
+      <ProfileAndInfo>
+        <Container component="main" style={{ backgroundColor: grey[50] }}>
+          <SettingsCmp {...props} />
+        </Container>
+      </ProfileAndInfo>
     </ContextProvider>
   </ThemeProvider>
 )
@@ -29,5 +43,9 @@ stories
   .addParameters({ viewport: { defaultViewport: 'responsive' } })
   .add('MyProfile: Basic', () => <MyProfile />)
   .add('MyProfile: Mobile', () => <MyProfile />, {
+    viewport: { defaultViewport: 'iphonex' },
+  })
+  .add('Settings: Basic', () => <Settings />)
+  .add('Settings: Mobile', () => <Settings />, {
     viewport: { defaultViewport: 'iphonex' },
   })

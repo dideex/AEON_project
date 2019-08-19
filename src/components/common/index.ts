@@ -16,4 +16,7 @@ export {
   ChatConsumer,
   ChatContext,
   ChatProvider,
+  InfoProvider,
+  InfoConsumer,
+  InfoContext,
 } from './context'
