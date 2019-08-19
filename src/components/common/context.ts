@@ -46,6 +46,7 @@ const Context = createContext<IContext>({
     isOnline: false,
     photos: [],
     friends: [],
+    ignores: [],
   },
   action: {
     handleLike: noOp,

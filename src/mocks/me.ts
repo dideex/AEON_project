@@ -1,7 +1,9 @@
 import { IPhoto, TMyInfo, IUserPreview } from '../types'
 import users from './users'
 
-const friends: IUserPreview[] = Object.values(users)
+const friends: IUserPreview[] = Object.values(users).filter(
+  user => user.lastname !== 'Quill',
+)
 
 const photos: IPhoto[] = [
   {
@@ -135,6 +137,7 @@ export const me: TMyInfo = {
   },
   photos,
   friends,
+  ignores: [users.batman],
 }
 
 export const stark: IUserPreview = {

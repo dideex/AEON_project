@@ -55,12 +55,14 @@ const FriendCard: React.FC<IFriendCard> = props => {
     handleRemoveFromFriends,
     handleAddToMute,
   } = React.useContext(Context).action
+  const { ignores } = React.useContext(Context).me
   const { id, firstname, lastname, age, avatar, isOnline, about } = props
+  const muteLabel = Boolean(ignores.find(user => user.id === id)) ? 'Unmute' : 'Munte'
   const options = [
     { label: 'Chat', onClick: handleOpenChat(id) },
     { label: 'Invite to chat', onClick: handleInviteToChat(id) },
     { label: 'Remove', onClick: handleRemoveFromFriends(id) },
-    { label: 'Mute', onClick: handleAddToMute(id) },
+    { label: muteLabel, onClick: handleAddToMute(id) },
   ]
   return (
     <div className={classes.card}>
