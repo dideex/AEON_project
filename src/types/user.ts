@@ -78,6 +78,11 @@ export interface IIgnores {
   ignores: IUserPreview[]
 }
 
+export interface IAvatarProps {
+  title: string
+  upload: string
+}
+
 export type IUserPreview = IUsername & IUserBio & IUserInfo
 export type TUserRegister = IUserRequest & IUserBio & IUserGender & IUserBirthDate
 export type TMyInfo = IUsername &

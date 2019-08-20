@@ -33,6 +33,7 @@ export type TName =
   | 'city'
   | 'about'
   | 'patronymic'
+  | 'title'
 
 const placeholder = {
   username: 'Email',
@@ -42,6 +43,7 @@ const placeholder = {
   city: 'City',
   about: 'About me',
   patronymic: 'Patronymic',
+  title: 'Title',
 }
 
 export interface ICustomInput {

@@ -17,31 +17,31 @@ const useStyles = makeStyles((theme: Theme) =>
 const FullWidthTabs: React.FC = () => {
   const classes = useStyles()
   const theme = useTheme()
-  const [value, setValue] = React.useState<number>(0)
+  const [tab, setTab] = React.useState<number>(0)
 
-  function handleChange(event: React.ChangeEvent<{}>, newValue: number) {
-    setValue(newValue)
+  function handleChange(_: React.ChangeEvent<{}>, newValue: number) {
+    setTab(newValue)
   }
 
   function handleChangeIndex(index: number) {
-    setValue(index)
+    setTab(index)
   }
 
   return (
     <>
       <CustomTabs
         tabs={['Info', 'Gallery', 'Friends']}
-        value={value}
+        value={tab}
         handleChange={handleChange}
       />
       <Paper className={classes.paper}>
         <SwipeableViews
           axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-          index={value}
+          index={tab}
           onChangeIndex={handleChangeIndex}
         >
           {[InfoPanel, GalleryPanel, FriendsPanel].map((Cmp, i) => (
-            <TabPanel key={i} value={value} index={i} dir={theme.direction}>
+            <TabPanel key={i} value={tab} index={i} dir={theme.direction}>
               <Cmp />
             </TabPanel>
           ))}
