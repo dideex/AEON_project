@@ -10,18 +10,16 @@ import {
   chatSingleMessage,
   chatSecondMessage,
   me,
-  action,
   sendMessage,
   fakeChatList,
 } from '../../mocks'
-import { Provider as ContextProvider } from '../common'
-import { ChatContainer } from '../../containers'
+import { ChatContainer, MyContainer } from '../../containers'
 
 // const noOp = () => () => {}
 const Chat = (props: any) => (
   <CustomThemeProvider>
     <CustomRouterProvider>
-      <ContextProvider value={{ me, action }}>
+      <MyContainer id={me.id}>
         <ChatContainer
           chats={fakeChatList}
           initialOpenChatId={fakeChatList[0].id}
@@ -29,7 +27,7 @@ const Chat = (props: any) => (
         >
           <ChatCmp {...props} />
         </ChatContainer>
-      </ContextProvider>
+      </MyContainer>
     </CustomRouterProvider>
   </CustomThemeProvider>
 )

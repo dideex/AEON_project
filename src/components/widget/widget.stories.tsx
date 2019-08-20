@@ -6,15 +6,14 @@ import StoryRouter from 'storybook-react-router'
 import { grey } from '@material-ui/core/colors'
 
 import { ProfileWidget, UserProfileWidget, InfoWidget } from './'
-import { Provider as ContextProvider } from '../common'
 import { CustomThemeProvider as ThemeProvider } from '../../service'
 import { IUserProfile } from './user-profile-widget'
-import { me, action, users } from '../../mocks'
-import { UserContainer, InfoWidgetContainer } from '../../containers'
+import { me, users } from '../../mocks'
+import { UserContainer, InfoWidgetContainer, MyContainer } from '../../containers'
 
 const ProfileWidgetWrap = (props: any) => (
   <ThemeProvider>
-    <ContextProvider value={{ me, action }}>
+    <MyContainer id={me.id}>
       <Container component="main" style={{ backgroundColor: grey[50] }}>
         <Grid container spacing={4}>
           <Grid item xs={12} sm={3}>
@@ -22,13 +21,13 @@ const ProfileWidgetWrap = (props: any) => (
           </Grid>
         </Grid>
       </Container>
-    </ContextProvider>
+    </MyContainer>
   </ThemeProvider>
 )
 
 const UserProfileWidgetWrap = (props: IUserProfile) => (
   <ThemeProvider>
-    <ContextProvider value={{ me, action }}>
+    <MyContainer id={me.id}>
       <UserContainer userId={users.deadpool.id}>
         <Container component="main" style={{ backgroundColor: grey[50] }}>
           <Grid container spacing={2}>
@@ -38,13 +37,13 @@ const UserProfileWidgetWrap = (props: IUserProfile) => (
           </Grid>
         </Container>
       </UserContainer>
-    </ContextProvider>
+    </MyContainer>
   </ThemeProvider>
 )
 
 const InfoWidgetWrap = () => (
   <ThemeProvider>
-    <ContextProvider value={{ me, action }}>
+    <MyContainer id={me.id}>
       <InfoWidgetContainer>
         <Container component="main" style={{ backgroundColor: grey[50] }}>
           <Grid container spacing={2}>
@@ -54,7 +53,7 @@ const InfoWidgetWrap = () => (
           </Grid>
         </Container>
       </InfoWidgetContainer>
-    </ContextProvider>
+    </MyContainer>
   </ThemeProvider>
 )
 const stories = storiesOf('Widgets', module)

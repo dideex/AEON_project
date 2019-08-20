@@ -7,28 +7,28 @@ import StoryRouter from 'storybook-react-router'
 
 import MyProfileCmp from './my-profile'
 import SettingsCmp from './settings'
-import { Provider as ContextProvider } from '../common'
 import { CustomThemeProvider as ThemeProvider } from '../../service'
-import { me, action } from '../../mocks'
+import { me } from '../../mocks'
 import { ProfileAndInfo } from '../../layout'
+import { MyContainer } from '../../containers'
 
 const MyProfile = (props: any) => (
   <ThemeProvider>
-    <ContextProvider value={{ me, action }}>
+    <MyContainer id={me.id}>
       <Container component="main" style={{ backgroundColor: grey[50] }}>
         <MyProfileCmp {...props} />
       </Container>
-    </ContextProvider>
+    </MyContainer>
   </ThemeProvider>
 )
 
 const Settings = () => (
   <ThemeProvider>
-    <ContextProvider value={{ me, action }}>
+    <MyContainer id={me.id}>
       <ProfileAndInfo>
         <SettingsCmp />
       </ProfileAndInfo>
-    </ContextProvider>
+    </MyContainer>
   </ThemeProvider>
 )
 

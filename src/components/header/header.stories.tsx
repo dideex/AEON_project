@@ -5,15 +5,15 @@ import StoryRouter from 'storybook-react-router'
 
 import HeaderAppBar, { IHeaderAppBar } from './app-bar'
 import { CustomThemeProvider } from '../../service'
-import { Provider as ContextProvider } from '../common'
-import { me, action } from '../../mocks'
+import { me } from '../../mocks'
+import { MyContainer } from '../../containers'
 
 const Header = (props: IHeaderAppBar) => (
-  <ContextProvider value={{ me, action }}>
+  <MyContainer id={me.id}>
     <CustomThemeProvider>
       <HeaderAppBar {...props} />
     </CustomThemeProvider>
-  </ContextProvider>
+  </MyContainer>
 )
 
 const stories = storiesOf('Header menu', module)
