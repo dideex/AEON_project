@@ -1,4 +1,4 @@
-import { IParsedDate } from '../types'
+// import { IParsedDate, IUserPolicy } from '../types'
 
 const fillDays = (_: any, i: number) => i + 1
 const day29 = Array.from({ length: 29 }, fillDays)
@@ -53,8 +53,14 @@ export const years: number[] = (() => {
   return Array.from({ length: 80 }, (_, i) => fromYear - i)
 })()
 
-export const birthdatePlaceholders: { [key in keyof IParsedDate]: string } = {
+export const birthdatePlaceholders: {
+  [key: string]: string
+  // TODO: try to infer right type
+  // [key in keyof (IParsedDate | IUserPolicy)]: string
+} = {
   month: 'Birth month',
   year: 'Birth year',
   day: 'Birth day',
+  profile: 'Profile policy',
+  message: 'Message policy',
 }

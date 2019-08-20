@@ -83,6 +83,15 @@ export interface IAvatarProps {
   upload: string
 }
 
+type TPolicy = 'pulbic' | 'private'
+export interface IUserPolicy {
+  profile: TPolicy
+  message: TPolicy
+  notifyFriendRequest: boolean
+  notifyPhotoRating: boolean
+  notifyNewPosts: boolean
+}
+
 export type IUserPreview = IUsername & IUserBio & IUserInfo
 export type TUserRegister = IUserRequest & IUserBio & IUserGender & IUserBirthDate
 export type TMyInfo = IUsername &
@@ -93,5 +102,5 @@ export type TMyInfo = IUsername &
   IUserStatistic &
   IPhotos &
   IFriends &
-  IIgnores
+  IIgnores & { policy?: IUserPolicy }
 export type IUserSettings = IUserBio & IUserSettingsInfo

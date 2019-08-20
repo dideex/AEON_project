@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 const Settings: React.FC = () => {
   const classes = useStyles()
   const theme = useTheme()
-  const [tab, setTab] = React.useState<number>(1)
+  const [tab, setTab] = React.useState<number>(2)
 
   function handleChange(_: React.ChangeEvent<{}>, newValue: number) {
     setTab(newValue)

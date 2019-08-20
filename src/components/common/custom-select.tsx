@@ -3,7 +3,7 @@ import { FormControl, InputLabel, Select, MenuItem } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
 import { birthdatePlaceholders } from '../../constants'
-import { IParsedDate } from '../../types'
+import { IParsedDate, IUserPolicy } from '../../types'
 
 const useStyles = makeStyles(() => ({
   select: {
@@ -11,13 +11,13 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-type IOptions = { value: number; key: string } | number
+type IOptions = { value: number; key: string } | number | string
 
 interface ICustomSelect {
   options: IOptions[]
   handleChange: (event: React.ChangeEvent<{ name?: string; value: unknown }>) => void
   value: number | string
-  name: keyof IParsedDate
+  name: keyof IUserPolicy | keyof IParsedDate
   required?: boolean
 }
 
