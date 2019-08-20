@@ -26,7 +26,7 @@ export interface IParsedDate {
 }
 
 export interface IUserBirthDate {
-  birthDate: IParsedDate
+  birthdate: IParsedDate
 }
 
 export interface IUserInfo {

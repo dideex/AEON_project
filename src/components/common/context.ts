@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import { TMyInfo, IUserPreview, TMsgOrDivider, IChat } from '../../types'
+import { TMyInfo, IUserPreview, TMsgOrDivider, IChat, IUserSettings } from '../../types'
 const noOp = () => () => {}
 
 export type THandleAction = (id: string) => (e: React.MouseEvent<HTMLElement>) => void
@@ -13,6 +13,7 @@ export interface IContext {
     handleInviteToChat: THandleAction
     handleRemoveFromFriends: THandleAction
     handleAddToMute: THandleAction
+    handleUpdateProfile: (data: Required<IUserSettings>) => void
   }
 }
 const Context = createContext<IContext>({
@@ -23,7 +24,7 @@ const Context = createContext<IContext>({
     lastname: '',
     city: '',
     gender: null,
-    birthDate: {
+    birthdate: {
       month: 0,
       year: 0,
       day: 0,
@@ -54,6 +55,7 @@ const Context = createContext<IContext>({
     handleInviteToChat: noOp,
     handleRemoveFromFriends: noOp,
     handleAddToMute: noOp,
+    handleUpdateProfile: () => {},
   },
 })
 

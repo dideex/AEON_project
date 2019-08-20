@@ -120,7 +120,7 @@ export const me: TMyInfo = {
   age: 66,
   registered: '1547395200000',
   isOnline: true,
-  birthDate: {
+  birthdate: {
     month: 2,
     year: 1963,
     day: 22,

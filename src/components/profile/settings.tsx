@@ -19,10 +19,10 @@ const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 const Settings: React.FC = () => {
-  const { me } = React.useContext(Context)
+  const { me, action } = React.useContext(Context)
   const classes = useStyles()
   const initialState = getInitialState(me)
-  const { birthDate: initilaDate } = me
+  const { birthdate: initilaDate } = me
 
   const [state, setState] = React.useState<Required<IUserSettings>>(initialState)
   const getInputProps = (name: keyof IUserSettings) => {
@@ -37,60 +37,65 @@ const Settings: React.FC = () => {
     }
   }
 
-  const [values, setValues] = React.useState<IParsedDate>(initilaDate)
+  const [birthdate, setBirthdate] = React.useState<IParsedDate>(initilaDate)
   function handleChange(event: React.ChangeEvent<{ name?: string; value: unknown }>) {
-    setValues(oldValues => ({
-      ...oldValues,
+    setBirthdate(oldState => ({
+      ...oldState,
       [event.target.name as keyof IParsedDate]: event.target.value,
     }))
+  }
+  const handleSubmit = (e: React.MouseEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    // FIXME: replace it to container
+    action.handleUpdateProfile({ ...state, ...birthdate })
   }
   return (
     <Paper className={classes.paper}>
       <Typography gutterBottom variant="h5">
         Edit personal data:
       </Typography>
-      <Grid className={classes.form} container spacing={4}>
-        <Grid item xs={12} sm={6}>
-          <CustomInput {...getInputProps('firstname')} type="text" />
+      <form onSubmit={handleSubmit}>
+        <Grid className={classes.form} container spacing={4}>
+          {([
+            'firstname',
+            'lastname',
+            'patronymic',
+            'city',
+          ] as (keyof IUserSettings)[]).map(name => (
+            <Grid key={name} item xs={12} sm={6}>
+              <CustomInput {...getInputProps(name)} type="text" />
+            </Grid>
+          ))}
+          <Grid item xs={12} sm={4}>
+            <CustomSelect
+              name="month"
+              handleChange={handleChange}
+              options={months.map(monthId => ({ value: monthId, key: month[monthId] }))}
+              value={birthdate.month}
+            />
+          </Grid>
+          <Grid item xs={6} sm={4}>
+            <CustomSelect
+              name="day"
+              handleChange={handleChange}
+              options={days[birthdate.month]}
+              value={birthdate.day}
+            />
+          </Grid>
+          <Grid item xs={6} sm={4}>
+            <CustomSelect
+              name="year"
+              handleChange={handleChange}
+              options={years}
+              value={birthdate.year}
+            />
+          </Grid>
+          <Grid item xs={12} sm={12}>
+            <CustomInput {...getInputProps('about')} type="text" />
+          </Grid>
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <CustomInput {...getInputProps('lastname')} type="text" />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <CustomInput {...getInputProps('patronymic')} type="text" />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <CustomInput {...getInputProps('city')} type="text" />
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <CustomSelect
-            name="month"
-            handleChange={handleChange}
-            options={months.map(monthId => ({ value: monthId, key: month[monthId] }))}
-            value={values.month}
-          />
-        </Grid>
-        <Grid item xs={6} sm={4}>
-          <CustomSelect
-            name="day"
-            handleChange={handleChange}
-            options={days[values.month]}
-            value={values.day}
-          />
-        </Grid>
-        <Grid item xs={6} sm={4}>
-          <CustomSelect
-            name="year"
-            handleChange={handleChange}
-            options={years}
-            value={values.year}
-          />
-        </Grid>
-        <Grid item xs={12} sm={12}>
-          <CustomInput {...getInputProps('about')} type="text" />
-        </Grid>
-      </Grid>
-      <AccentButton title="Save" className={classes.submit} />
+        <AccentButton title="Save" className={classes.submit} />
+      </form>
     </Paper>
   )
 }
