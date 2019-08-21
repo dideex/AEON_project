@@ -3,7 +3,6 @@ import {
   Typography,
   Theme,
   Avatar,
-  Tooltip,
   Dialog,
   DialogTitle,
   DialogActions,
@@ -11,13 +10,10 @@ import {
   Chip,
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import Masonry from 'react-masonry-component'
-import { CSSTransition } from 'react-transition-group'
 
-import { Context } from '../../common'
-import { IPhoto, IUserPreview } from '../../../types'
+import { Context, UsersPopover, LikeButton } from '../../common'
+import { IPhoto } from '../../../types'
 import { getFullName } from '../../../utils'
 import { parseDateAgo } from '../../../utils/parseDate'
 
@@ -48,73 +44,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   date: {
     marginLeft: 'auto',
-    color: theme.palette.text.secondary,
-  },
-  likes: {
-    display: 'flex',
-    alignItems: 'center',
-    minWidth: '20%',
-    cursor: 'pointer',
-  },
-  likesContent: {
-    padding: theme.spacing(1),
-  },
-  heart: {
-    color: theme.color.subAccent,
-    fontSize: '2vw',
-    [theme.breakpoints.down('sm')]: {
-      fontSize: '8vw',
-    },
+    color: theme.color.fontSecondary,
   },
   image: {
     borderRadius: theme.shape.borderRadius,
     width: '100%',
     cursor: 'pointer',
-  },
-  friendsPopover: {
-    display: 'none',
-    zIndex: 9,
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: '100%',
-    padding: theme.spacing(1),
-    backgroundColor: 'white',
-    boxShadow: theme.settings.boxShadow,
-    borderRadius: theme.shape.borderRadius,
-    transform: 'translateY(-25px)',
-  },
-  transition: {
-    '&-enter': {
-      opacity: 0,
-      display: 'flex',
-    },
-    '&-enter-done': {
-      opacity: 1,
-      display: 'flex',
-      transform: 'translateY(0)',
-    },
-    '&-enter-active': {
-      opacity: 1,
-      display: 'flex',
-      transform: 'translateY(0)',
-      transition: theme.transitions.create(['transform', 'opacity'], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-    },
-    '&-exit': {
-      opacity: 1,
-      display: 'flex',
-      transform: 'translateY(0)',
-    },
-    '&-exit-done': {
-      display: 'none',
-    },
-    '&-exit-active': {
-      opacity: 0,
-      transition: 'transform 200ms, opacity 200ms',
-    },
   },
   fullImage: {
     width: '100%',
@@ -129,31 +64,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: 'white',
   },
 }))
-
-interface IFriendsPopover {
-  likes: IUserPreview[]
-}
-
-const FriendsPopover: React.FC<IFriendsPopover> = ({ likes }) => {
-  const classes = useStyles()
-  return (
-    <div className={classes.friendsPopover}>
-      {likes.slice(0, 5).map((like, i) => (
-        <Tooltip
-          key={i}
-          enterDelay={500}
-          title={getFullName(like.firstname, like.lastname, like.patronymic)}
-          aria-label={getFullName(like.firstname, like.lastname, like.patronymic)}
-        >
-          <Avatar
-            src={like.avatar}
-            alt={getFullName(like.firstname, like.lastname, like.patronymic)}
-          />
-        </Tooltip>
-      ))}
-    </div>
-  )
-}
 
 interface IGalleryPost extends IPhoto {
   handleLike: (e: React.MouseEvent<HTMLDivElement>) => void
@@ -208,16 +118,10 @@ const GalleryPost: React.FC<IGalleryPost> = props => {
       </div>
       <img className={classes.image} src={url} alt={title} onClick={openModal} />
       <div className={classes.tail}>
-        <div className={classes.likes} onClick={handleLike} onMouseEnter={onHover}>
-          <FontAwesomeIcon icon={faHeart} className={classes.heart} />
-          <Typography className={classes.likesContent} variant="subtitle1">
-            {likes.length}
-          </Typography>
-          {Boolean(likes.length) && (
-            <CSSTransition in={isHovered} timeout={200} classNames={classes.transition}>
-              <FriendsPopover likes={likes} />
-            </CSSTransition>
-          )}
+        <div onClick={handleLike} onMouseEnter={onHover}>
+          <LikeButton isHovered={isHovered} count={likes.length}>
+            <UsersPopover users={likes} />
+          </LikeButton>
         </div>
         <div className={classes.date}>
           <Typography variant="subtitle1">{parseDateAgo(date)}</Typography>

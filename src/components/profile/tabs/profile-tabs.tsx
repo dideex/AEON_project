@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const FullWidthTabs: React.FC = () => {
   const classes = useStyles()
   const theme = useTheme()
-  const [tab, setTab] = React.useState<number>(0)
+  const [tab, setTab] = React.useState<number>(1)
 
   function handleChange(_: React.ChangeEvent<{}>, newValue: number) {
     setTab(newValue)
