@@ -2,7 +2,7 @@ import { IMessage, IFormattedMessage, IUserPreview, IChat } from '../types'
 import users from './users'
 import { stark } from './me'
 
-const minsFromNow = (min: number): string => {
+export const minsFromNow = (min: number): string => {
   const now = new Date()
   return now.setMinutes(now.getMinutes() - min).toString()
 }
