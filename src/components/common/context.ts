@@ -1,5 +1,12 @@
 import { createContext } from 'react'
-import { TMyInfo, IUserPreview, TMsgOrDivider, IChat, IUserSettings } from '../../types'
+import {
+  TMyInfo,
+  IUserPreview,
+  TMsgOrDivider,
+  IChat,
+  IUserSettings,
+  IUserPolicy,
+} from '../../types'
 const noOp = () => () => {}
 
 export type THandleAction = (id: string) => (e: React.MouseEvent<HTMLElement>) => void
@@ -14,6 +21,8 @@ export interface IContext {
     handleRemoveFromFriends: THandleAction
     handleAddToMute: THandleAction
     handleUpdateProfile: (data: Required<IUserSettings>) => void
+    handleUserPolicy: (data: IUserPolicy) => void
+    handleUpdateAvatar: (data: File) => void
   }
 }
 const Context = createContext<IContext>({
@@ -56,6 +65,8 @@ const Context = createContext<IContext>({
     handleRemoveFromFriends: noOp,
     handleAddToMute: noOp,
     handleUpdateProfile: () => {},
+    handleUserPolicy: () => {},
+    handleUpdateAvatar: () => {},
   },
 })
 

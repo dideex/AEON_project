@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 const ChangeAvatar: React.FC = () => {
   const classes = useStyles()
   const { avatar } = React.useContext(Context).me
+  const { handleUpdateAvatar } = React.useContext(Context).action
   const [title, setTitle] = React.useState<string>('My avatar')
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
@@ -50,6 +51,10 @@ const ChangeAvatar: React.FC = () => {
       })
       reader.readAsDataURL(upload)
     }
+  }
+
+  const handleSubmit = () => {
+    if (file.upload) handleUpdateAvatar(file.upload)
   }
   return (
     <>
@@ -80,7 +85,7 @@ const ChangeAvatar: React.FC = () => {
           onChange={handleSelectFile}
         />
       </div>
-      <AccentButton title="Save" className={classes.submit} />
+      <AccentButton onClick={handleSubmit} title="Save" className={classes.submit} />
     </>
   )
 }
