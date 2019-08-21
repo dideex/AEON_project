@@ -61,6 +61,6 @@ export const birthdatePlaceholders: {
   month: 'Birth month',
   year: 'Birth year',
   day: 'Birth day',
-  profile: 'Profile policy',
-  message: 'Message policy',
+  profile: 'Show profile',
+  message: 'Direct message',
 }

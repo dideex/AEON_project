@@ -1,18 +1,30 @@
 import * as React from 'react'
-import { makeStyles, Theme, Grid, Switch, FormControlLabel } from '@material-ui/core'
+import {
+  makeStyles,
+  Theme,
+  Grid,
+  Switch,
+  FormControlLabel,
+  Typography,
+} from '@material-ui/core'
 
-import { Context, CustomSelect } from '../../common'
+import { Context, CustomSelect, AccentButton } from '../../common'
 import { IUserPolicy } from '../../../types'
 
 const useStyles = makeStyles((theme: Theme) => ({
-  root: { padding: theme.spacing(0) },
+  marginTop: {
+    paddingTop: theme.spacing(4),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
 }))
 
 const Notifications: React.FC = () => {
   const classes = useStyles()
   const initialPolicy: IUserPolicy = {
-    profile: 'pulbic',
-    message: 'pulbic',
+    profile: 'public',
+    message: 'public',
     notifyFriendRequest: false,
     notifyPhotoRating: false,
     notifyNewPosts: false,
@@ -42,19 +54,38 @@ const Notifications: React.FC = () => {
       [event.target.name as keyof IUserPolicy]: event.target.value,
     }))
   }
-
-  // console.log(' LOG ___ state ', state)
-
+  const policyOptions = [
+    { value: 'private', key: 'Only friends' },
+    { value: 'public', key: 'Everyone' },
+  ]
   return (
     <>
-      <Grid className={classes.root} container spacing={2}>
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={12}>
+          <Typography gutterBottom variant="h5">
+            Profile privocy:
+          </Typography>
+        </Grid>
         <Grid item xs={12} sm={6}>
           <CustomSelect
             name="profile"
             handleChange={handleSelectChange}
-            options={['private', 'public']}
+            options={policyOptions}
             value={state.profile}
           />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <CustomSelect
+            name="message"
+            handleChange={handleSelectChange}
+            options={policyOptions}
+            value={state.message}
+          />
+        </Grid>
+        <Grid item xs={12} sm={12}>
+          <Typography className={classes.marginTop} gutterBottom variant="h5">
+            Notification&apos;s policy:
+          </Typography>
         </Grid>
         <Grid item xs={12} sm={12}>
           <FormControlLabel
@@ -73,6 +104,9 @@ const Notifications: React.FC = () => {
             control={getSwitch('notifyPhotoRating')}
             label="Allow new photo likes notification"
           />
+        </Grid>
+        <Grid item xs={12} sm={12}>
+          <AccentButton title="Save" className={classes.submit} />
         </Grid>
       </Grid>
     </>

@@ -1,17 +1,20 @@
 import * as React from 'react'
-import { FormControl, InputLabel, Select, MenuItem } from '@material-ui/core'
+import { FormControl, InputLabel, Select, MenuItem, Theme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
 import { birthdatePlaceholders } from '../../constants'
 import { IParsedDate, IUserPolicy } from '../../types'
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme: Theme) => ({
   select: {
     width: '100%',
   },
+  label: {
+    color: theme.color.fontSecondary,
+  },
 }))
 
-type IOptions = { value: number; key: string } | number | string
+type IOptions = { value: number | string; key: string } | number | string
 
 interface ICustomSelect {
   options: IOptions[]
@@ -26,7 +29,7 @@ const CustomSelect: React.FC<ICustomSelect> = props => {
   const classes = useStyles()
   return (
     <FormControl className={classes.select} required={required}>
-      <InputLabel htmlFor={birthdatePlaceholders[name]}>
+      <InputLabel className={classes.label} htmlFor={birthdatePlaceholders[name]}>
         {birthdatePlaceholders[name]}
       </InputLabel>
       <Select

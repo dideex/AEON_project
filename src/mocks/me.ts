@@ -138,6 +138,13 @@ export const me: TMyInfo = {
   photos,
   friends,
   ignores: [users.batman],
+  policy: {
+    message: 'private',
+    profile: 'public',
+    notifyFriendRequest: true,
+    notifyNewPosts: false,
+    notifyPhotoRating: true,
+  },
 }
 
 export const stark: IUserPreview = {

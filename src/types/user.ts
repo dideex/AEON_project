@@ -83,7 +83,7 @@ export interface IAvatarProps {
   upload: string
 }
 
-type TPolicy = 'pulbic' | 'private'
+type TPolicy = 'public' | 'private'
 export interface IUserPolicy {
   profile: TPolicy
   message: TPolicy
