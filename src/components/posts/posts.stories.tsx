@@ -8,7 +8,7 @@ import { CustomThemeProvider as ThemeProvider } from '../../service'
 import { IPost } from '../../types'
 import PostCmp from './post'
 import PostsCmp from './posts'
-import { post1, me } from '../../mocks'
+import { post1, me, post2 } from '../../mocks'
 import { ProfileAndInfo } from '../../layout'
 import { MyContainer } from '../../containers'
 
@@ -48,7 +48,7 @@ stories
   .add('Posts: Mobile layout', () => <Posts {...post1} />, {
     viewport: { defaultViewport: 'iphonex' },
   })
-  .add('Post: Basic view', () => <Post {...post1} />)
-  .add('Post: Mobile layout', () => <Post {...post1} />, {
+  .add('Post: Basic view', () => <Post {...post2} />)
+  .add('Post: Mobile layout', () => <Post {...post2} />, {
     viewport: { defaultViewport: 'iphonex' },
   })

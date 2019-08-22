@@ -19,8 +19,12 @@ export const post2: IPost = {
   id: '2',
   title: "'Marvel's Spider-Man' For PS4 Has Sold Over 13 Million Units Worldwide",
   body: `As we near the first anniversary since the critically-acclaimed release of Marvel's Spider-Man, exclusively for PlayStation 4, Sony has revealed some exciting news about the game's reception!
-
-As of July 28, Marvel's Spider-Man has sold over 13.2 million units globally. This has not been the only records the game has broken; within the first few days on the market, the game became the PS4's fastest-selling game. Other milestones include becoming the best-selling Super Hero game in the United States, as well as being the highest sold game exclusively made for PS4.`,
+<br /><br />
+  As of July 28, Marvel's Spider-Man has sold over 13.2 million units globally. This has not been the only records the game has broken; within the first few days on the market, the game became the PS4's fastest-selling game. Other milestones include becoming highest sold game exclusively made for PS4 and the distinction of being best-selling Super Hero game of all time!
+  <br /><br />
+  You can pick up Marvel's Spider-Man on PS4 as well as all three chapters of the Marvel's Spider-Man: The City That Never Sleeps DLC now.
+  <br /><br />
+  Keep it on Marvel.com for all the latest and greatest on Marvel’s Spider-Man and the rest of the Marvel Games roster. And follow Marvel Games on Twitter for more!`,
   views: 13,
   author: users.spinderman,
   photo: '/image/post/post2.jpg',

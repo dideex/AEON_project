@@ -13,6 +13,7 @@ const useStyles = makeStyles(() => ({
     left: 0,
     right: 0,
     top: '100%',
+    // TODO: add flexible width which would be getting from the sum of inner components
     // padding: theme.spacing(1),
     // backgroundColor: 'white',
     // boxShadow: theme.settings.boxShadow,
