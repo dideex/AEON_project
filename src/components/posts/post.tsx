@@ -72,16 +72,15 @@ const Post: React.FC<IPost> = props => {
   const [isCollapse, setCollapse] = React.useState<boolean | null>(null)
   const toggleCollapse = () => setCollapse(!isCollapse)
 
-  const postBody = React.useRef<HTMLElement | null>(null)
   const postBodyText = React.useRef<HTMLDivElement | null>(null)
   React.useEffect(() => {
-    if (!postBody.current) return
-    if (postBody.current.clientHeight >= 100) {
+    if (!postBodyText.current) return
+    if (postBodyText.current.clientHeight >= 100) {
       setCollapse(false)
     }
   }, [])
   const getCollapsedHeight = (): number | 'auto' => {
-    if (!postBody.current) return 'auto'
+    if (!postBodyText.current) return 'auto'
     if (isCollapse) {
       return (postBodyText.current && postBodyText.current.clientHeight) || 'auto'
     } else {
@@ -100,7 +99,6 @@ const Post: React.FC<IPost> = props => {
       </Typography>
       {photo && <img className={classes.image} src={photo} alt={title} />}
       <Typography
-        ref={postBody}
         className={classes.body}
         style={{ height: getCollapsedHeight() }}
         variant="subtitle2"

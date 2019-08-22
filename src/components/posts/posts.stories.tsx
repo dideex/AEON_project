@@ -8,7 +8,7 @@ import { CustomThemeProvider as ThemeProvider } from '../../service'
 import { IPost } from '../../types'
 import PostCmp from './post'
 import PostsCmp from './posts'
-import { post1, me, post2 } from '../../mocks'
+import { me, post2, fakePosts } from '../../mocks'
 import { ProfileAndInfo } from '../../layout'
 import { MyContainer } from '../../containers'
 
@@ -27,7 +27,7 @@ const Post = (props: IPost) => (
   </ThemeProvider>
 )
 
-const Posts = (props: IPost) => (
+const Posts = (props: any) => (
   <ThemeProvider>
     <MyContainer id={me.id}>
       <ProfileAndInfo>
@@ -44,8 +44,8 @@ stories.addDecorator(StoryRouter())
 
 stories
   .addParameters({ viewport: { defaultViewport: 'responsive' } })
-  .add('Posts: Basic view', () => <Posts {...post1} />)
-  .add('Posts: Mobile layout', () => <Posts {...post1} />, {
+  .add('Posts: Basic view', () => <Posts posts={fakePosts} />)
+  .add('Posts: Mobile layout', () => <Posts posts={fakePosts} />, {
     viewport: { defaultViewport: 'iphonex' },
   })
   .add('Post: Basic view', () => <Post {...post2} />)

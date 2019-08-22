@@ -1,7 +1,8 @@
 import * as React from 'react'
 import { makeStyles } from '@material-ui/styles'
-import { Theme } from '@material-ui/core'
+import { Theme, Paper } from '@material-ui/core'
 
+import Post from './post'
 import { IPost } from '../../types'
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -10,9 +11,19 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-const Post: React.FC<IPost> = props => {
-  const classes = useStyles()
-  return <div className={classes.wrap}>{props.title}</div>
+interface IPosts {
+  posts: IPost[]
 }
 
-export default Post
+const Posts: React.FC<IPosts> = ({ posts }) => {
+  const classes = useStyles()
+  return (
+    <Paper className={classes.wrap}>
+      {posts.map(post => (
+        <Post key={post.id} {...post} />
+      ))}
+    </Paper>
+  )
+}
+
+export default Posts

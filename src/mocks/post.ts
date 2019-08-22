@@ -73,3 +73,5 @@ export const post4: IPost = {
   ],
   date: minsFromNow(15),
 }
+
+export const fakePosts: IPost[] = [post1, post2, post3, post4]
