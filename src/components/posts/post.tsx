@@ -58,12 +58,14 @@ const useStyles = makeStyles((theme: Theme) => ({
 const Post: React.FC<IPost> = props => {
   const { title, author, date, likes = [], photo, id, body } = props
   const classes = useStyles()
-  const fullName = getFullName(author.firstname, author.lastname)
 
   const { handleLike } = React.useContext(Context).action
+  const { id: myId } = React.useContext(Context).me
   const handleLikeBind = () => {
     handleLike(id)
   }
+  const fullName =
+    author.id === myId ? 'You' : getFullName(author.firstname, author.lastname)
 
   const [isHovered, setHover] = React.useState<boolean>(false)
 
