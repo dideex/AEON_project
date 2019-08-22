@@ -6,6 +6,7 @@ import { IPost } from '../../types'
 import { getFullName } from '../../utils'
 import { parseDateAgo } from '../../utils/parseDate'
 import { LikeButton, UsersPopover, Context } from '../common'
+import { POST_BODY_MAX_HEIGHT } from '../../constants'
 
 const useStyles = makeStyles((theme: Theme) => ({
   wrap: {
@@ -75,16 +76,16 @@ const Post: React.FC<IPost> = props => {
   const postBodyText = React.useRef<HTMLDivElement | null>(null)
   React.useEffect(() => {
     if (!postBodyText.current) return
-    if (postBodyText.current.clientHeight >= 100) {
+    if (postBodyText.current.clientHeight >= POST_BODY_MAX_HEIGHT) {
       setCollapse(false)
     }
   }, [])
   const getCollapsedHeight = (): number | 'auto' => {
-    if (!postBodyText.current) return 'auto'
+    if (!postBodyText.current || !isCollapsable) return 'auto'
     if (isCollapse) {
       return (postBodyText.current && postBodyText.current.clientHeight) || 'auto'
     } else {
-      return 100
+      return POST_BODY_MAX_HEIGHT
     }
   }
   const isCollapsable = isCollapse !== null
