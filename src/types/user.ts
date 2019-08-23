@@ -55,6 +55,9 @@ export interface ISocialStats {
 export interface IUserStatistic {
   statistic: IMyStats
   socialStatistic: ISocialStats
+}
+
+export interface IUserRegistered {
   registered: string
 }
 
@@ -100,7 +103,14 @@ export type TMyInfo = IUsername &
   IUserInfo &
   IUserBirthDate &
   IUserStatistic &
+  IUserRegistered &
   IPhotos &
   IFriends &
   IIgnores & { policy?: IUserPolicy }
+export type IUserProfileInfo = IUserPreview &
+  IUserGender &
+  IUserBirthDate &
+  IPhotos &
+  IFriends &
+  IUserRegistered
 export type IUserSettings = IUserBio & IUserSettingsInfo

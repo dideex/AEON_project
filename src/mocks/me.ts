@@ -1,4 +1,4 @@
-import { IPhoto, TMyInfo, IUserPreview } from '../types'
+import { IPhoto, TMyInfo, IUserPreview, IUserProfileInfo } from '../types'
 import users from './users'
 
 const friends: IUserPreview[] = Object.values(users).filter(
@@ -157,4 +157,17 @@ export const stark: IUserPreview = {
   about: me.about,
   age: me.age,
   isOnline: me.isOnline,
+}
+
+export const fakeSpiderman: IUserProfileInfo = {
+  ...users.deadpool,
+  gender: 'male',
+  registered: '1547395200000',
+  birthdate: {
+    month: 1,
+    day: 31,
+    year: 1989,
+  },
+  photos: [],
+  friends: [stark, users.spinderman],
 }

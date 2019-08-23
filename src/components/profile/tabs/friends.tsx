@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Theme, Avatar, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
-import { Context, VerticalMenu } from '../../common'
+import { Context, VerticalMenu, UserProfileContext } from '../../common'
 import { IUserPreview } from '../../../types'
 import { getFullName } from '../../../utils'
 
@@ -55,7 +55,7 @@ const FriendCard: React.FC<IFriendCard> = props => {
     handleRemoveFromFriends,
     handleAddToMute,
   } = React.useContext(Context).action
-  const { ignores } = React.useContext(Context).me
+  const { id: myId, ignores } = React.useContext(Context).me
   const { id, firstname, lastname, age, avatar, isOnline, about } = props
   const muteLabel = Boolean(ignores.find(user => user.id === id)) ? 'Unmute' : 'Munte'
   const options = [
@@ -64,19 +64,16 @@ const FriendCard: React.FC<IFriendCard> = props => {
     { label: 'Remove', onClick: handleRemoveFromFriends(id) },
     { label: muteLabel, onClick: handleAddToMute(id) },
   ]
+  const fullName = myId === id ? 'You' : getFullName(firstname, lastname)
   return (
     <div className={classes.card}>
       <figure className={classes.avatarWrap}>
-        <Avatar
-          className={classes.avatar}
-          src={avatar}
-          alt={getFullName(firstname, lastname)}
-        />
+        <Avatar className={classes.avatar} src={avatar} alt={fullName} />
         {isOnline && <div className={classes.online} />}
       </figure>
       <div className={classes.content}>
         <Typography variant="h5">
-          {getFullName(firstname, lastname)}, {age}
+          {fullName}, {age}
         </Typography>
         <Typography className={classes.about} variant="subtitle1">
           {about}
@@ -88,7 +85,7 @@ const FriendCard: React.FC<IFriendCard> = props => {
 }
 
 const FriendsPanel: React.FC = () => {
-  const { friends } = React.useContext(Context).me
+  const { friends } = React.useContext(UserProfileContext)
   return (
     <>
       {friends.map(friend => (

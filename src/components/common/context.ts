@@ -6,6 +6,7 @@ import {
   IChat,
   IUserSettings,
   IUserPolicy,
+  IUserProfileInfo,
 } from '../../types'
 const noOp = () => () => {}
 
@@ -127,6 +128,28 @@ export const InfoContext = createContext<IInfoWidgetCtx>({
   chatInvites: 0,
 })
 
+export const UserProfileContext = createContext<IUserProfileInfo>({
+  id: '',
+  username: '',
+  firstname: '',
+  lastname: '',
+  city: '',
+  gender: null,
+  birthdate: {
+    month: 0,
+    day: 0,
+    year: 0,
+  },
+  isOnline: false,
+  avatar: '',
+  age: 0,
+  registered: '',
+  photos: [],
+  friends: [],
+})
+
+// prettier-ignore
+export const { Provider: UserProfileProvider, Consumer: UserProfileConsumer, } = UserProfileContext
 export const { Provider: InfoProvider, Consumer: InfoConsumer } = InfoContext
 export const { Provider: ChatProvider, Consumer: ChatConsumer } = ChatContext
 export const { Provider: UserCtxProvider, Consumer: UserCtxConsumer } = UserContext

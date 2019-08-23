@@ -21,4 +21,7 @@ export {
   InfoProvider,
   InfoConsumer,
   InfoContext,
+  UserProfileProvider,
+  UserProfileConsumer,
+  UserProfileContext,
 } from './context'

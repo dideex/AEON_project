@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Grid, Theme, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
-import { Context } from '../../common'
+import { UserProfileContext } from '../../common'
 import { parseDate, getFullName } from '../../../utils'
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const InfoPanel: React.FC = () => {
   const classes = useStyles()
-  const { me } = React.useContext(Context)
   const {
     firstname,
     lastname,
@@ -28,7 +27,7 @@ const InfoPanel: React.FC = () => {
     isOnline,
     id,
     age,
-  } = me
+  } = React.useContext(UserProfileContext)
 
   const fields = {
     left: {

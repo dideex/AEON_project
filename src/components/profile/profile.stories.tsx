@@ -6,21 +6,41 @@ import { grey } from '@material-ui/core/colors'
 import StoryRouter from 'storybook-react-router'
 
 import MyProfileCmp from './my-profile'
+import UserProfileCmp from './user-profile'
 import SettingsCmp from './settings'
 import { CustomThemeProvider as ThemeProvider } from '../../service'
-import { me } from '../../mocks'
+import { me, users } from '../../mocks'
 import { ProfileAndInfo } from '../../layout'
-import { MyContainer } from '../../containers'
+import { MyContainer, UserContainer, UserProfileContainer } from '../../containers'
 
 const MyProfile = (props: any) => (
   <ThemeProvider>
     <MyContainer id={me.id}>
-      <Container component="main" style={{ backgroundColor: grey[50] }}>
-        <MyProfileCmp {...props} />
-      </Container>
+      <UserProfileContainer userId={me.id}>
+        <Container component="main" style={{ backgroundColor: grey[50] }}>
+          <MyProfileCmp {...props} />
+        </Container>
+      </UserProfileContainer>
     </MyContainer>
   </ThemeProvider>
 )
+
+const UserProfile = (props: any) => {
+  const userId = users.deadpool.id
+  return (
+    <ThemeProvider>
+      <MyContainer id={me.id}>
+        <UserProfileContainer userId={userId}>
+          <UserContainer userId={userId}>
+            <Container component="main" style={{ backgroundColor: grey[50] }}>
+              <UserProfileCmp {...props} />
+            </Container>
+          </UserContainer>
+        </UserProfileContainer>
+      </MyContainer>
+    </ThemeProvider>
+  )
+}
 
 const Settings = () => (
   <ThemeProvider>
@@ -41,6 +61,10 @@ stories
   .addParameters({ viewport: { defaultViewport: 'responsive' } })
   .add('MyProfile: Basic', () => <MyProfile />)
   .add('MyProfile: Mobile', () => <MyProfile />, {
+    viewport: { defaultViewport: 'iphonex' },
+  })
+  .add('User Profile: Basic', () => <UserProfile />)
+  .add('User Profile: Mobile', () => <UserProfile />, {
     viewport: { defaultViewport: 'iphonex' },
   })
   .add('Settings: Basic', () => <Settings />)
