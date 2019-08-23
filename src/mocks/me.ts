@@ -1,5 +1,7 @@
 import { IPhoto, TMyInfo, IUserPreview, IUserProfileInfo } from '../types'
-import users from './users'
+import { users } from '../mocks'
+import { minsFromNow } from '../utils'
+// import { minsFromNow } from './chat'
 
 const friends: IUserPreview[] = Object.values(users).filter(
   user => user.lastname !== 'Quill',
@@ -148,18 +150,62 @@ export const me: TMyInfo = {
 }
 
 export const stark: IUserPreview = {
-  id: me.id,
-  username: me.username,
-  firstname: me.firstname,
-  lastname: me.lastname,
-  avatar: me.avatar,
-  city: me.city,
-  about: me.about,
-  age: me.age,
-  isOnline: me.isOnline,
+  ...(me as IUserPreview),
 }
 
-export const fakeSpiderman: IUserProfileInfo = {
+const deadpoolPhotos: IPhoto[] = [
+  {
+    id: '0005',
+    title: 'Pretty post with me',
+    date: minsFromNow(40),
+    url: '/image/gallery/p_5.jpg',
+    likes: [
+      users.spinderman,
+      users.batman,
+      users.superman,
+      users.hulk,
+      users.wolverine,
+      users.daredevil,
+    ],
+  },
+  {
+    id: '0001',
+    title: 'There is me',
+    date: minsFromNow(1),
+    url: '/image/gallery/p_1.jpg',
+    likes: [users.spinderman, users.batman, users.superman],
+  },
+  {
+    id: '0002',
+    title: 'Oooh my...',
+    date: minsFromNow(5),
+    url: '/image/gallery/p_2.jpg',
+    likes: [users.spinderman, users.batman, users.superman, users.gamora, users.thor],
+  },
+  {
+    id: '0006',
+    title: 'Yo!',
+    date: minsFromNow(120),
+    url: '/image/gallery/p_6.jpg',
+    likes: Object.values(users),
+  },
+  {
+    id: '0003',
+    title: 'Where were we?',
+    date: minsFromNow(8),
+    url: '/image/gallery/p_3.jpg',
+    likes: [users.pepper, users.venom, users.superman, users.quill],
+  },
+  {
+    id: '0004',
+    title: 'Fuck off <3',
+    date: minsFromNow(20),
+    url: '/image/gallery/p_4.jpg',
+    likes: [users.spinderman, users.batman],
+  },
+]
+
+export const fakeDeadpool: IUserProfileInfo = {
   ...users.deadpool,
   gender: 'male',
   registered: '1547395200000',
@@ -168,6 +214,6 @@ export const fakeSpiderman: IUserProfileInfo = {
     day: 31,
     year: 1989,
   },
-  photos: [],
+  photos: deadpoolPhotos,
   friends: [stark, users.spinderman],
 }

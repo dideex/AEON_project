@@ -57,3 +57,8 @@ export function getFullName<T>(first: T, last: T, patronymic?: T): string {
 
 export const callAll = (...fns: any[]) => (...args: any[]) =>
   fns.forEach(fn => fn && fn(...args))
+
+export const minsFromNow = (min: number): string => {
+  const now = new Date()
+  return now.setMinutes(now.getMinutes() - min).toString()
+}

@@ -1,11 +1,7 @@
 import { IMessage, IFormattedMessage, IUserPreview, IChat } from '../types'
 import users from './users'
 import { stark } from './me'
-
-export const minsFromNow = (min: number): string => {
-  const now = new Date()
-  return now.setMinutes(now.getMinutes() - min).toString()
-}
+import { minsFromNow } from '../utils'
 
 export const chatSingleMessage: IFormattedMessage = {
   id: 'x000000001',

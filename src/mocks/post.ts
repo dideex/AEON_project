@@ -1,7 +1,7 @@
 import { IPost } from '../types'
 import { stark } from './me'
 import users from './users'
-import { minsFromNow } from './chat'
+import { minsFromNow } from '../utils'
 
 export const post1: IPost = {
   id: '1',

@@ -12,7 +12,7 @@ import {
 import { makeStyles } from '@material-ui/styles'
 import Masonry from 'react-masonry-component'
 
-import { Context, UsersPopover, LikeButton } from '../../common'
+import { Context, UsersPopover, LikeButton, UserProfileContext } from '../../common'
 import { IPhoto } from '../../../types'
 import { getFullName } from '../../../utils'
 import { parseDateAgo } from '../../../utils/parseDate'
@@ -134,10 +134,8 @@ const GalleryPost: React.FC<IGalleryPost> = props => {
 
 const GalleryPanel: React.FC = () => {
   const classes = useStyles()
-  const {
-    me: { photos = [] },
-    action: { handleLike },
-  } = React.useContext(Context)
+  const { handleLike } = React.useContext(Context).action
+  const { photos } = React.useContext(UserProfileContext)
   return (
     <Masonry
       className={classes.root}

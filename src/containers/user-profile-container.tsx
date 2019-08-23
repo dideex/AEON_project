@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { UserProfileProvider, Context } from '../components/common'
 import { IUserProfileInfo } from '../types'
-import { fakeSpiderman } from '../mocks'
+import { fakeDeadpool } from '../mocks'
 
 interface IUserProfileContainer {
   children: React.ReactNode
@@ -30,6 +30,6 @@ interface IGetUser {
   children: (props: { user: IUserProfileInfo }) => JSX.Element
 }
 const GetUser: React.FC<IGetUser> = ({ children }) => {
-  const user = fakeSpiderman
+  const user = fakeDeadpool
   return children({ user })
 }
