@@ -70,13 +70,13 @@ const theme = createMuiTheme({
       light: pink[200],
       main: pink[300],
       dark: pink[500],
-      contrastText: 'white',
+      contrastText: grey[800],
     },
     error: {
       light: red[300],
       main: red[400],
       dark: red[700],
-      contrastText: 'white',
+      contrastText: grey[800],
     },
   },
 })
