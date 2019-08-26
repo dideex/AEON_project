@@ -148,8 +148,19 @@ export const UserProfileContext = createContext<IUserProfileInfo>({
   friends: [],
 })
 
+interface IUserGridContext {
+  users: IUserPreview[]
+  loading: boolean
+}
+
+export const UserGridContext = createContext<IUserGridContext>({
+  users: [],
+  loading: false,
+})
+
+export const { Provider: UserGridProvider, Consumer: UserGridConsumer } = UserGridContext
 // prettier-ignore
-export const { Provider: UserProfileProvider, Consumer: UserProfileConsumer, } = UserProfileContext
+export const { Provider: UserProfileProvider, Consumer: UserProfileConsumer } = UserProfileContext
 export const { Provider: InfoProvider, Consumer: InfoConsumer } = InfoContext
 export const { Provider: ChatProvider, Consumer: ChatConsumer } = ChatContext
 export const { Provider: UserCtxProvider, Consumer: UserCtxConsumer } = UserContext

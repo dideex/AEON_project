@@ -24,4 +24,7 @@ export {
   UserProfileProvider,
   UserProfileConsumer,
   UserProfileContext,
+  UserGridProvider,
+  UserGridConsumer,
+  UserGridContext,
 } from './context'
