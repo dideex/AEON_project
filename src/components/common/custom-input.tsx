@@ -34,6 +34,7 @@ export type TName =
   | 'about'
   | 'patronymic'
   | 'title'
+  | 'search'
 
 const placeholder = {
   username: 'Email',
@@ -44,14 +45,15 @@ const placeholder = {
   about: 'About me',
   patronymic: 'Patronymic',
   title: 'Title',
+  search: 'Search for user',
 }
 
 export interface ICustomInput {
   name: TName
-  type: TInputType
+  type?: TInputType
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void
   value: string
-  disabled: boolean
+  disabled?: boolean
   required?: boolean
   errorMessage?: string
   showError?: boolean
@@ -60,10 +62,10 @@ export interface ICustomInput {
 const CustomInput: React.FC<ICustomInput> = props => {
   const {
     name,
-    type,
+    type = 'text',
     handleChange,
     value = '',
-    disabled,
+    disabled = false,
     required = true,
     errorMessage = '',
     showError = false,

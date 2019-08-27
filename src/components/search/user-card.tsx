@@ -11,9 +11,22 @@ const useStyles = makeStyles((theme: Theme) => ({
   wrap: {
     display: 'flex',
     padding: theme.spacing(2, 0),
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column',
+    },
+  },
+  avatar: {
+    [theme.breakpoints.down('sm')]: {
+      margin: theme.spacing(2),
+      width: '15vh',
+      height: '15vh',
+    },
   },
   content: {
     paddingLeft: theme.spacing(2),
+    [theme.breakpoints.down('sm')]: {
+      paddingLeft: 0,
+    },
   },
   about: {
     color: theme.color.fontSecondary,
@@ -23,7 +36,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     paddingRight: theme.spacing(2),
     marginLeft: 'auto',
     cursor: 'pointer',
-    alignSelf: 'center',
+    [theme.breakpoints.down('sm')]: {
+      marginTop: theme.spacing(1),
+      marginRight: 'auto',
+    },
   },
 }))
 
@@ -35,7 +51,7 @@ const UserCard: React.FC<IUserPreview> = props => {
   const isFriend = Boolean(me.friends.find(friend => friend.id === id))
   return (
     <Grid item sm={4} xs={6} className={classes.wrap}>
-      <Avatar src={avatar} alt={fullName} />
+      <Avatar className={classes.avatar} src={avatar} alt={fullName} />
       <div className={classes.content}>
         <Typography variant="subtitle1">{fullName}</Typography>
         {Boolean(about) && (

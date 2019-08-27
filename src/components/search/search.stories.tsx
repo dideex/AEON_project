@@ -7,12 +7,15 @@ import SearchInput from './search'
 import { CustomThemeProvider as ThemeProvider } from '../../service'
 import { UserGridContainer, MyContainer } from '../../containers'
 import { me } from '../../mocks'
+import { InfoLayout } from '../../layout'
 
 const Search = () => (
   <ThemeProvider>
     <MyContainer id={me.id}>
       <UserGridContainer>
-        <SearchInput />
+        <InfoLayout>
+          <SearchInput />
+        </InfoLayout>
       </UserGridContainer>
     </MyContainer>
   </ThemeProvider>
