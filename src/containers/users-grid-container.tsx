@@ -5,15 +5,18 @@ import { users } from '../mocks'
 
 interface IUserGridContainer {
   children: React.ReactNode
+  isLoading?: boolean
 }
 
 export const UserGridContainer: React.FC<IUserGridContainer> = props => {
-  const { children } = props
+  const { children, isLoading } = props
 
   return (
     <GetUsers>
       {({ users, loading }) => (
-        <UserGridProvider value={{ users, loading }}>{children}</UserGridProvider>
+        <UserGridProvider value={{ users, loading: isLoading ? isLoading : loading }}>
+          {children}
+        </UserGridProvider>
       )}
     </GetUsers>
   )

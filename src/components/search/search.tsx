@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Typography, makeStyles, Theme, Grid, Paper } from '@material-ui/core'
 
-import { Loading, UserGridContext, CustomInput } from '../common'
+import { Loading, UserGridContext, CustomInput, AccentButton } from '../common'
 import UserCard from './user-card'
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -10,6 +10,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   paper: {
     padding: theme.spacing(2),
     marginBottom: theme.spacing(4),
+  },
+  button: {
+    marginTop: theme.spacing(4),
+    width: '30%',
   },
 }))
 
@@ -29,6 +33,7 @@ const Search: React.FC = () => {
           name="search"
           required={false}
         />
+        <AccentButton isLoading={loading} className={classes.button} title="Search" />
       </Paper>
       <Paper className={classes.paper}>
         <Typography gutterBottom variant="h5" className={classes.title}>
@@ -36,7 +41,7 @@ const Search: React.FC = () => {
         </Typography>
         <Grid container className={classes.users}>
           {loading ? (
-            <Loading />
+            <Loading type="block" />
           ) : (
             users.map(user => <UserCard key={user.id} {...user} />)
           )}
