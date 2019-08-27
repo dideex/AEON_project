@@ -3,16 +3,15 @@ import { UserGridProvider } from '../components/common'
 import { IUserPreview } from '../types'
 import { users } from '../mocks'
 
-interface IUserProfileContainer {
+interface IUserGridContainer {
   children: React.ReactNode
-  userId: string
 }
 
-export const UserProfileContainer: React.FC<IUserProfileContainer> = props => {
-  const { userId, children } = props
+export const UserGridContainer: React.FC<IUserGridContainer> = props => {
+  const { children } = props
 
   return (
-    <GetUsers id={userId}>
+    <GetUsers>
       {({ users, loading }) => (
         <UserGridProvider value={{ users, loading }}>{children}</UserGridProvider>
       )}
@@ -22,7 +21,6 @@ export const UserProfileContainer: React.FC<IUserProfileContainer> = props => {
 
 //TODO: implement graphql
 interface IGetUsers {
-  id: string
   children: (props: { users: IUserPreview[]; loading: boolean }) => JSX.Element
 }
 const GetUsers: React.FC<IGetUsers> = ({ children }) => {

@@ -1,7 +1,6 @@
 import { IPhoto, TMyInfo, IUserPreview, IUserProfileInfo } from '../types'
 import { users } from '../mocks'
 import { minsFromNow } from '../utils'
-// import { minsFromNow } from './chat'
 
 const friends: IUserPreview[] = Object.values(users).filter(
   user => user.lastname !== 'Quill',

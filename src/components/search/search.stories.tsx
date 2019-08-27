@@ -3,13 +3,18 @@ import { storiesOf } from '@storybook/react'
 import { withKnobs } from '@storybook/addon-knobs'
 import StoryRouter from 'storybook-react-router'
 
-import SearchInput, { ISearch } from './search'
-import { users } from '../../mocks'
+import SearchInput from './search'
 import { CustomThemeProvider as ThemeProvider } from '../../service'
+import { UserGridContainer, MyContainer } from '../../containers'
+import { me } from '../../mocks'
 
-const Search = (props: ISearch) => (
+const Search = () => (
   <ThemeProvider>
-    <SearchInput {...props} />
+    <MyContainer id={me.id}>
+      <UserGridContainer>
+        <SearchInput />
+      </UserGridContainer>
+    </MyContainer>
   </ThemeProvider>
 )
 
@@ -20,8 +25,8 @@ stories.addDecorator(StoryRouter())
 
 stories
   .addParameters({ viewport: { defaultViewport: 'responsive' } })
-  .add('Basic view', () => <Search users={Object.values(users)} />)
-  .add('Loading view', () => <Search users={Object.values(users)} loading />)
-  .add('Mobile layout', () => <Search users={Object.values(users)} />, {
+  .add('Basic view', () => <Search />)
+  .add('Loading view', () => <Search />)
+  .add('Mobile layout', () => <Search />, {
     viewport: { defaultViewport: 'iphonex' },
   })
