@@ -35,7 +35,7 @@ const Loading: React.FC<ILoading> = props => {
   } else {
     className.push(classes.block)
   }
-  const iternalSize = { medium: 24, small: 16, large: 30 }[size]
+  const iternalSize = { medium: 24, small: 16, large: 46 }[size]
   return (
     <CircularProgress
       color="secondary"

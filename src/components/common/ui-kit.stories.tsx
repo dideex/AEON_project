@@ -31,7 +31,12 @@ const VerticalMenu = (props: IVerticalMenu) => (
 const Loading = (props: any) => (
   <ThemeProvider>
     <Grid container justify="center">
-      <Grid style={{ position: 'relative' }} item xs={1} sm={1}>
+      <Grid
+        style={{ position: 'relative', backgroundColor: 'gray', minHeight: '50px' }}
+        item
+        xs={1}
+        sm={1}
+      >
         <LoadingCmp {...props} />
       </Grid>
     </Grid>
@@ -52,6 +57,17 @@ const nameOptions = {
   firstname: 'firstname',
   lastname: 'lastname',
   city: 'city',
+}
+
+const sizeOptions = {
+  small: 'small',
+  large: 'large',
+  medium: 'medium',
+}
+
+const colorOptions = {
+  white: 'white',
+  accent: 'accent',
 }
 
 const options: {
@@ -79,4 +95,9 @@ stories
     />
   ))
   .add('Vertical menu', () => <VerticalMenu options={options} />)
-  .add('Loading spiner', () => <Loading />)
+  .add('Loading spiner', () => (
+    <Loading
+      size={select('Size', sizeOptions, 'medium')}
+      color={select('Color', colorOptions, 'white')}
+    />
+  ))

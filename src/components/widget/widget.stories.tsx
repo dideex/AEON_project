@@ -11,13 +11,13 @@ import { IUserProfile } from './user-profile-widget'
 import { me, users } from '../../mocks'
 import { UserContainer, InfoWidgetContainer, MyContainer } from '../../containers'
 
-const ProfileWidgetWrap = (props: any) => (
+const ProfileWidgetWrap = ({ isLoading }: any) => (
   <ThemeProvider>
-    <MyContainer id={me.id}>
+    <MyContainer id={me.id} isLoading={isLoading}>
       <Container component="main" style={{ backgroundColor: grey[50] }}>
         <Grid container spacing={4}>
           <Grid item xs={12} sm={3}>
-            <ProfileWidget {...props} />
+            <ProfileWidget />
           </Grid>
         </Grid>
       </Container>
@@ -64,5 +64,6 @@ stories.addDecorator(withKnobs)
 stories
   .addParameters({ viewport: { defaultViewport: 'responsive' } })
   .add('My profile widget', () => <ProfileWidgetWrap />)
+  .add('My profile loading', () => <ProfileWidgetWrap isLoading />)
   .add('User profile widget', () => <UserProfileWidgetWrap />)
   .add('Info widget', () => <InfoWidgetWrap />)

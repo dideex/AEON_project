@@ -1,8 +1,9 @@
 import * as React from 'react'
 import { Paper, Avatar, Typography, Theme, Divider } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
+import { Skeleton } from '@material-ui/lab'
 
-import { Context } from '../common'
+import { Context, Loading } from '../common'
 
 const useStyles = makeStyles((theme: Theme) => ({
   paper: {
@@ -45,33 +46,66 @@ const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 const ProfileWidget: React.FC = () => {
-  const { me } = React.useContext(Context)
+  const { me, loading } = React.useContext(Context)
   const classes = useStyles()
+  const getSkeletonUserInfo = () => (
+    <>
+      <Typography variant="h5" gutterBottom className={classes.ttu}>
+        <Skeleton height={25} />
+      </Typography>
+      <Skeleton height={30} />
+    </>
+  )
+  const getUserInfo = () => (
+    <>
+      <Typography variant="h5" gutterBottom className={classes.ttu}>
+        {me.firstname} {me.lastname}
+      </Typography>
+      <Typography className={classes.about} variant="caption" color="textPrimary">
+        {me.about}
+      </Typography>
+    </>
+  )
+
+  const getTotalLikes = () => (
+    <>
+      <Typography variant="h5">{me.statistic.likes}</Typography>
+      <Typography className={classes.ttu} variant="subtitle1">
+        Likes
+      </Typography>
+    </>
+  )
+
+  const getTotalPosts = () => (
+    <>
+      <Typography variant="h5">{me.statistic.posts}</Typography>
+      <Typography className={classes.ttu} variant="subtitle1">
+        Posts
+      </Typography>
+    </>
+  )
+
   return (
     <Paper className={classes.paper}>
       <div className={classes.padding}>
-        <Avatar className={classes.avatar} src={me.avatar} />
-        <Typography variant="h5" gutterBottom className={classes.ttu}>
-          {me.firstname} {me.lastname}
-        </Typography>
-        <Typography className={classes.about} variant="caption" color="textPrimary">
-          {me.about}
-        </Typography>
+        {loading ? (
+          <Avatar className={classes.avatar}>
+            <Loading size="large" type="block" />
+          </Avatar>
+        ) : (
+          <Avatar className={classes.avatar} src={me.avatar} />
+        )}
+
+        {loading ? getSkeletonUserInfo() : getUserInfo()}
       </div>
       <Divider />
       <div className={classes.container}>
         <div className={classes.stats}>
-          <Typography variant="h5">{me.statistic.likes}</Typography>
-          <Typography className={classes.ttu} variant="subtitle1">
-            Likes
-          </Typography>
+          {loading ? <Skeleton height={50} /> : getTotalLikes()}
         </div>
         <div className={classes.divider} />
         <div className={classes.stats}>
-          <Typography variant="h5">{me.statistic.posts}</Typography>
-          <Typography className={classes.ttu} variant="subtitle1">
-            Posts
-          </Typography>
+          {loading ? <Skeleton height={50} /> : getTotalPosts()}
         </div>
       </div>
     </Paper>
