@@ -7,6 +7,7 @@ import { getFullName } from '../../utils'
 import { parseDateAgo } from '../../utils/parseDate'
 import { LikeButton, UsersPopover, Context } from '../common'
 import { POST_BODY_MAX_HEIGHT } from '../../constants'
+import { Visibility } from '@material-ui/icons'
 
 const useStyles = makeStyles((theme: Theme) => ({
   wrap: {
@@ -53,10 +54,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontSize: '0.8rem',
     cursor: 'pointer',
   },
+  views: {
+    display: 'flex',
+    alignItems: 'center',
+    marginLeft: theme.spacing(2),
+  },
 }))
 
 const Post: React.FC<IPost> = props => {
-  const { title, author, date, likes = [], photo, id, body } = props
+  const { title, author, date, likes = [], photo, id, body, views } = props
   const classes = useStyles()
 
   const { handleLike } = React.useContext(Context).action
@@ -124,6 +130,12 @@ const Post: React.FC<IPost> = props => {
             <UsersPopover users={likes} />
           </LikeButton>
         </div>
+        {Boolean(views) && (
+          <div className={classes.views}>
+            <Visibility />
+            <Typography variant="subtitle1">{views}</Typography>
+          </div>
+        )}
         <Typography variant="subtitle2" className={classes.date}>
           {parseDateAgo(date)}
         </Typography>
