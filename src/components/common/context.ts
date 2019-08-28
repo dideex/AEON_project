@@ -21,6 +21,7 @@ export interface IContext {
     handleInviteToChat: THandleAction
     handleRemoveFromFriends: THandleAction
     handleAddToMute: THandleAction
+    handleAcceptFriend: THandleAction
     handleUpdateProfile: (data: Required<IUserSettings>) => void
     handleUserPolicy: (data: IUserPolicy) => void
     handleUpdateAvatar: (data: File) => void
@@ -65,6 +66,7 @@ const Context = createContext<IContext>({
     handleInviteToChat: noOp,
     handleRemoveFromFriends: noOp,
     handleAddToMute: noOp,
+    handleAcceptFriend: noOp,
     handleUpdateProfile: () => {},
     handleUserPolicy: () => {},
     handleUpdateAvatar: () => {},
@@ -146,6 +148,7 @@ export const UserProfileContext = createContext<IUserProfileInfo>({
   registered: '',
   photos: [],
   friends: [],
+  friendInvites: [],
 })
 
 interface IUserGridContext {

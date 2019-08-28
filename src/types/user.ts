@@ -77,6 +77,10 @@ export interface IFriends {
   friends: IUserPreview[]
 }
 
+export interface IFriendInvites {
+  friendInvites?: IUserPreview[]
+}
+
 export interface IIgnores {
   ignores: IUserPreview[]
 }
@@ -106,11 +110,13 @@ export type TMyInfo = IUsername &
   IUserRegistered &
   IPhotos &
   IFriends &
+  IFriendInvites &
   IIgnores & { policy?: IUserPolicy }
 export type IUserProfileInfo = IUserPreview &
   IUserGender &
   IUserBirthDate &
   IPhotos &
   IFriends &
-  IUserRegistered
+  IUserRegistered &
+  IFriendInvites
 export type IUserSettings = IUserBio & IUserSettingsInfo

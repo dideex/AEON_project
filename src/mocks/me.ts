@@ -146,6 +146,7 @@ export const me: TMyInfo = {
     notifyNewPosts: false,
     notifyPhotoRating: true,
   },
+  friendInvites: [users.quill],
 }
 
 export const stark: IUserPreview = {

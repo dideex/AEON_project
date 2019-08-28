@@ -7,6 +7,7 @@ export const action = {
   handleOpenChat: handleAction('Open chat '),
   handleInviteToChat: handleAction('Invite to chat '),
   handleRemoveFromFriends: handleAction('Remove friend '),
+  handleAcceptFriend: handleAction('Accept friend request '),
   handleAddToMute: handleAction('Add to mute '),
   handleUpdateProfile: storybookAction(`Submit info form`),
   handleUserPolicy: storybookAction(`Submit notification form`),

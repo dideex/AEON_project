@@ -1,10 +1,11 @@
 import * as React from 'react'
-import { Theme, Avatar, Typography } from '@material-ui/core'
+import { Theme, Avatar, Typography, ButtonGroup, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
 import { Context, VerticalMenu, UserProfileContext } from '../../common'
 import { IUserPreview } from '../../../types'
 import { getFullName } from '../../../utils'
+import { Done, Close } from '@material-ui/icons'
 
 const useStyles = makeStyles((theme: Theme) => ({
   card: {
@@ -40,7 +41,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     height: '2vw',
     borderRadius: '50%',
   },
-  menu: {
+  control: {
     marginLeft: 'auto',
   },
 }))
@@ -84,10 +85,71 @@ const FriendCard: React.FC<IFriendCard> = props => {
   )
 }
 
+interface IFriendInvite {
+  user: IUserPreview
+  handleAcceptFriend: (e: React.MouseEvent<HTMLButtonElement>) => void
+  handleRemoveFromFriends: (e: React.MouseEvent<HTMLButtonElement>) => void
+}
+
+const FriendInvite: React.FC<IFriendInvite> = ({ user, ...actions }) => {
+  const classes = useStyles()
+
+  const { firstname, lastname, age, avatar, isOnline, about } = user
+  const { handleAcceptFriend, handleRemoveFromFriends } = actions
+  const fullName = getFullName(firstname, lastname)
+  return (
+    <div className={classes.card}>
+      <figure className={classes.avatarWrap}>
+        <Avatar className={classes.avatar} src={avatar} alt={fullName} />
+        {isOnline && <div className={classes.online} />}
+      </figure>
+      <div className={classes.content}>
+        <Typography variant="h5">
+          {fullName}, {age}
+        </Typography>
+        <Typography className={classes.about} variant="subtitle1">
+          {about}
+        </Typography>
+      </div>
+      <div className={classes.control}>
+        <ButtonGroup color="primary" aria-label="Request friends">
+          <Button onClick={handleAcceptFriend}>
+            <Done />
+          </Button>
+          <Button onClick={handleRemoveFromFriends}>
+            <Close />
+          </Button>
+        </ButtonGroup>
+      </div>
+    </div>
+  )
+}
+
 const FriendsPanel: React.FC = () => {
-  const { friends } = React.useContext(UserProfileContext)
+  const { friends, friendInvites = [], id: userId } = React.useContext(UserProfileContext)
+  const { me, action } = React.useContext(Context)
+  const isMyProfile = userId === me.id
+  const showInvites = isMyProfile && friendInvites.length
   return (
     <>
+      {showInvites && (
+        <>
+          <Typography gutterBottom variant="h5" align="center">
+            Friend requests:
+          </Typography>
+          {friendInvites.map(invite => (
+            <FriendInvite
+              key={invite.id}
+              user={invite}
+              handleAcceptFriend={action.handleAcceptFriend(invite.id)}
+              handleRemoveFromFriends={action.handleRemoveFromFriends(invite.id)}
+            />
+          ))}
+          <Typography gutterBottom variant="h5" align="center">
+            Friends:
+          </Typography>
+        </>
+      )}
       {friends.map(friend => (
         <FriendCard key={friend.id} {...friend} />
       ))}

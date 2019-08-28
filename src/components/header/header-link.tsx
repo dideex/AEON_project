@@ -9,12 +9,15 @@ const useStyles = makeStyles((theme: Theme) => ({
   iconButton: {
     margin: `0 ${theme.spacing(1)}px`,
   },
-  menuIcon: {
+  menuBadge: {
     color: theme.palette.text.secondary,
   },
   wrap: {
     display: 'flex',
     alignItems: 'center',
+  },
+  badge: {
+    color: 'white',
   },
 }))
 
@@ -33,7 +36,7 @@ const HeaderIconLink: React.FC<IHeaderIconLink> = props => {
         aria-label={`show ${count} new fields`}
         color="inherit"
       >
-        <Badge badgeContent={count} color="secondary">
+        <Badge badgeContent={count} color="secondary" classes={{ badge: classes.badge }}>
           {children}
         </Badge>
       </IconButton>
@@ -51,7 +54,7 @@ export const HeaderMenuIcons: React.FC<IHeaderMenuIcons> = ({ icons }) => {
     <>
       {icons.map(({ Icon, ...rest }, i) => (
         <HeaderIconLink key={i} {...rest}>
-          <Icon className={classes.menuIcon} fontSize="large" />
+          <Icon className={classes.menuBadge} fontSize="large" />
         </HeaderIconLink>
       ))}
     </>
