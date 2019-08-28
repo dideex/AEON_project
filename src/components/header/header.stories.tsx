@@ -1,17 +1,17 @@
 import * as React from 'react'
 import { storiesOf } from '@storybook/react'
-import { withKnobs } from '@storybook/addon-knobs'
+import { withKnobs, boolean } from '@storybook/addon-knobs'
 import StoryRouter from 'storybook-react-router'
 
-import HeaderAppBar, { IHeaderAppBar } from './app-bar'
+import HeaderAppBar from './app-bar'
 import { CustomThemeProvider } from '../../service'
 import { me } from '../../mocks'
 import { MyContainer } from '../../containers'
 
-const Header = (props: IHeaderAppBar) => (
-  <MyContainer id={me.id}>
+const Header = ({ isLoading }: any) => (
+  <MyContainer id={me.id} isLoading={isLoading}>
     <CustomThemeProvider>
-      <HeaderAppBar {...props} />
+      <HeaderAppBar />
     </CustomThemeProvider>
   </MyContainer>
 )
@@ -24,7 +24,7 @@ stories.addDecorator(StoryRouter())
 stories
   .addParameters({ viewport: { defaultViewport: 'responsive' } })
   .add('Basic view', () => <Header />)
-  .add('Loading view', () => <Header isLoading />)
+  .add('Loading view', () => <Header isLoading={boolean('Loading', true)} />)
   .add('Mobile layout', () => <Header />, {
     viewport: { defaultViewport: 'iphonex' },
   })

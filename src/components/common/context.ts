@@ -15,6 +15,7 @@ export type THandleSendMessage = (id: string, body: string) => void
 
 export interface IContext {
   me: TMyInfo
+  loading: boolean
   action: {
     handleLike: THandleAction
     handleOpenChat: THandleAction
@@ -60,6 +61,7 @@ const Context = createContext<IContext>({
     friends: [],
     ignores: [],
   },
+  loading: false,
   action: {
     handleLike: noOp,
     handleOpenChat: noOp,

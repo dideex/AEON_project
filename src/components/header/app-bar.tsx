@@ -13,7 +13,7 @@ import Search from './search'
 import MobileMenu from './mobile-menu'
 import ProfileMenu from './profile-menu'
 import { HeaderMenuIcons } from './header-link'
-import { Context } from '../common'
+import { Context, Loading } from '../common'
 import { RouterIconLink } from '../../types'
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -51,20 +51,19 @@ const useStyles = makeStyles((theme: Theme) =>
         display: 'none',
       },
     },
+    blankAvatar: {
+      backgroundColor: 'white',
+    },
   }),
 )
 
-export interface IHeaderAppBar {
-  isLoading?: boolean
-}
-
-const HeaderAppBar: React.FC<IHeaderAppBar> = () => {
+const HeaderAppBar: React.FC = () => {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(
     null,
   )
-  const { me } = React.useContext(Context)
+  const { me, loading } = React.useContext(Context)
 
   function handleProfileMenuOpen(event: React.MouseEvent<HTMLElement>) {
     setAnchorEl(event.currentTarget)
@@ -103,7 +102,13 @@ const HeaderAppBar: React.FC<IHeaderAppBar> = () => {
         onClick={handleProfileMenuOpen}
         color="inherit"
       >
-        <Avatar src={me.avatar} />
+        {loading ? (
+          <Avatar className={classes.blankAvatar}>
+            <Loading type="block" />
+          </Avatar>
+        ) : (
+          <Avatar src={me.avatar} />
+        )}
       </IconButton>
     </div>
   )

@@ -3,7 +3,7 @@ import { IconButton, Badge, Theme, MenuItem } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
 
 import { RouteTypes, RouterIconLink } from '../../types'
-import { Link } from '../common'
+import { Link, Context, Loading } from '../common'
 
 const useStyles = makeStyles((theme: Theme) => ({
   iconButton: {
@@ -28,6 +28,7 @@ interface IHeaderIconLink {
 }
 const HeaderIconLink: React.FC<IHeaderIconLink> = props => {
   const { to, children, count, label } = props
+  const { loading } = React.useContext(Context)
   const classes = useStyles()
   return (
     <Link to={to} className={classes.wrap}>
@@ -36,7 +37,13 @@ const HeaderIconLink: React.FC<IHeaderIconLink> = props => {
         aria-label={`show ${count} new fields`}
         color="inherit"
       >
-        <Badge badgeContent={count} color="secondary" classes={{ badge: classes.badge }}>
+        <Badge
+          badgeContent={
+            loading ? <Loading type="block" size="small" color="white" /> : count
+          }
+          color="secondary"
+          classes={{ badge: classes.badge }}
+        >
           {children}
         </Badge>
       </IconButton>
