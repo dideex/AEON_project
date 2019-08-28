@@ -62,3 +62,5 @@ export const minsFromNow = (min: number): string => {
   const now = new Date()
   return now.setMinutes(now.getMinutes() - min).toString()
 }
+
+export * from './components'

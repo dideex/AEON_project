@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/styles'
 import { Skeleton } from '@material-ui/lab'
 
 import { Context, Loading } from '../common'
+import { getSkeletonUserInfo } from '../../utils'
 
 const useStyles = makeStyles((theme: Theme) => ({
   paper: {
@@ -48,14 +49,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 const ProfileWidget: React.FC = () => {
   const { me, loading } = React.useContext(Context)
   const classes = useStyles()
-  const getSkeletonUserInfo = () => (
-    <>
-      <Typography variant="h5" gutterBottom className={classes.ttu}>
-        <Skeleton height={25} />
-      </Typography>
-      <Skeleton height={30} />
-    </>
-  )
+
   const getUserInfo = () => (
     <>
       <Typography variant="h5" gutterBottom className={classes.ttu}>

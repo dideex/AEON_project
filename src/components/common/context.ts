@@ -83,7 +83,9 @@ export interface IUserContext {
     handleRemoveFromFriends: THandleAction
     handleAddToMute: THandleAction
   }
+  loading: boolean
 }
+
 export const UserContext = createContext<IUserContext>({
   user: {
     id: '',
@@ -101,6 +103,7 @@ export const UserContext = createContext<IUserContext>({
     handleRemoveFromFriends: noOp,
     handleAddToMute: noOp,
   },
+  loading: false,
 })
 
 export interface IChatContext {

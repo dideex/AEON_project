@@ -8,6 +8,7 @@ import { useRouter } from '../service'
 interface IUserContainer {
   children: React.ReactNode
   userId: string
+  isLoading?: boolean
   handleInviteToChat?: THandleAction
   handleRemoveFromFriends?: THandleAction
   handleAddToMute?: THandleAction
@@ -16,7 +17,7 @@ interface IUserContainer {
 const noOp = () => () => {}
 
 export const UserContainer: React.FC<IUserContainer> = props => {
-  const { userId, children, ...actions } = props
+  const { userId, children, isLoading, ...actions } = props
   const {
     handleInviteToChat = noOp,
     handleRemoveFromFriends = noOp,
@@ -31,9 +32,9 @@ export const UserContainer: React.FC<IUserContainer> = props => {
     handleAddToMute,
   }
   return (
-    <GetUser id={userId}>
-      {({ user }) => (
-        <UserCtxProvider value={{ user, action }}>{children}</UserCtxProvider>
+    <GetUser id={userId} isLoading={isLoading}>
+      {({ user, loading }) => (
+        <UserCtxProvider value={{ user, action, loading }}>{children}</UserCtxProvider>
       )}
     </GetUser>
   )
@@ -42,11 +43,13 @@ export const UserContainer: React.FC<IUserContainer> = props => {
 // stub function
 interface IGetUser {
   id: string
-  children: (props: { user: IUserPreview }) => JSX.Element
+  isLoading?: boolean
+  children: (props: { user: IUserPreview; loading: boolean }) => JSX.Element
 }
-const GetUser: React.FC<IGetUser> = ({ id, children }) => {
+const GetUser: React.FC<IGetUser> = ({ id, children, isLoading }) => {
+  const loading = Boolean(isLoading)
   const user =
     Object.values(users).find((user: IUserPreview) => user.id === id) ||
     ({} as IUserPreview)
-  return children({ user })
+  return children({ user, loading })
 }
