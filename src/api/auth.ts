@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/camelcase */
-import config from '../config'
+// import config from '../config'
 import { incorrect_login_or_password, IAuthResponse } from './types'
 import { IUserRequest } from '../types'
 
@@ -23,7 +23,7 @@ export const authenticate = (data: IUserRequest): Promise<IAuthResponse> => {
           errorText: incorrect_login_or_password,
         })
       }
-      window.localStorage.setItem(config.tokenKey, 'true')
+      // window.localStorage.setItem(config.tokenKey, 'true')
       resolve({
         status: 200,
         data: {
@@ -41,15 +41,16 @@ export const authenticate = (data: IUserRequest): Promise<IAuthResponse> => {
 }
 
 export const checkAuthStatus = (): boolean => {
-  if (localStorage.getItem(config.tokenKey)) {
-    return true
-  } else {
-    return false
-  }
+  // if (localStorage.getItem(config.tokenKey)) {
+  //   return true
+  // } else {
+  //   return false
+  // }
+  return true
 }
 
 export const logout = (): void => {
-  window.localStorage.removeItem(config.tokenKey)
+  // window.localStorage.removeItem(config.tokenKey)
 }
 
 export const loadInitialData = () => {}
