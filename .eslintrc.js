@@ -20,6 +20,8 @@ module.exports = {
     '@typescript-eslint/interface-name-prefix': [0],
     '@typescript-eslint/no-use-before-define': [0],
     '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/no-angle-bracket-type-assertion': 'on',
+    'no-angle-bracket-type-assertion': [0],
     'no-console': [1, { allow: ['warn', 'error'] }],
     // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
   },

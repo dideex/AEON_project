@@ -30,14 +30,14 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const ChatForm: React.FC = () => {
   const classes = useStyles()
-  const { action, openChatId } = React.useContext(ChatContext)
+  const { action, activeChat } = React.useContext(ChatContext)
   const [message, setMessage] = React.useState<string>('')
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(e.target.value)
   }
   const handleSubmit = () => {
-    if (openChatId) {
-      action.sendMessage(openChatId, message)
+    if (activeChat) {
+      action.sendMessage(activeChat.id, message)
       setMessage('')
     }
   }
