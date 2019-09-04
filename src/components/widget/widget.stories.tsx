@@ -7,12 +7,12 @@ import { grey } from '@material-ui/core/colors'
 
 import { ProfileWidget, UserProfileWidget, InfoWidget } from './'
 import { CustomThemeProvider as ThemeProvider } from '../../service'
-import { me, users } from '../../mocks'
+import { users } from '../../mocks'
 import { UserContainer, InfoWidgetContainer, MyContainer } from '../../containers'
 
 const ProfileWidgetWrap = ({ isLoading }: any) => (
   <ThemeProvider>
-    <MyContainer id={me.id} isLoading={isLoading}>
+    <MyContainer isLoading={isLoading}>
       <Container component="main" style={{ backgroundColor: grey[50] }}>
         <Grid container spacing={4}>
           <Grid item xs={12} sm={3}>
@@ -26,7 +26,7 @@ const ProfileWidgetWrap = ({ isLoading }: any) => (
 
 const UserProfileWidgetWrap = ({ isLoading }: any) => (
   <ThemeProvider>
-    <MyContainer id={me.id}>
+    <MyContainer>
       <UserContainer userId={users.deadpool.id} isLoading={isLoading}>
         <Container component="main" style={{ backgroundColor: grey[50] }}>
           <Grid container spacing={2}>
@@ -42,7 +42,7 @@ const UserProfileWidgetWrap = ({ isLoading }: any) => (
 
 const InfoWidgetWrap = () => (
   <ThemeProvider>
-    <MyContainer id={me.id}>
+    <MyContainer>
       <InfoWidgetContainer>
         <Container component="main" style={{ backgroundColor: grey[50] }}>
           <Grid container spacing={2}>

@@ -6,12 +6,11 @@ import StoryRouter from 'storybook-react-router'
 import SearchInput from './search'
 import { CustomThemeProvider as ThemeProvider } from '../../service'
 import { UserGridContainer, MyContainer } from '../../containers'
-import { me } from '../../mocks'
 import { InfoLayout } from '../../layout'
 
 const Search = (props: any) => (
   <ThemeProvider>
-    <MyContainer id={me.id}>
+    <MyContainer>
       <UserGridContainer isLoading={props.loading}>
         <InfoLayout>
           <SearchInput />

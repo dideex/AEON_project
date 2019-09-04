@@ -150,7 +150,15 @@ export const me: TMyInfo = {
 }
 
 export const stark: IUserPreview = {
-  ...(me as IUserPreview),
+  id: me.id,
+  username: me.username,
+  firstname: me.firstname,
+  lastname: me.lastname,
+  avatar: me.avatar,
+  city: me.city,
+  about: me.about,
+  age: me.age,
+  isOnline: me.isOnline,
 }
 
 const deadpoolPhotos: IPhoto[] = [

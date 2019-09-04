@@ -8,13 +8,13 @@ import { CustomThemeProvider as ThemeProvider } from '../../service'
 import { IPost } from '../../types'
 import PostCmp from './post'
 import PostsCmp from './posts'
-import { me, post2, fakePosts } from '../../mocks'
+import { post2, fakePosts } from '../../mocks'
 import { ProfileAndInfo } from '../../layout'
 import { MyContainer } from '../../containers'
 
 const Post = (props: IPost) => (
   <ThemeProvider>
-    <MyContainer id={me.id}>
+    <MyContainer>
       <Grid container spacing={2}>
         <Grid item sm={3} />
         <Grid item sm={6}>
@@ -29,7 +29,7 @@ const Post = (props: IPost) => (
 
 const Posts = (props: any) => (
   <ThemeProvider>
-    <MyContainer id={me.id}>
+    <MyContainer>
       <ProfileAndInfo>
         <PostsCmp {...props} />
       </ProfileAndInfo>

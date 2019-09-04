@@ -9,7 +9,6 @@ import CustMessageCmp from './chat-message'
 import {
   chatSingleMessage,
   chatSecondMessage,
-  me,
   sendMessage,
   fakeChatList,
 } from '../../mocks'
@@ -19,7 +18,7 @@ import { ChatContainer, MyContainer } from '../../containers'
 const Chat = (props: any) => (
   <CustomThemeProvider>
     <CustomRouterProvider>
-      <MyContainer id={me.id}>
+      <MyContainer>
         <ChatContainer
           chats={fakeChatList}
           initialOpenChatId={fakeChatList[0].id}

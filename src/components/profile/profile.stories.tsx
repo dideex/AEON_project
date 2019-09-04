@@ -15,7 +15,7 @@ import { MyContainer, UserContainer, UserProfileContainer } from '../../containe
 
 const MyProfile = (props: any) => (
   <ThemeProvider>
-    <MyContainer id={me.id}>
+    <MyContainer>
       <UserProfileContainer userId={me.id}>
         <Container component="main" style={{ backgroundColor: grey[50] }}>
           <MyProfileCmp {...props} />
@@ -29,7 +29,7 @@ const UserProfile = (props: any) => {
   const userId = users.deadpool.id
   return (
     <ThemeProvider>
-      <MyContainer id={me.id}>
+      <MyContainer>
         <UserProfileContainer userId={userId}>
           <UserContainer userId={userId}>
             <Container component="main" style={{ backgroundColor: grey[50] }}>
@@ -44,7 +44,7 @@ const UserProfile = (props: any) => {
 
 const Settings = () => (
   <ThemeProvider>
-    <MyContainer id={me.id}>
+    <MyContainer>
       <ProfileAndInfo>
         <SettingsCmp />
       </ProfileAndInfo>

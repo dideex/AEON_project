@@ -5,14 +5,13 @@ import { Provider as MyProvider } from '../components/common'
 import { TMyInfo } from '../types'
 
 interface IMyContainer {
-  id: string
   isLoading?: boolean
   children: React.ReactNode
 }
 
-export const MyContainer: React.FC<IMyContainer> = ({ id, children, isLoading }) => {
+export const MyContainer: React.FC<IMyContainer> = ({ children, isLoading }) => {
   return (
-    <GetMyInfo id={id} isLoading={isLoading}>
+    <GetMyInfo isLoading={isLoading}>
       {({ me, action, loading }) => (
         <MyProvider value={{ me, action, loading }}>{children}</MyProvider>
       )}
@@ -22,7 +21,6 @@ export const MyContainer: React.FC<IMyContainer> = ({ id, children, isLoading })
 
 // FIXME: add graphql resolver
 interface IGetMyInfo {
-  id: string
   isLoading?: boolean
   children: (props: {
     me: TMyInfo
