@@ -1,17 +1,23 @@
 import * as React from 'react'
 
-import { CustomThemeProvider as ThemeProvider, CustomRouterProvider } from './service'
+import {
+  CustomThemeProvider as ThemeProvider,
+  CustomRouterProvider as RouterProvider,
+  CustomApolloProvider as ApolloProvider,
+} from './service'
 import { Main } from './layout'
 import { MyContainer } from './containers'
 
 const App: React.FC = () => (
-  <CustomRouterProvider>
-    <ThemeProvider>
-      <MyContainer>
-        <Main />
-      </MyContainer>
-    </ThemeProvider>
-  </CustomRouterProvider>
+  <ApolloProvider>
+    <RouterProvider>
+      <ThemeProvider>
+        <MyContainer>
+          <Main />
+        </MyContainer>
+      </ThemeProvider>
+    </RouterProvider>
+  </ApolloProvider>
 )
 
 export default App
