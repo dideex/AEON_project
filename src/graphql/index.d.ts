@@ -3,5 +3,11 @@ declare module '*/me.graphql' {
 
   const MeQuery: DocumentNode
   export { MeQuery }
-  export default MeQuery
+}
+
+declare module '*/get_users.graphql' {
+  import { DocumentNode } from 'graphql'
+
+  const GetUsers: DocumentNode
+  export { GetUsers }
 }
