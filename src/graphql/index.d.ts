@@ -1,8 +1,8 @@
 declare module '*/me.graphql' {
   import { DocumentNode } from 'graphql'
 
-  const MeQuery: DocumentNode
-  export { MeQuery }
+  const Me: DocumentNode
+  export { Me }
 }
 
 declare module '*/get_users.graphql' {
