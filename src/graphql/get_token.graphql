@@ -1,0 +1,5 @@
+query GetToken {
+  getToken {
+    token
+  }
+}

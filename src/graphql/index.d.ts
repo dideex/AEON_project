@@ -11,3 +11,10 @@ declare module '*/get_users.graphql' {
   const GetUsers: DocumentNode
   export { GetUsers }
 }
+
+declare module '*/get_token.graphql' {
+  import { DocumentNode } from 'graphql'
+
+  const GetToken: DocumentNode
+  export { GetToken }
+}
