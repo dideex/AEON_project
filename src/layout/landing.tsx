@@ -6,8 +6,7 @@ import { Landing } from '../components/landing'
 import { Me } from '../graphql/me.graphql'
 
 const Main: React.FC = () => {
-  const { loading, error, data } = useQuery(Me)
-  console.log('TCL: Main:React.FC -> data', data)
+  const { loading, error } = useQuery(Me)
 
   if (loading) return <div>Loading...</div>
   if (error) return <div>{`Error! ${error.message}`}</div>
