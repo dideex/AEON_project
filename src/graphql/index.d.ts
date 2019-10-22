@@ -5,16 +5,16 @@ declare module '*/me.graphql' {
   export { Me }
 }
 
-declare module '*/get_users.graphql' {
+declare module '*/users.graphql' {
   import { DocumentNode } from 'graphql'
 
-  const GetUsers: DocumentNode
-  export { GetUsers }
+  const User: DocumentNode
+  export { User }
 }
 
-declare module '*/get_token.graphql' {
+declare module '*/token.graphql' {
   import { DocumentNode } from 'graphql'
 
-  const GetToken: DocumentNode
-  export { GetToken }
+  const Token: DocumentNode
+  export { Token }
 }

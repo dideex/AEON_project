@@ -1,5 +1,5 @@
-query GetUsers {
-  getUsers {
+query Users {
+  Users {
     id
     firstname
     lastname
