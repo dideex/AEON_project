@@ -7,27 +7,30 @@ import { ApolloProvider } from '@apollo/react-hooks'
 
 import config from '../config'
 
-const httpLink = createHttpLink({
-  uri: config.guestGraphqlUri,
-})
+const createHttpLink = (uri: string) => {
+  return createHttpLink({ uri })
+}
 
-const authLink = setContext((_, { headers }: any) => {
-  // get the authentication token from local storage if it exists
-  const token = localStorage.getItem(config.tokenKey)
-  // return the headers to the context so httpLink can read them
-  return {
+const createAuthLink = (token?: string) => {
+  return setContext((_, { headers }: any) => ({
     headers: {
       ...headers,
       authorization: token ? `Bearer ${token}` : '',
     },
-  }
-})
+  }))
+}
 
-const client = new ApolloClient({
-  link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
-})
+const createClient = (uri, token?) => {
+  return new ApolloClient({
+    link: createAuthLink(token).concat(createHttpLink(uri)),
+    cache: new InMemoryCache(),
+  })
+}
 
-export const CustomApolloProvider: React.FC = ({ children }) => (
-  <ApolloProvider client={client}>{children}</ApolloProvider>
-)
+export const CustomApolloProvider: React.FC = ({ children }) => {
+  const [uri, setUri] = React.useContext(config.guestGraphqlUri)
+  const [token, setToken] = React.useContext('')
+
+  const client = createClient(uri, token)
+  return <ApolloProvider client={client}>{children}</ApolloProvider>
+}
