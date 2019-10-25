@@ -27,6 +27,7 @@ const createClient = (uri, token?) => {
   })
 }
 
+// TODO: create client context provider
 export const CustomApolloProvider: React.FC = ({ children }) => {
   const [uri, setUri] = React.useContext(config.guestGraphqlUri)
   const [token, setToken] = React.useContext('')
