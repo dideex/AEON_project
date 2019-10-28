@@ -8,8 +8,8 @@ declare module '*/me.graphql' {
 declare module '*/users.graphql' {
   import { DocumentNode } from 'graphql'
 
-  const User: DocumentNode
-  export { User }
+  const GetUsers: DocumentNode
+  export { GetUsers }
 }
 
 declare module '*/token.graphql' {

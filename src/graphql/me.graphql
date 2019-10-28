@@ -1,4 +1,4 @@
-query Me {
+query {
   Me {
     id
     firstname
