@@ -7,6 +7,7 @@ import {
   IUserSettings,
   IUserPolicy,
   IUserProfileInfo,
+  IUserRequest,
 } from '../../types'
 const noOp = () => () => {}
 
@@ -166,6 +167,17 @@ export const UserGridContext = createContext<IUserGridContext>({
   loading: false,
 })
 
+interface IUserAuth {
+  handleSubmit: (data: IUserRequest) => void
+  loading: boolean
+}
+
+export const UserAuthContext = createContext<IUserAuth>({
+  handleSubmit: () => {},
+  loading: false,
+})
+
+export const { Provider: UserAuthProvider, Consumer: UserAuthConsumer } = UserAuthContext
 export const { Provider: UserGridProvider, Consumer: UserGridConsumer } = UserGridContext
 // prettier-ignore
 export const { Provider: UserProfileProvider, Consumer: UserProfileConsumer } = UserProfileContext
