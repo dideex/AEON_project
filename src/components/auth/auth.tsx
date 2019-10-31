@@ -3,7 +3,7 @@ import { makeStyles, Theme, Container, CssBaseline, Grid } from '@material-ui/co
 import LockOutlinedIcon from '@material-ui/icons/Face'
 
 import { IUserRequest } from '../../types'
-import { CustomInput, AccentButton } from '../common'
+import { CustomInput, AccentButton, UserAuthContext } from '../common'
 import AuthHeader from './auth-header'
 import { trimObject } from '../../utils'
 
@@ -56,18 +56,19 @@ const Auth: React.FC<CompProps> = props => {
     }
   }
 
-  const handleSubmit = (e: React.MouseEvent<HTMLFormElement>) => {
+  const { handleSubmit, loading } = React.useContext(UserAuthContext)
+
+  const controlledSubmit = (e: React.MouseEvent<HTMLFormElement>) => {
     e.preventDefault()
-    // FIXME: replace it to container
     const preparedState = trimObject(state)
-    props.handleSubmit(preparedState)
+    handleSubmit(preparedState)
   }
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={paper}>
         <AuthHeader theme={avatar} title="Aeon social network" Icon={LockOutlinedIcon} />
-        <form className={form} onSubmit={handleSubmit}>
+        <form className={form} onSubmit={controlledSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <CustomInput {...getInputProps('username')} type="text" />
@@ -76,7 +77,11 @@ const Auth: React.FC<CompProps> = props => {
               <CustomInput {...getInputProps('password')} type="password" />
             </Grid>
           </Grid>
-          <AccentButton title="Sign in" className={submit} isLoading={isLoading} />
+          <AccentButton
+            title="Sign in"
+            className={submit}
+            isLoading={isLoading || loading}
+          />
         </form>
       </div>
     </Container>
