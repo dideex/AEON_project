@@ -34,12 +34,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }))
 
-interface CompProps {
-  handleSubmit: (data: IUserRequest) => void
-  isLoading: boolean
+interface AuthProps {
+  handleSubmit?: (data: IUserRequest) => void
+  isLoading?: boolean
 }
 
-const Auth: React.FC<CompProps> = props => {
+const Auth: React.FC<AuthProps> = props => {
   const { isLoading } = props
   const classes = useStyles()
   const { paper, avatar, form, submit } = classes

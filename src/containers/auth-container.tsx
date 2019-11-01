@@ -5,15 +5,18 @@ import { UserAuthProvider } from '../components/common'
 import { IUserRequest } from '../types'
 import { Login } from '../graphql/mutations/login.graphql'
 
-export const AuthContainer: React.FC = ({ children }) => {
-  return (
-    <AuthNetwork>
-      {({ handleSubmit, loading }) => (
-        <UserAuthProvider value={{ handleSubmit, loading }}>{children}</UserAuthProvider>
-      )}
-    </AuthNetwork>
-  )
+interface IAuthContainer {
+  children: React.ReactElement
+  isLoading?: boolean
 }
+
+export const AuthContainer: React.FC<IAuthContainer> = ({ children, isLoading }) => (
+  <AuthNetwork isLoading={isLoading}>
+    {({ handleSubmit, loading }) => (
+      <UserAuthProvider value={{ handleSubmit, loading }}>{children}</UserAuthProvider>
+    )}
+  </AuthNetwork>
+)
 
 interface IAuthNetwork {
   isLoading?: boolean
