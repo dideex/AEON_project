@@ -28,9 +28,10 @@ interface IAuthNetwork {
 
 const AuthNetwork: React.FC<IAuthNetwork> = ({ children, isLoading }) => {
   const loading = Boolean(isLoading)
+  const [submitMutation, { data }] = useMutation(Login)
   const handleSubmit = (sessionInput: IUserRequest) => {
-    const response = useMutation(Login, { variables: sessionInput })
-    console.log('TCL: handleSubmit -> response', response)
+    submitMutation({ variables: sessionInput })
+    console.log('TCL: handleSubmit ->response', data)
   }
   return children({ handleSubmit, loading })
 }
