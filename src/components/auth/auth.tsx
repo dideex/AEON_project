@@ -43,7 +43,10 @@ const Auth: React.FC<AuthProps> = props => {
   const { isLoading } = props
   const classes = useStyles()
   const { paper, avatar, form, submit } = classes
-  const [state, setState] = React.useState<IUserRequest>({ username: '', password: '' })
+  const [state, setState] = React.useState<IUserRequest>({
+    username: 'Tony@stark.com',
+    password: 'qwerqwer',
+  })
 
   const getInputProps = (name: keyof IUserRequest) => {
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) =>
