@@ -2,16 +2,21 @@ import * as React from 'react'
 import { useMutation } from '@apollo/react-hooks'
 
 import { UserAuthProvider } from '../components/common'
-import { IUserRequest } from '../types'
+import { IUserRequest, IUserPreview } from '../types'
 import { Login } from '../graphql/mutations/login.graphql'
 
 interface IAuthContainer {
   children: React.ReactElement
   isLoading?: boolean
+  setToken?: (token: string, user: IUserPreview) => void
 }
 
-export const AuthContainer: React.FC<IAuthContainer> = ({ children, isLoading }) => (
-  <AuthNetwork isLoading={isLoading}>
+export const AuthContainer: React.FC<IAuthContainer> = ({
+  children,
+  isLoading,
+  setToken,
+}) => (
+  <AuthNetwork isLoading={isLoading} setToken={setToken}>
     {({ handleSubmit, loading }) => (
       <UserAuthProvider value={{ handleSubmit, loading }}>{children}</UserAuthProvider>
     )}
@@ -24,9 +29,10 @@ interface IAuthNetwork {
     handleSubmit: (data: IUserRequest) => void
     loading: boolean
   }) => JSX.Element
+  setToken?: (token: string, user: IUserPreview) => void
 }
 
-const AuthNetwork: React.FC<IAuthNetwork> = ({ children, isLoading }) => {
+const AuthNetwork: React.FC<IAuthNetwork> = ({ children, isLoading, setToken }) => {
   const loading = Boolean(isLoading)
   const [submitMutation] = useMutation(Login)
 
@@ -34,7 +40,8 @@ const AuthNetwork: React.FC<IAuthNetwork> = ({ children, isLoading }) => {
     const { user, token } = (await submitMutation({
       variables: { input },
     })).data.loginUser
-    console.log('TCL: handleSubmit -> data', user, token)
+
+    setToken && setToken(token, user)
   }
 
   return children({ handleSubmit, loading })
