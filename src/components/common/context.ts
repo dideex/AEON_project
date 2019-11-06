@@ -177,6 +177,19 @@ export const UserAuthContext = createContext<IUserAuth>({
   loading: false,
 })
 
+interface IRootContext {
+  setToken: (token: string, user: IUserPreview) => void
+  token: string
+  user?: IUserPreview
+  loading: boolean
+}
+export const RootContext = createContext<IRootContext>({
+  setToken: () => {},
+  token: '',
+  loading: false,
+})
+
+export const { Provider: RootProvider, Consumer: RootConsumer } = RootContext
 export const { Provider: UserAuthProvider, Consumer: UserAuthConsumer } = UserAuthContext
 export const { Provider: UserGridProvider, Consumer: UserGridConsumer } = UserGridContext
 // prettier-ignore

@@ -30,4 +30,7 @@ export {
   UserAuthConsumer,
   UserAuthContext,
   UserAuthProvider,
+  RootContext,
+  RootProvider,
+  RootConsumer,
 } from './context'

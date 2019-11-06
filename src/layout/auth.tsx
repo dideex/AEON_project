@@ -4,7 +4,7 @@ import { Auth } from '../components/auth'
 
 const AuthLayout: React.FC = () => {
   return (
-    <AuthContainer>
+    <AuthContainer setToken={console.log}>
       <Auth />
     </AuthContainer>
   )
