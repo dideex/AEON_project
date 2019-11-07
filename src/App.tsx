@@ -5,19 +5,21 @@ import {
   CustomRouterProvider as RouterProvider,
   CustomApolloProvider as ApolloProvider,
 } from './service'
-import { MyContainer } from './containers'
+import { MyContainer, RootContainer } from './containers'
 import { RootRouter } from './routes'
 
 const App: React.FC = () => (
-  <ApolloProvider>
-    <RouterProvider>
-      <ThemeProvider>
-        <MyContainer>
-          <RootRouter />
-        </MyContainer>
-      </ThemeProvider>
-    </RouterProvider>
-  </ApolloProvider>
+  <RootContainer>
+    <ApolloProvider>
+      <RouterProvider>
+        <ThemeProvider>
+          <MyContainer>
+            <RootRouter />
+          </MyContainer>
+        </ThemeProvider>
+      </RouterProvider>
+    </ApolloProvider>
+  </RootContainer>
 )
 
 export default App

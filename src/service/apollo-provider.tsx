@@ -6,6 +6,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory'
 import { ApolloProvider } from '@apollo/react-hooks'
 
 import config from '../config'
+import { RootContext } from '../components/common'
 
 const createHttpLink = (uri: string) => {
   return httpLink({ uri })
@@ -29,9 +30,10 @@ const createClient = (uri: string, token?: string) => {
 
 // TODO: create client context provider
 export const CustomApolloProvider: React.FC = ({ children }) => {
-  const [uri, setUri] = React.useState(config.guestGraphqlUri)
-  const [token, setToken] = React.useState('')
+  const { token } = React.useContext(RootContext)
+  const uri = token ? config.guestGraphqlUri : config.userGraphqlUri
 
+  // FIXME: fix backanend routes
   const client = createClient(uri, token)
   return <ApolloProvider client={client}>{children}</ApolloProvider>
 }

@@ -9,17 +9,15 @@ interface IRootContainer {
 }
 
 export const RootContainer: React.FC<IRootContainer> = ({ children, isLoading }) => {
-  const [token, setToken] = React.useState<string>('')
-  const [user, setUser] = React.useState<IUserPreview>()
+  const [token, changeToken] = React.useState<string>('')
+  const [user, changeUser] = React.useState<IUserPreview>()
 
-  const handleTokenChange = (token: string, user: IUserPreview): void => {
-    setToken(token)
-    setUser(user)
+  const setToken = (token: string, user: IUserPreview): void => {
+    changeToken(token)
+    changeUser(user)
   }
   return (
-    <RootProvider
-      value={{ token, user, setToken: handleTokenChange, loading: isLoading || false }}
-    >
+    <RootProvider value={{ token, user, setToken, loading: isLoading || false }}>
       {children}
     </RootProvider>
   )
