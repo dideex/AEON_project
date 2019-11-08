@@ -31,7 +31,7 @@ const createClient = (uri: string, token?: string) => {
 // TODO: create client context provider
 export const CustomApolloProvider: React.FC = ({ children }) => {
   const { token } = React.useContext(RootContext)
-  const uri = token ? config.guestGraphqlUri : config.userGraphqlUri
+  const uri = token ? config.userGraphqlUri : config.guestGraphqlUri
 
   // FIXME: fix backanend routes
   const client = createClient(uri, token)

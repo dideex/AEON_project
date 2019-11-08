@@ -4,8 +4,7 @@ import { Auth } from '../components/auth'
 import { RootContext } from '../components/common'
 
 const AuthLayout: React.FC = () => {
-  const { setToken, token } = React.useContext(RootContext)
-  console.log('TCL: AuthLayout:React.FC -> token', token)
+  const { setToken } = React.useContext(RootContext)
   return (
     <AuthContainer setToken={setToken}>
       <Auth />
