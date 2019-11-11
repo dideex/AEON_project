@@ -12,7 +12,7 @@ const createHttpLink = (uri: string) => {
   return httpLink({ uri })
 }
 
-const createAuthLink = (token?: string) => {
+const createAuthLink = (token: string) => {
   return setContext((_, { headers }: any) => ({
     headers: {
       ...headers,
@@ -21,7 +21,7 @@ const createAuthLink = (token?: string) => {
   }))
 }
 
-const createClient = (uri: string, token?: string) => {
+const createClient = (uri: string, token: string) => {
   return new ApolloClient({
     link: createAuthLink(token).concat(createHttpLink(uri)),
     cache: new InMemoryCache(),

@@ -4,7 +4,7 @@
  */
 export function read(key: string): string | null {
   try {
-    return JSON.parse(localStorage.getItem(key) || '{}')
+    return JSON.parse(localStorage.getItem(key) || '')
   } catch {
     return localStorage.getItem(key)
   }
@@ -19,7 +19,9 @@ export function write(key: string, data: object | string): void {
   try {
     if (typeof data === 'object') localStorage.setItem(key, JSON.stringify(data))
     else localStorage.setItem(key, data)
-  } catch {}
+  } catch (err) {
+    console.error(err)
+  }
 }
 
 /**
