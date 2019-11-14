@@ -36,6 +36,7 @@ interface TMyInfoData {
 const GetMyInfo: React.FC<IGetMyInfo> = ({ children, isLoading }) => {
   // const loading = Boolean(isLoading)
   const { loading, error, data } = useQuery<TMyInfoData>(Me)
+  console.log('TCL: error', error)
   console.log('TCL: data', data)
   if (error) console.log(error)
   const me = data ? data.me : mockedMe

@@ -5,7 +5,7 @@ import {
   CustomRouterProvider as RouterProvider,
   CustomApolloProvider as ApolloProvider,
 } from './service'
-import { MyContainer, RootContainer } from './containers'
+import { RootContainer } from './containers'
 import { RootRouter } from './routes'
 
 const App: React.FC = () => (
@@ -13,9 +13,7 @@ const App: React.FC = () => (
     <ApolloProvider>
       <RouterProvider>
         <ThemeProvider>
-          <MyContainer>
-            <RootRouter />
-          </MyContainer>
+          <RootRouter />
         </ThemeProvider>
       </RouterProvider>
     </ApolloProvider>
