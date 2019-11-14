@@ -1,8 +1,10 @@
 import * as React from 'react'
 
-import { me, action } from '../mocks'
+import { action, me as mockedMe } from '../mocks'
 import { Provider as MyProvider } from '../components/common'
 import { TMyInfo } from '../types'
+import { useQuery } from '@apollo/react-hooks'
+import { Me } from '../graphql/me.graphql'
 
 interface IMyContainer {
   isLoading?: boolean
@@ -28,7 +30,14 @@ interface IGetMyInfo {
     loading: boolean
   }) => JSX.Element
 }
+interface TMyInfoData {
+  me: TMyInfo
+}
 const GetMyInfo: React.FC<IGetMyInfo> = ({ children, isLoading }) => {
-  const loading = Boolean(isLoading)
+  // const loading = Boolean(isLoading)
+  const { loading, error, data } = useQuery<TMyInfoData>(Me)
+  console.log('TCL: data', data)
+  if (error) console.log(error)
+  const me = data ? data.me : mockedMe
   return children({ me, action, loading })
 }
