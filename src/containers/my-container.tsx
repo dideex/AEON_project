@@ -5,6 +5,7 @@ import { Provider as MyProvider } from '../components/common'
 import { TMyInfo } from '../types'
 import { useQuery } from '@apollo/react-hooks'
 import { Me } from '../graphql/me.graphql'
+import { useRouter } from '../service'
 
 interface IMyContainer {
   isLoading?: boolean
@@ -39,6 +40,10 @@ const GetMyInfo: React.FC<IGetMyInfo> = ({ children, isLoading }) => {
   console.log('TCL: error', error)
   console.log('TCL: data', data)
   if (error) console.log(error)
-  const me = data ? data.me : mockedMe
+  const { history } = useRouter()
+  if (!data || !data.me) {
+    return history.push('/auth')
+  }
+  const me = data.me
   return children({ me, action, loading })
 }
