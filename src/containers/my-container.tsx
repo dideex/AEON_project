@@ -42,7 +42,8 @@ const GetMyInfo: React.FC<IGetMyInfo> = ({ children, isLoading }) => {
   if (error) console.log(error)
   const { history } = useRouter()
   if (!data || !data.me) {
-    return history.push('/auth')
+    history.push('/auth')
+    return null
   }
   const me = data.me
   return children({ me, action, loading })
