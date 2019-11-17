@@ -11,7 +11,7 @@ import SettingsCmp from './settings'
 import { CustomThemeProvider as ThemeProvider } from '../../service'
 import { me, users } from '../../mocks'
 import { ProfileAndInfo } from '../../layout'
-import { MyContainer, UserContainer, UserProfileContainer } from '../../containers'
+import { MyContainer, UserContainer, UserProfileContainer } from '../../helpers'
 
 const MyProfile = (props: any) => (
   <ThemeProvider>
@@ -42,15 +42,15 @@ const UserProfile = (props: any) => {
   )
 }
 
-const Settings = () => (
-  <ThemeProvider>
-    <MyContainer>
-      <ProfileAndInfo>
-        <SettingsCmp />
-      </ProfileAndInfo>
-    </MyContainer>
-  </ThemeProvider>
-)
+// const Settings = () => (
+//   <ThemeProvider>
+//     <MyContainer>
+//       <ProfileAndInfo>
+//         <SettingsCmp />
+//       </ProfileAndInfo>
+//     </MyContainer>
+//   </ThemeProvider>
+// )
 
 const stories = storiesOf('Profile', module)
 
@@ -67,7 +67,7 @@ stories
   .add('User Profile: Mobile', () => <UserProfile />, {
     viewport: { defaultViewport: 'iphonex' },
   })
-  .add('Settings: Basic', () => <Settings />)
-  .add('Settings: Mobile', () => <Settings />, {
-    viewport: { defaultViewport: 'iphonex' },
-  })
+// .add('Settings: Basic', () => <Settings />)
+// .add('Settings: Mobile', () => <Settings />, {
+//   viewport: { defaultViewport: 'iphonex' },
+// })

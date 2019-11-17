@@ -10,7 +10,7 @@ import PostCmp from './post'
 import PostsCmp from './posts'
 import { post2, fakePosts } from '../../mocks'
 import { ProfileAndInfo } from '../../layout'
-import { MyContainer } from '../../containers'
+import { MyContainer } from '../../helpers'
 
 const Post = (props: IPost) => (
   <ThemeProvider>
@@ -27,15 +27,15 @@ const Post = (props: IPost) => (
   </ThemeProvider>
 )
 
-const Posts = (props: any) => (
-  <ThemeProvider>
-    <MyContainer>
-      <ProfileAndInfo>
-        <PostsCmp {...props} />
-      </ProfileAndInfo>
-    </MyContainer>
-  </ThemeProvider>
-)
+// const Posts = (props: any) => (
+//   <ThemeProvider>
+//     <MyContainer>
+//       <ProfileAndInfo>
+//         <PostsCmp {...props} />
+//       </ProfileAndInfo>
+//     </MyContainer>
+//   </ThemeProvider>
+// )
 
 const stories = storiesOf('Feed', module)
 
@@ -44,10 +44,10 @@ stories.addDecorator(StoryRouter())
 
 stories
   .addParameters({ viewport: { defaultViewport: 'responsive' } })
-  .add('Posts: Basic view', () => <Posts posts={fakePosts} />)
-  .add('Posts: Mobile layout', () => <Posts posts={fakePosts} />, {
-    viewport: { defaultViewport: 'iphonex' },
-  })
+  // .add('Posts: Basic view', () => <Posts posts={fakePosts} />)
+  // .add('Posts: Mobile layout', () => <Posts posts={fakePosts} />, {
+  //   viewport: { defaultViewport: 'iphonex' },
+  // })
   .add('Post: Basic view', () => <Post {...post2} />)
   .add('Post: Mobile layout', () => <Post {...post2} />, {
     viewport: { defaultViewport: 'iphonex' },

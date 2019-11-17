@@ -8,7 +8,7 @@ import { grey } from '@material-ui/core/colors'
 import { ProfileWidget, UserProfileWidget, InfoWidget } from './'
 import { CustomThemeProvider as ThemeProvider } from '../../service'
 import { users } from '../../mocks'
-import { UserContainer, InfoWidgetContainer, MyContainer } from '../../containers'
+import { UserContainer, InfoWidgetContainer, MyContainer } from '../../helpers'
 
 const ProfileWidgetWrap = ({ isLoading }: any) => (
   <ThemeProvider>

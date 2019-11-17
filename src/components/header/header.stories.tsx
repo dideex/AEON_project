@@ -5,7 +5,7 @@ import StoryRouter from 'storybook-react-router'
 
 import HeaderAppBar from './app-bar'
 import { CustomThemeProvider } from '../../service'
-import { MyContainer } from '../../containers'
+import { MyContainer } from '../../helpers'
 
 const Header = ({ isLoading }: any) => (
   <MyContainer isLoading={isLoading}>
