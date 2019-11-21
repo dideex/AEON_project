@@ -15,21 +15,21 @@ import {
 import { ChatContainer, MyContainer } from '../../helpers'
 
 // const noOp = () => () => {}
-// const Chat = (props: any) => (
-//   <CustomThemeProvider>
-//     <CustomRouterProvider>
-//       <MyContainer>
-//         <ChatContainer
-//           chats={fakeChatList}
-//           initialOpenChatId={fakeChatList[0].id}
-//           sendMessage={sendMessage}
-//         >
-//           <ChatCmp {...props} />
-//         </ChatContainer>
-//       </MyContainer>
-//     </CustomRouterProvider>
-//   </CustomThemeProvider>
-// )
+const Chat = (props: any) => (
+  <CustomThemeProvider>
+    <CustomRouterProvider>
+      <MyContainer>
+        <ChatContainer
+          chats={fakeChatList}
+          initialOpenChatId={fakeChatList[0].id}
+          sendMessage={sendMessage}
+        >
+          <ChatCmp {...props} />
+        </ChatContainer>
+      </MyContainer>
+    </CustomRouterProvider>
+  </CustomThemeProvider>
+)
 
 const stories = storiesOf('Chat', module)
 
@@ -52,10 +52,10 @@ const CustomMessage = (props: any) => (
 
 stories
   .addParameters({ viewport: { defaultViewport: 'responsive' } })
-  // .add('Basic view', () => <Chat />)
-  // .add('Mobile layout', () => <Chat />, {
-  //   viewport: { defaultViewport: 'iphonex' },
-  // })
+  .add('Basic view', () => <Chat />)
+  .add('Mobile layout', () => <Chat />, {
+    viewport: { defaultViewport: 'iphonex' },
+  })
   .add('Desktop message', () => (
     <CustomMessage
       message={{
