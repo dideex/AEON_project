@@ -8,6 +8,7 @@ import {
   IUserPolicy,
   IUserProfileInfo,
   IUserRequest,
+  IStrategy,
 } from '../../types'
 const noOp = () => () => {}
 
@@ -182,11 +183,17 @@ interface IRootContext {
   token: string
   user?: IUserPreview
   loading: boolean
+  strategy: IStrategy
 }
 export const RootContext = createContext<IRootContext>({
   setToken: () => {},
   token: '',
   loading: false,
+  strategy: {
+    authStrategy: {
+      handleSubmit: () => {},
+    },
+  },
 })
 
 export const { Provider: RootProvider, Consumer: RootConsumer } = RootContext

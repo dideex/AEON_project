@@ -99,6 +99,11 @@ export interface IUserPolicy {
   notifyNewPosts: boolean
 }
 
+export interface IUserResponse {
+  token: string
+  user: IUserPreview
+}
+
 export type IUserPreview = IUsername & IUserBio & IUserInfo
 export type TUserRegister = IUserRequest & IUserBio & IUserGender & IUserBirthDate
 export type TMyInfo = IUsername &

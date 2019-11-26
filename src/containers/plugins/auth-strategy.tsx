@@ -1,33 +1,23 @@
-import * as React from 'react'
-import { useMutation } from '@apollo/react-hooks'
+import { IUserRequest, IUserPreview, IAuthStrategy, IUserResponse } from '../../types'
 
-import { Login } from '../graphql/mutations/login.graphql'
-import { IUserRequest, IUserPreview } from '../../types'
-
-interface IAuthNetwork {
-  isLoading?: boolean
-  children: (props: {
-    handleSubmit: (data: IUserRequest) => void
-    loading: boolean
-  }) => JSX.Element
-  setToken?: (token: string, user: IUserPreview) => void
+type TSubmit = {
+  variables: {
+    input: IUserRequest
+  }
 }
+type TMutationRes = { data: { loginUser: IUserResponse } }
+type TSubmitMutaion = (arg: TSubmit) => TMutationRes
+type TSetToken = (token: string, user: IUserPreview) => TMutationRes
 
-export const AuthNetwork: React.FC<IAuthNetwork> = ({
-  children,
-  isLoading,
-  setToken,
-}) => {
-  const loading = Boolean(isLoading)
-  const [submitMutation] = useMutation(Login)
-
-  async function handleSubmit(input: IUserRequest) {
+export const authStrategyFactory = (
+  submitMutation: TSubmitMutaion,
+  setToken?: TSetToken,
+): IAuthStrategy => ({
+  handleSubmit: async (input: IUserRequest) => {
     const { user, token } = (await submitMutation({
       variables: { input },
     })).data.loginUser
 
     setToken && setToken(token, user)
-  }
-
-  return children({ handleSubmit, loading })
-}
+  },
+})
