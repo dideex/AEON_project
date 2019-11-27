@@ -1,16 +1,17 @@
-import { IUserRequest, IUserPreview, IAuthStrategy, IUserResponse } from '../../types'
+import { IUserRequest, IUserPreview, IAuthStrategy } from '../../types'
 
-type TSubmit = {
-  variables: {
-    input: IUserRequest
-  }
-}
-type TMutationRes = { data: { loginUser: IUserResponse } }
-type TSubmitMutaion = (arg: TSubmit) => TMutationRes
-type TSetToken = (token: string, user: IUserPreview) => TMutationRes
+// type TSubmit = {
+//   variables: {
+//     input: IUserRequest
+//   }
+// }
+// type TMutationRes = { data: { loginUser: IUserResponse } }
+// type TSubmitMutaion = (arg: TSubmit) => TMutationRes
+
+type TSetToken = (token: string, user: IUserPreview) => void
 
 export const authStrategyFactory = (
-  submitMutation: TSubmitMutaion,
+  submitMutation: any,
   setToken?: TSetToken,
 ): IAuthStrategy => ({
   handleSubmit: async (input: IUserRequest) => {
