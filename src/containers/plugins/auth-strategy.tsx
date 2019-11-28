@@ -11,6 +11,7 @@ import { IUserRequest, IUserPreview, IAuthStrategy } from '../../types'
 type TSetToken = (token: string, user: IUserPreview) => void
 
 export const authStrategyFactory = (
+  // TODO: add explicit type TMutation
   submitMutation: any,
   setToken?: TSetToken,
 ): IAuthStrategy => ({

@@ -36,6 +36,7 @@ interface TMyInfoData {
 }
 const GetMyInfo: React.FC<IGetMyInfo> = ({ children, isLoading }) => {
   // const loading = Boolean(isLoading)
+  // TODO: add my container strategy
   const { loading, error, data } = useQuery<TMyInfoData>(Me)
   console.log('TCL: error', error)
   console.log('TCL: data', data)
