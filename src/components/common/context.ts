@@ -16,7 +16,7 @@ export type THandleAction = (id: string) => (e: React.MouseEvent<HTMLElement>) =
 export type THandleSendMessage = (id: string, body: string) => void
 
 export interface IContext {
-  me: TMyInfo
+  me: TMyInfo | {}
   loading: boolean
   action: {
     handleLike: THandleAction
@@ -192,6 +192,9 @@ export const RootContext = createContext<IRootContext>({
   strategy: {
     authStrategy: {
       handleSubmit: () => {},
+    },
+    myProfileStrategy: {
+      getMyProfile: () => null,
     },
   },
 })
