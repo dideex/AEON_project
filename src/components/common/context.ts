@@ -16,7 +16,7 @@ export type THandleAction = (id: string) => (e: React.MouseEvent<HTMLElement>) =
 export type THandleSendMessage = (id: string, body: string) => void
 
 export interface IContext {
-  me: TMyInfo | {}
+  me: TMyInfo | null
   loading: boolean
   action: {
     handleLike: THandleAction

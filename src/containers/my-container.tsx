@@ -1,10 +1,8 @@
 import * as React from 'react'
 
-import { action, me as mockedMe } from '../mocks'
+import { action } from '../mocks'
 import { Provider as MyProvider, RootContext } from '../components/common'
 import { TMyInfo } from '../types'
-import { useQuery } from '@apollo/react-hooks'
-import { Me } from '../graphql/me.graphql'
 import { useRouter } from '../service'
 
 interface IMyContainer {
@@ -26,7 +24,7 @@ export const MyContainer: React.FC<IMyContainer> = ({ children, isLoading }) => 
 interface IGetMyInfo {
   isLoading?: boolean
   children: (props: {
-    me: TMyInfo
+    me: TMyInfo | null
     action: typeof action
     loading: boolean
   }) => JSX.Element
@@ -36,17 +34,14 @@ interface TMyInfoData {
 }
 const GetMyInfo: React.FC<IGetMyInfo> = ({ children, isLoading }) => {
   // TODO: add my container strategy
-  const { loading, error, data } = useQuery<TMyInfoData>(Me)
+  // const { loading, error, data } = useQuery<TMyInfoData>(Me)
   // if (error) console.log(error)
-  // const { history } = useRouter()
-  // if (!data || !data.me) {
-  //   history.push('/auth')
-  //   return null
-  // }
   // const me = data.me
+  const { history } = useRouter()
   const response = React.useContext(RootContext).strategy.myProfileStrategy.getMyProfile()
   if (response === null) {
-    return children({ me: {}, action, loading })
+    history.push('/auth')
+    return children({ me: null, action, loading: false })
   }
-  return children({ me, action, loading })
+  return children({ me: response, action, loading: isLoading || false })
 }

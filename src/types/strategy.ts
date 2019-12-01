@@ -4,7 +4,7 @@ export interface IAuthStrategy {
   handleSubmit: (input: IUserRequest) => void
 }
 export interface IMyProfileStrategy {
-  getMyProfile: () => TMyInfo | string | null
+  getMyProfile: () => TMyInfo | null
 }
 
 export interface IStrategy {
