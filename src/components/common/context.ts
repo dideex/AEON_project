@@ -194,7 +194,7 @@ export const RootContext = createContext<IRootContext>({
       handleSubmit: () => {},
     },
     profileStrategy: {
-      getMyProfile: () => null,
+      getMyProfile: () => ({ response: null, loading: false }),
     },
   },
 })

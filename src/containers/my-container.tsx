@@ -36,10 +36,13 @@ const GetMyInfo: React.FC<IGetMyInfo> = ({ children, isLoading }) => {
   // if (error) console.log(error)
   // const me = data.me
   const { history } = useRouter()
-  const response = React.useContext(RootContext).strategy.profileStrategy.getMyProfile()
+  const { response, loading } = React.useContext(
+    RootContext,
+  ).strategy.profileStrategy.getMyProfile()
+
   if (response === null) {
     history.push('/auth')
     return children({ me: null, action, loading: false })
   }
-  return children({ me: response, action, loading: isLoading || false })
+  return children({ me: response, action, loading: isLoading || loading })
 }
