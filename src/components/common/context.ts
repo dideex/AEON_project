@@ -193,7 +193,7 @@ export const RootContext = createContext<IRootContext>({
     authStrategy: {
       handleSubmit: () => {},
     },
-    myProfileStrategy: {
+    profileStrategy: {
       getMyProfile: () => null,
     },
   },

@@ -40,6 +40,11 @@ export const RootContainer: React.FC<IRootContainer> = ({ children, isLoading })
 
   const strategy = {
     authStrategy: authStrategyFactory(submitMutation, setToken),
+    profileStrategy: {
+      getMyProfile: () => {
+        return null
+      },
+    },
   }
 
   return (

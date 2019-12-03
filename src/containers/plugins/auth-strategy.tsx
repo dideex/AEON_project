@@ -16,9 +16,10 @@ export const authStrategyFactory = (
   setToken?: TSetToken,
 ): IAuthStrategy => ({
   handleSubmit: async (input: IUserRequest) => {
-    const { user, token } = (await submitMutation({
+    const { data } = await submitMutation({
       variables: { input },
-    })).data.loginUser
+    })
+    const { user, token } = data.loginUser
 
     setToken && setToken(token, user)
   },

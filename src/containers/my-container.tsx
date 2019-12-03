@@ -29,16 +29,14 @@ interface IGetMyInfo {
     loading: boolean
   }) => JSX.Element
 }
-interface TMyInfoData {
-  me: TMyInfo
-}
+
 const GetMyInfo: React.FC<IGetMyInfo> = ({ children, isLoading }) => {
   // TODO: add my container strategy
   // const { loading, error, data } = useQuery<TMyInfoData>(Me)
   // if (error) console.log(error)
   // const me = data.me
   const { history } = useRouter()
-  const response = React.useContext(RootContext).strategy.myProfileStrategy.getMyProfile()
+  const response = React.useContext(RootContext).strategy.profileStrategy.getMyProfile()
   if (response === null) {
     history.push('/auth')
     return children({ me: null, action, loading: false })
