@@ -13,16 +13,6 @@ interface IRootContainer {
   children: React.ReactNode
 }
 
-// type TSubmit = {
-//   variables: {
-//     input: IUserRequest
-//   }
-// }
-// type TMutationRes = { data: { loginUser: IUserResponse } }
-// type TSubmitMutaion = (arg: TSubmit) => TMutationRes
-
-// type TRes = () => { data: { loginUser: IUserResponse } }
-
 export const RootContainer: React.FC<IRootContainer> = ({ children, isLoading }) => {
   const [token, changeToken] = React.useState<string>('')
   const [user, changeUser] = React.useState<IUserPreview>()

@@ -1,5 +1,6 @@
-import { IProfileStrategy } from '../../types'
 import { useQuery } from '@apollo/react-hooks'
+
+import { IProfileStrategy } from '../../types'
 import { Me } from '*/me.graphql'
 
 export const profileStrategy = (): IProfileStrategy => ({
