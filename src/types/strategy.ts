@@ -1,11 +1,11 @@
-import { IUserRequest, TMyInfo, IUserProfileInfo } from './user'
+import { IUserRequest, TMyInfo } from './user'
 
 export interface IAuthStrategy {
   handleSubmit: (input: IUserRequest) => void
 }
 
 interface IProfileResponse {
-  response: TMyInfo | IUserProfileInfo | null
+  response: TMyInfo | null
   loading: boolean
 }
 export interface IProfileStrategy {

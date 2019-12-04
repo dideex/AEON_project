@@ -4,7 +4,7 @@ import { RootProvider } from '../components/common'
 import { IUserPreview } from '../types'
 import config from '../config'
 import { LS } from '../service'
-import { authStrategyFactory } from './plugins'
+import { authStrategyFactory, profileStrategy } from './plugins'
 import { useMutation } from '@apollo/react-hooks'
 import { Login } from '*/login.graphql'
 
@@ -40,12 +40,7 @@ export const RootContainer: React.FC<IRootContainer> = ({ children, isLoading })
 
   const strategy = {
     authStrategy: authStrategyFactory(submitMutation, setToken),
-    profileStrategy: {
-      getMyProfile: () => ({
-        response: null,
-        loading: false,
-      }),
-    },
+    profileStrategy: profileStrategy(),
   }
 
   return (
