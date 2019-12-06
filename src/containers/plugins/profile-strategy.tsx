@@ -5,10 +5,10 @@ import { Me } from '*/me.graphql'
 
 export const profileStrategy = (): IProfileStrategy => ({
   getMyProfile: () => {
-    const { loading, data } = useQuery(Me)
-    const response = data ? data.me : null
+    const { loading, data: myData } = useQuery(Me)
+    const data = myData ? myData.me : null
     return {
-      response,
+      data,
       loading,
     }
   },

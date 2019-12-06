@@ -5,7 +5,7 @@ export interface IAuthStrategy {
 }
 
 interface IProfileResponse {
-  response: TMyInfo | null
+  data: TMyInfo | null
   loading: boolean
 }
 export interface IProfileStrategy {
