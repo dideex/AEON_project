@@ -87,7 +87,8 @@ function getChatUrl(chat: IChat | undefined): string {
   }
 }
 
-function isOwner(user: TMyInfo, chat?: IChat): boolean {
+function isOwner(user: TMyInfo | null, chat?: IChat): boolean {
+  if (!user) return false
   if (!chat) return false
   if (chat.type === 'private') return true
   if (chat.owner.id === user.id) return true

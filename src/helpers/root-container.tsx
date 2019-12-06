@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { RootProvider } from '../components/common'
+import { RootProvider as RootContextProvider } from '../components/common'
 import { IUserPreview } from '../types'
 import { me } from '../mocks'
 
@@ -19,7 +19,7 @@ export const RootContainer: React.FC<IRootContainer> = ({ children, isLoading })
     profileStrategy: { getMyProfile: () => ({ data: me, loading: false }) },
   }
   return (
-    <RootProvider
+    <RootContextProvider
       value={{
         token,
         user,
@@ -29,6 +29,6 @@ export const RootContainer: React.FC<IRootContainer> = ({ children, isLoading })
       }}
     >
       {children}
-    </RootProvider>
+    </RootContextProvider>
   )
 }
