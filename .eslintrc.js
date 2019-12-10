@@ -16,6 +16,7 @@ module.exports = {
   },
   rules: {
     'react/prop-types': [0],
+    '@typescript-eslint/consistent-type-assertions': [0],
     '@typescript-eslint/no-explicit-any': [0],
     '@typescript-eslint/interface-name-prefix': [0],
     '@typescript-eslint/no-use-before-define': [0],
