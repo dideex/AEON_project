@@ -6,7 +6,7 @@ import StoryRouter from 'storybook-react-router'
 
 import { CustomThemeProvider as ThemeProvider } from '../../service'
 import AuthCmp from './auth'
-import RegisterCmp from './register'
+// import RegisterCmp from './register'
 
 const handleSubmit = action('Handle submit')
 
@@ -15,11 +15,11 @@ const Auth = (props: any) => (
     <AuthCmp {...props} />
   </ThemeProvider>
 )
-const Register = (props: any) => (
-  <ThemeProvider>
-    <RegisterCmp {...props} />
-  </ThemeProvider>
-)
+// const Register = (props: any) => (
+//   <ThemeProvider>
+//     <RegisterCmp {...props} />
+//   </ThemeProvider>
+// )
 
 const stories = storiesOf('Auth flow', module)
 stories.addDecorator(withKnobs)
@@ -29,24 +29,24 @@ stories
   .add('Auth: basic view', () => (
     <Auth handleSubmit={handleSubmit} isLoading={boolean('Loading', false)} />
   ))
-  .add(
-    'Auth: mobile view',
-    () => <Auth handleSubmit={handleSubmit} isLoading={boolean('Loading', false)} />,
-    { viewport: { defaultViewport: 'iphonex' } },
-  )
-  .add('Register: basic view', () => (
-    <Register
-      handleSubmit={handleSubmit}
-      isLoading={boolean('Loading', false, 'LOADING-GR3')}
-    />
-  ))
-  .add(
-    'Register: mobile view',
-    () => (
-      <Register
-        handleSubmit={handleSubmit}
-        isLoading={boolean('Loading', false, 'LOADING-GR3')}
-      />
-    ),
-    { viewport: { defaultViewport: 'iphonex' } },
-  )
+  // .add(
+  //   'Auth: mobile view',
+  //   () => <Auth handleSubmit={handleSubmit} isLoading={boolean('Loading', false)} />,
+  //   { viewport: { defaultViewport: 'iphonex' } },
+  // )
+  // .add('Register: basic view', () => (
+  //   <Register
+  //     handleSubmit={handleSubmit}
+  //     isLoading={boolean('Loading', false, 'LOADING-GR3')}
+  //   />
+  // ))
+  // .add(
+  //   'Register: mobile view',
+  //   () => (
+  //     <Register
+  //       handleSubmit={handleSubmit}
+  //       isLoading={boolean('Loading', false, 'LOADING-GR3')}
+  //     />
+  //   ),
+  //   { viewport: { defaultViewport: 'iphonex' } },
+  // )
