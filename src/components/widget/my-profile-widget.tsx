@@ -48,6 +48,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const ProfileWidget: React.FC = () => {
   const { me, loading } = React.useContext(Context)
+  if (!me) return null
   const classes = useStyles()
 
   const getUserInfo = () => (

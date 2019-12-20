@@ -11,6 +11,7 @@ interface IUserProfileContainer {
 export const UserProfileContainer: React.FC<IUserProfileContainer> = props => {
   const { userId, children } = props
   const { me } = React.useContext(Context)
+  if (!me) return null
 
   if (me.id === userId) {
     return <UserProfileProvider value={{ ...me }}>{children}</UserProfileProvider>
