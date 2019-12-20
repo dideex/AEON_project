@@ -62,7 +62,7 @@ const Search: React.FC<RouteComponentProps> = ({ history }) => {
         <SearchIcon />
       </div>
       <InputBase
-        color="textSecondary"
+        color="secondary"
         placeholder="Search…"
         classes={{
           root: classes.inputRoot,

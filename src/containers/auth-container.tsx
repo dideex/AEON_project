@@ -1,11 +1,12 @@
 import * as React from 'react'
 
 import { UserAuthProvider, RootContext } from '../components/common'
-import { IUserRequest } from '../types'
+import { IUserRequest, IUserPreview } from '../types'
 
 interface IAuthContainer {
   children: React.ReactElement
   isLoading?: boolean
+  setToken: (token: string, user: IUserPreview) => void
 }
 
 export const AuthContainer: React.FC<IAuthContainer> = ({ children, isLoading }) => (

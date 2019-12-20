@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { createContext } from 'react'
 import {
   TMyInfo,
@@ -16,7 +17,7 @@ export type THandleAction = (id: string) => (e: React.MouseEvent<HTMLElement>) =
 export type THandleSendMessage = (id: string, body: string) => void
 
 export interface IContext {
-  me: TMyInfo | null
+  me: TMyInfo
   loading: boolean
   action: {
     handleLike: THandleAction

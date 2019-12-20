@@ -38,6 +38,7 @@ export const ChatContainer: React.FC<IChatContainer> = props => {
   }
 
   const { me } = React.useContext(Context)
+  if (!me) return null
   const action = { openChat, sendMessage }
   const id = activeChat ? activeChat.id : ''
   return (

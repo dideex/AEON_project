@@ -48,6 +48,7 @@ const UserCard: React.FC<IUserPreview> = props => {
   const classes = useStyles()
   const fullName = getFullName(firstname, lastname, patronymic)
   const { me } = React.useContext(Context)
+  if (!me) return null
   const isFriend = Boolean(me.friends.find(friend => friend.id === id))
   return (
     <Grid item sm={4} xs={6} className={classes.wrap}>

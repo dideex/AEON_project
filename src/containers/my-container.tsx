@@ -13,9 +13,9 @@ interface IMyContainer {
 export const MyContainer: React.FC<IMyContainer> = ({ children, isLoading }) => {
   return (
     <GetMyInfo isLoading={isLoading}>
-      {({ me, action, loading }) => (
-        <MyProvider value={{ me, action, loading }}>{children}</MyProvider>
-      )}
+      {({ me, action, loading }) =>
+        me ? <MyProvider value={{ me, action, loading }}>{children}</MyProvider> : <div />
+      }
     </GetMyInfo>
   )
 }
